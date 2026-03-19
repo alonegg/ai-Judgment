@@ -4,7 +4,240 @@
    consent → warmup → pretest(8) → profile → scenes(4) → transition → posttest(8) → interview → debrief/export
    ============================================================ */
 
-const MATERIALS_PATH = "./materials_v1.json";
+// ── Language ──
+const LANG = new URLSearchParams(location.search).get("lang") === "en" ? "en" : "zh";
+const MATERIALS_PATH = LANG === "en" ? "./materials_en.json" : "./materials_v1.json";
+
+const T = LANG === "en" ? {
+  // Badge
+  badge_welcome: "Welcome", badge_warmup: "Warm-up", badge_pretest: "Pretest",
+  badge_profile: "Profile", badge_scene: "Scene", badge_transition: "Transition",
+  badge_posttest: "Posttest", badge_interview: "Interview", badge_debrief: "Export",
+  // Consent
+  consent_title: "Welcome to This Study",
+  consent_intro: "This study examines how university students judge the trustworthiness of generative AI outputs in academic writing tasks.",
+  consent_task: "You will see writing goals, AI-generated answers, and evidence cards. Your task is not to polish the text, but to judge whether the AI output can be used directly, identify problems, and decide on a next action.",
+  consent_flow_title: "Experiment Flow",
+  consent_pills: ["Consent", "Warm-up", "Pre ×8", "Profiling", "Intervention ×4", "Post ×8", "Interview", "End"],
+  consent_duration: "Estimated duration: <strong>75–90 minutes</strong>",
+  consent_info_title: "Informed Consent",
+  consent_info: [
+    "We will record your item choices, brief explanations, confidence ratings, and completion times.",
+    "We will not assess your language proficiency or use results for course grades.",
+    "All data will be anonymized and used only for academic research purposes.",
+    "You may withdraw from the study at any time without explanation."
+  ],
+  consent_setup_title: "Session Setup", consent_pid_label: "Participant ID",
+  consent_pid_placeholder: "P01", consent_pid_help: "Anonymous ID assigned by the researcher, e.g. <code>P01</code>",
+  consent_btn: "I have read and agree — Start experiment",
+  consent_pid_alert: "Please enter a Participant ID",
+  // Warmup
+  warmup_title: "Warm-up Exercise",
+  warmup_intro: "Before the formal test, let's go through one example to help you get familiar with the response format.",
+  warmup_goal_title: "Example: Writing Goal",
+  warmup_goal: 'You want to write a related work sentence:<br>"Some students use AI tools during early drafting."',
+  warmup_ai_title: "Example: AI Answer",
+  warmup_ai: '"Research proves that all students benefit equally from AI drafting tools."',
+  warmup_ev_title: "Example: Evidence Card",
+  warmup_ev_bullets: [
+    "A small class-based study reports that some students found AI useful for early brainstorming.",
+    "The paper does not compare all students.",
+    "The paper does not show equal benefit across students."
+  ],
+  warmup_explain_title: "Walkthrough",
+  warmup_judgment: '<strong>Reasonable judgment:</strong> <code>Revise</code>',
+  warmup_reason: 'Because "all students", "benefit equally", and "proves" in the AI answer go beyond what the evidence card states.',
+  warmup_next_action: 'A good next action would be <code>weaken the claim wording</code>.',
+  warmup_steps_label: "Four response steps:",
+  warmup_steps: ["Make a judgment (Accept / Revise / Reject or Prefer A / Prefer B)", "Write 1–3 sentences of reasoning", "Choose a next action", "Rate your confidence 1–5"],
+  warmup_actions_title: "Next-Action Options",
+  warmup_actions: [
+    ["1", "<strong>verify or inspect the source</strong>: check the original source material"],
+    ["2", "<strong>ask AI to regenerate with supporting evidence</strong>: request AI to regenerate with evidence"],
+    ["3", "<strong>weaken the claim wording</strong>: edit the output with more cautious wording"],
+    ["4", "<strong>flag and do not use this output</strong>: mark as unusable"],
+    ["5", "<strong>accept with minor edits</strong>: accept the output with minimal text edits"]
+  ],
+  warmup_btn: "I understand — Start pretest",
+  // Item screen
+  item_phase: "Phase", item_id: "Item", item_category: "Category", item_progress: "Progress",
+  phase_pretest: "Pretest", phase_posttest: "Posttest",
+  reminder_pretest: "Pretest: Please judge independently based on the on-screen materials only. Do not use any AI or search tools.",
+  reminder_posttest: "Posttest: Please judge independently. There will be no AI assistance.",
+  card_goal: "Writing Goal", card_ai: "AI Output", card_evidence: "Evidence Card", card_prompt: "Task Prompt",
+  answer_a: "Answer A", answer_b: "Answer B",
+  form_title: "Your Response",
+  label_judgment: "Judgment", label_reason: "Reason", label_next_action: "Next Action", label_confidence: "Confidence",
+  reason_placeholder: "Explain your judgment in 1–3 sentences.",
+  confidence_opts: ["1 - very unsure", "2 - somewhat unsure", "3 - not sure", "4 - fairly confident", "5 - very confident"],
+  btn_save_next: "Save & Continue →",
+  err_incomplete: "Please complete all four fields before continuing.",
+  // Profile
+  profile_title: "Pretest Diagnostic Results",
+  profile_callout: "System recommendation based on judgment accuracy + action quality. Explanation quality will be scored later with a rubric.",
+  profile_recommend: "Recommended targeted profiles:",
+  profile_override_title: "Profile Override (Operator)",
+  profile_override_help: "The system selected the two weakest categories. Override manually if needed.",
+  profile_override_note_label: "Override note (explain if adjusted)",
+  profile_override_note_placeholder: "e.g. Explanation text shows the student is weaker in source-verification than the score suggests",
+  profile_btn: "Confirm profiles — Start intervention", profile_btn_reset: "Restart test",
+  profile_alert: "Please select exactly two profiles",
+  // Scene
+  scene_title: "Intervention Scene", scene_script_title: "Script",
+  scene_task_label: "Learner Task: ", scene_response_placeholder: "Enter the participant's response...",
+  scene_obs_label: "Operator Observation Note (30s quick note)",
+  scene_obs_placeholder: "e.g. \"Actively asked why the metadata didn't match\" or \"Glanced briefly and wrote a very short answer\"",
+  scene_btn: "Save scene & Continue →",
+  // Transition
+  transition_title: "Transition Prompt",
+  transition_main: "The following items require your independent judgment",
+  transition_sub: "There will be no AI assistance. Please respond as if you were reviewing a manuscript.",
+  transition_btn: "I'm ready — Start posttest",
+  // Interview
+  interview_title: "Short Interview (8–10 min)", interview_tag: "Interview",
+  interview_intro: "Please answer the following questions orally; the researcher will record key points.",
+  interview_questions: [
+    "Which scene was most helpful? Why?",
+    "What is the judgment rule you would use most often now?",
+    "What type of error are you still most likely to make?",
+    "If this system were embedded in a real course, at which step would you use it?",
+    "Was there any part of the process that felt confusing or uncertain?",
+    "If you could remove one step, which would it be? Why?"
+  ],
+  interview_q_prefix: "Q", interview_placeholder: "Record key points of the participant's answer...",
+  interview_btn: "Finish interview — Go to summary",
+  // Debrief
+  debrief_title: "Thank You",
+  debrief_msg: "Thank you for participating! Some citations and source scenarios in this study were <strong>controlled materials</strong> designed for experimental purposes, including deliberately constructed errors to test AI judgment — they do not represent real citable references.",
+  summary_title: "Session Summary",
+  summary_participant: "Participant", summary_time: "Total time", summary_min: "min",
+  summary_pretest: "Pretest", summary_scenes: "Scenes", summary_posttest: "Posttest", summary_profiles: "Profiles",
+  summary_items: "items", summary_scenes_unit: "scenes",
+  coding_title: "Interaction Pattern Annotation (Operator)",
+  coding_help: "Annotate the primary interaction pattern for this participant based on the codebook.",
+  coding_primary: "Primary pattern", coding_secondary: "Secondary pattern (optional)", coding_evidence: "Evidence note",
+  coding_evidence_placeholder: "Brief note on coding rationale",
+  btn_download: "Download Session JSON", btn_copy: "Copy to clipboard", btn_new: "Start new participant",
+  copy_alert: "JSON copied to clipboard!",
+  preview_title: "Export Preview",
+  // Error
+  error_title: "Cannot load study materials", error_unknown: "Unknown error",
+  error_help: "Please run <code>python3 -m http.server</code> in the project directory and open via <code>http://localhost:8000/index.html</code>.",
+  // Select
+  select_placeholder: "— Select —",
+  // Category & profile labels
+  cat_label: {"hallucinated-citation": "Hallucinated Citation", "source-verification": "Source Verification", "trust-calibration": "Trust Calibration", "scope-generalization": "Scope Generalization"},
+  profile_label: {"hallucination-weak": "Hallucination-weak", "verification-weak": "Verification-weak", "trust-calibration-weak": "Trust-calibration-weak", "scope-generalization-weak": "Scope-generalization-weak"}
+} : {
+  // Chinese (default)
+  badge_welcome: "欢迎", badge_warmup: "热身", badge_pretest: "前测",
+  badge_profile: "诊断", badge_scene: "场景", badge_transition: "过渡",
+  badge_posttest: "后测", badge_interview: "访谈", badge_debrief: "导出",
+  consent_title: "欢迎参加本研究",
+  consent_intro: "本研究关注大学生在使用生成式 AI 处理学术写作任务时，如何判断 AI 输出是否可信。",
+  consent_task: "在本研究中，你将看到若干写作目标、AI 生成的回答、以及配套证据卡。你的任务不是「把句子写得更漂亮」，而是判断 AI 输出能不能直接用、问题出在哪里、下一步应该怎么做。",
+  consent_flow_title: "实验流程概览",
+  consent_pills: ["同意书", "热身", "前测 ×8", "个性化诊断", "干预练习 ×4", "后测 ×8", "访谈", "结束"],
+  consent_duration: "总时长约 <strong>75-90 分钟</strong>",
+  consent_info_title: "知情同意",
+  consent_info: [
+    "我们会记录你的题目选择、简短解释、信心评分和完成时间。",
+    "我们不会评估你的语言水平，也不会把结果用于课程成绩。",
+    "所有数据将匿名处理，仅用于学术研究目的。",
+    "你可以随时退出实验，无需说明理由。"
+  ],
+  consent_setup_title: "实验设置", consent_pid_label: "参与者编号",
+  consent_pid_placeholder: "P01", consent_pid_help: "由实验员分配的匿名编号，如 <code>P01</code>",
+  consent_btn: "我已阅读并同意，开始实验",
+  consent_pid_alert: "请输入参与者编号",
+  warmup_title: "热身练习",
+  warmup_intro: "在正式测试前，我们先用一道示例帮助你熟悉答题格式。",
+  warmup_goal_title: "示例：写作目标",
+  warmup_goal: '你要写一句相关研究：<br>「部分学生在初稿阶段使用了 AI 工具。」',
+  warmup_ai_title: "示例：AI 回答",
+  warmup_ai: '「研究证明所有学生都同等受益于 AI 起草工具。」',
+  warmup_ev_title: "示例：证据卡",
+  warmup_ev_bullets: [
+    "一项小规模课堂研究报告，部分学生认为 AI 对早期头脑风暴有帮助。",
+    "该论文没有比较所有学生。",
+    "该论文没有证明不同学生之间存在同等收益。"
+  ],
+  warmup_explain_title: "示例讲解",
+  warmup_judgment: '<strong>合理判断：</strong><code>修改</code>',
+  warmup_reason: '因为 AI 的回答中「所有学生」「同等受益」「证明」都超出了证据卡给出的信息。',
+  warmup_next_action: '下一步动作可以选择 <code>弱化论述措辞</code>。',
+  warmup_steps_label: "答题四步骤：",
+  warmup_steps: ["做出判断（接受 / 修改 / 拒绝 或 选择 A / 选择 B）", "写 1-3 句理由", "选择下一步动作", "打 1-5 的信心分"],
+  warmup_actions_title: "下一步动作选项说明",
+  warmup_actions: [
+    ["1", "<strong>核查或检视原始来源</strong>：检查原始来源材料"],
+    ["2", "<strong>要求 AI 重新生成并附上证据</strong>：要求 AI 重新生成并附上支持性证据"],
+    ["3", "<strong>弱化论述措辞</strong>：编辑输出，使用更谨慎的措辞"],
+    ["4", "<strong>标记为不可用</strong>：标记该输出为不可用，不进行进一步使用"],
+    ["5", "<strong>接受并做小幅修改</strong>：接受输出，仅做最小文本修改"]
+  ],
+  warmup_btn: "我已了解，开始前测",
+  item_phase: "阶段", item_id: "题号", item_category: "类别", item_progress: "进度",
+  phase_pretest: "前测", phase_posttest: "后测",
+  reminder_pretest: "前测阶段：请仅基于屏幕上的材料独立判断，不得使用任何 AI 或搜索工具。",
+  reminder_posttest: "后测阶段：请独立判断，不会有任何 AI 辅助。",
+  card_goal: "写作目标", card_ai: "AI 输出", card_evidence: "证据卡", card_prompt: "题目要求",
+  answer_a: "答案 A", answer_b: "答案 B",
+  form_title: "你的回答",
+  label_judgment: "判断", label_reason: "理由", label_next_action: "下一步动作", label_confidence: "信心程度",
+  reason_placeholder: "用 1-3 句话说明你为什么这样判断。",
+  confidence_opts: ["1 - 非常不确定", "2 - 比较不确定", "3 - 不太确定", "4 - 比较确定", "5 - 非常确定"],
+  btn_save_next: "保存并继续 →",
+  err_incomplete: "请完成所有四个字段再继续。",
+  profile_title: "前测诊断结果",
+  profile_callout: "系统基于判断准确率和动作选择质量做初步推荐。解释质量需后续用评分标准人工评分。",
+  profile_recommend: "推荐干预方向：",
+  profile_override_title: "诊断覆盖（操作员）",
+  profile_override_help: "系统已自动选取最弱的两个类别。如果与你的直觉不符，可以手动调整并记录。",
+  profile_override_note_label: "覆盖备注（如有调整请说明原因）",
+  profile_override_note_placeholder: "如：解释文本显示该学生在来源核查上比分数反映的更弱",
+  profile_btn: "确认诊断，进入干预练习", profile_btn_reset: "重新测试",
+  profile_alert: "请选择恰好两个类别",
+  scene_title: "干预场景", scene_script_title: "脚本内容",
+  scene_task_label: "学习任务：", scene_response_placeholder: "输入参与者的回答...",
+  scene_obs_label: "操作员观察记录（30秒快记）",
+  scene_obs_placeholder: '如：「主动提问为什么元数据不匹配」或「只看了一眼就写了很短的回答」',
+  scene_btn: "保存场景并继续 →",
+  transition_title: "过渡提示",
+  transition_main: "接下来的题目需要你独立判断",
+  transition_sub: "不会有任何 AI 辅助。请像自己审稿一样作答。",
+  transition_btn: "我已准备好，开始后测",
+  interview_title: "短访谈（8-10 分钟）", interview_tag: "访谈",
+  interview_intro: "请口头回答以下问题，实验员记录要点。",
+  interview_questions: [
+    "哪个场景最有帮助？为什么？",
+    "你现在最常用的判断规则是什么？",
+    "哪种错误你仍然最容易犯？",
+    "如果把这个系统嵌入真实课程，你会在哪一步使用它？",
+    "在刚才的过程中，有没有哪个环节让你感到困惑或不确定？",
+    "如果让你删掉一个环节，你会删哪个？为什么？"
+  ],
+  interview_q_prefix: "问题", interview_placeholder: "记录参与者的回答要点...",
+  interview_btn: "完成访谈，进入结束页",
+  debrief_title: "感谢参与",
+  debrief_msg: "感谢你的参与！本研究中的部分引用与来源情景是为实验目的而设计的<strong>控制材料</strong>，其中包含故意构造的错误样例，用于测试 AI 判断能力，而不代表真实可引用文献。",
+  summary_title: "实验总结",
+  summary_participant: "参与者", summary_time: "总时长", summary_min: "分钟",
+  summary_pretest: "前测", summary_scenes: "场景", summary_posttest: "后测", summary_profiles: "干预方向",
+  summary_items: "题", summary_scenes_unit: "个",
+  coding_title: "交互模式标注（操作员）",
+  coding_help: "根据编码手册为该参与者标注主要交互模式。",
+  coding_primary: "主要模式", coding_secondary: "次要模式（可选）", coding_evidence: "编码依据",
+  coding_evidence_placeholder: "简要记录编码依据",
+  btn_download: "下载实验数据", btn_copy: "复制到剪贴板", btn_new: "开始新参与者",
+  copy_alert: "数据已复制到剪贴板！",
+  preview_title: "导出预览",
+  error_title: "无法加载实验材料", error_unknown: "未知错误",
+  error_help: "请在项目目录运行 <code>python3 -m http.server</code>，然后通过 <code>http://localhost:8000/index.html</code> 打开。",
+  select_placeholder: "— 请选择 —",
+  cat_label: {"hallucinated-citation": "虚构引用识别", "source-verification": "来源核查", "trust-calibration": "可信度校准", "scope-generalization": "范围泛化识别"},
+  profile_label: {"hallucination-weak": "虚构引用薄弱", "verification-weak": "来源核查薄弱", "trust-calibration-weak": "可信度校准薄弱", "scope-generalization-weak": "范围泛化薄弱"}
+};
 
 // ── State ──
 const S = {
@@ -39,6 +272,8 @@ const categoryToProfile = {
   "trust-calibration": "trust-calibration-weak",
   "scope-generalization": "scope-generalization-weak"
 };
+
+// categoryLabel and profileLabel are now in T.cat_label and T.profile_label
 
 const profileToCategory = Object.fromEntries(Object.entries(categoryToProfile).map(([k,v]) => [v,k]));
 
@@ -117,15 +352,15 @@ function render() {
 
 function badgeText() {
   const map = {
-    consent: "Welcome",
-    warmup: "Warm-up",
-    pretest: `Pretest ${S.pretestIndex + 1}/${getItems("pretest").length}`,
-    profile: "Profile",
-    scenes: `Scene ${S.sceneIndex + 1}/${getSelectedScenes().length}`,
-    transition: "Transition",
-    posttest: `Posttest ${S.posttestIndex + 1}/${getPosttestOrder().length}`,
-    interview: "Interview",
-    debrief: "Export"
+    consent: T.badge_welcome,
+    warmup: T.badge_warmup,
+    pretest: `${T.badge_pretest} ${S.pretestIndex + 1}/${getItems("pretest").length}`,
+    profile: T.badge_profile,
+    scenes: `${T.badge_scene} ${S.sceneIndex + 1}/${getSelectedScenes().length}`,
+    transition: T.badge_transition,
+    posttest: `${T.badge_posttest} ${S.posttestIndex + 1}/${getPosttestOrder().length}`,
+    interview: T.badge_interview,
+    debrief: T.badge_debrief
   };
   return map[S.stage] || S.stage;
 }
@@ -136,59 +371,40 @@ function renderConsent() {
   $screen.innerHTML = "";
   const w = el("div", "screen-stack");
 
-  w.append(card("欢迎参加本研究", `
-    <p>本研究关注大学生在使用生成式 AI 处理 academic writing 任务时，如何判断 AI 输出是否可信。</p>
-    <p>在本研究中，你将看到若干写作目标、AI 生成的回答、以及配套 evidence card。你的任务不是"把句子写得更漂亮"，而是判断 AI 输出能不能直接用、问题出在哪里、下一步应该怎么做。</p>
+  w.append(card(T.consent_title, `
+    <p>${T.consent_intro}</p>
+    <p>${T.consent_task}</p>
   `));
 
-  w.append(card("实验流程概览", `
-    <div class="pill-row">
-      <span class="pill active">同意书</span>
-      <span class="pill">热身</span>
-      <span class="pill">前测 ×8</span>
-      <span class="pill">个性化诊断</span>
-      <span class="pill">干预练习 ×4</span>
-      <span class="pill">后测 ×8</span>
-      <span class="pill">访谈</span>
-      <span class="pill">结束</span>
-    </div>
-    <p class="helper-text" style="margin-top:12px">总时长约 <strong>75-90 分钟</strong></p>
+  const pillsHtml = T.consent_pills.map((p, i) =>
+    `<span class="pill ${i === 0 ? 'active' : ''}">${esc(p)}</span>`
+  ).join("");
+  w.append(card(T.consent_flow_title, `
+    <div class="pill-row">${pillsHtml}</div>
+    <p class="helper-text" style="margin-top:12px">${T.consent_duration}</p>
   `));
 
-  w.append(card("知情同意", `
-    <div class="consent-grid">
-      <div class="consent-item">
-        <div class="consent-icon">1</div>
-        <div>我们会记录你的题目选择、简短解释、confidence rating 和完成时间。</div>
-      </div>
-      <div class="consent-item">
-        <div class="consent-icon">2</div>
-        <div>我们不会评估你的英语水平，也不会把结果用于课程成绩。</div>
-      </div>
-      <div class="consent-item">
-        <div class="consent-icon">3</div>
-        <div>所有数据将匿名处理，仅用于学术研究目的。</div>
-      </div>
-      <div class="consent-item">
-        <div class="consent-icon">4</div>
-        <div>你可以随时退出实验，无需说明理由。</div>
-      </div>
+  const infoHtml = T.consent_info.map((txt, i) => `
+    <div class="consent-item">
+      <div class="consent-icon">${i + 1}</div>
+      <div>${esc(txt)}</div>
     </div>
-  `));
+  `).join("");
+  w.append(card(T.consent_info_title, `<div class="consent-grid">${infoHtml}</div>`));
 
   const setupCard = el("div", "card field-stack");
   setupCard.innerHTML = `
-    <h2 class="card-title">Session Setup</h2>
-    <label for="pid">Participant ID</label>
-    <input id="pid" type="text" placeholder="P01" value="${esc(S.participantId)}" />
-    <p class="helper-text compact">由实验员分配的匿名编号，如 <code>P01</code></p>
+    <h2 class="card-title">${esc(T.consent_setup_title)}</h2>
+    <label for="pid">${esc(T.consent_pid_label)}</label>
+    <input id="pid" type="text" placeholder="${escAttr(T.consent_pid_placeholder)}" value="${esc(S.participantId)}" />
+    <p class="helper-text compact">${T.consent_pid_help}</p>
   `;
   w.append(setupCard);
 
   const btns = el("div", "button-row");
-  btns.append(btn("我已阅读并同意，开始实验", "primary", () => {
+  btns.append(btn(T.consent_btn, "primary", () => {
     const v = document.getElementById("pid").value.trim();
-    if (!v) { alert("请输入 Participant ID"); return; }
+    if (!v) { alert(T.consent_pid_alert); return; }
     S.participantId = v;
     S.sessionStartedAt = Date.now();
     S.stage = "warmup";
@@ -204,57 +420,35 @@ function renderWarmup() {
   $screen.innerHTML = "";
   const w = el("div", "screen-stack");
 
-  w.append(card("热身练习", `
-    <p>在正式测试前，我们先用一道示例帮助你熟悉答题格式。</p>
-  `));
+  w.append(card(T.warmup_title, `<p>${T.warmup_intro}</p>`));
 
-  w.append(card("示例：Writing Goal", `
-    <div class="answer-box">你要写一句 related work：<br>"Some students use AI tools during early drafting."</div>
-  `));
+  w.append(card(T.warmup_goal_title, `<div class="answer-box">${T.warmup_goal}</div>`));
 
-  w.append(card("示例：AI Answer", `
-    <div class="answer-box">"Research proves that all students benefit equally from AI drafting tools."</div>
-  `));
+  w.append(card(T.warmup_ai_title, `<div class="answer-box">${T.warmup_ai}</div>`));
 
-  w.append(card("示例：Evidence Card", `
-    <div class="answer-box">
-      <ul class="list-tight">
-        <li>A small class-based study reports that some students found AI useful for early brainstorming.</li>
-        <li>The paper does not compare all students.</li>
-        <li>The paper does not show equal benefit across students.</li>
-      </ul>
-    </div>
-  `));
+  const evBullets = T.warmup_ev_bullets.map(b => `<li>${esc(b)}</li>`).join("");
+  w.append(card(T.warmup_ev_title, `<div class="answer-box"><ul class="list-tight">${evBullets}</ul></div>`));
 
-  w.append(card("示例讲解", `
+  const stepsHtml = T.warmup_steps.map(s => `<li>${esc(s)}</li>`).join("");
+  w.append(card(T.warmup_explain_title, `
     <div class="callout">
-      <p><strong>合理判断：</strong><code>Revise</code></p>
-      <p>因为 AI 的回答中 "all students"、"benefit equally"、"proves" 都超出了 evidence card 给出的信息。</p>
-      <p>下一步动作可以选择 <code>weaken the claim wording</code>。</p>
+      <p>${T.warmup_judgment}</p>
+      <p>${T.warmup_reason}</p>
+      <p>${T.warmup_next_action}</p>
     </div>
     <div style="margin-top:14px">
-      <strong>答题四步骤：</strong>
-      <ol class="list-tight" style="padding-left:20px;margin-top:8px;">
-        <li>做出判断（Accept / Revise / Reject 或 Prefer A / Prefer B）</li>
-        <li>写 1-3 句理由</li>
-        <li>选择下一步动作</li>
-        <li>打 1-5 的 confidence 分</li>
-      </ol>
+      <strong>${esc(T.warmup_steps_label)}</strong>
+      <ol class="list-tight" style="padding-left:20px;margin-top:8px;">${stepsHtml}</ol>
     </div>
   `));
 
-  w.append(card("Next-Action 选项说明", `
-    <div class="consent-grid">
-      <div class="consent-item"><div class="consent-icon">🔍</div><div><strong>verify or inspect the source</strong>：检查原始来源材料</div></div>
-      <div class="consent-item"><div class="consent-icon">🔄</div><div><strong>ask AI to regenerate with supporting evidence</strong>：要求 AI 重新生成并附上证据</div></div>
-      <div class="consent-item"><div class="consent-icon">✏️</div><div><strong>weaken the claim wording</strong>：编辑输出，使用更谨慎的措辞</div></div>
-      <div class="consent-item"><div class="consent-icon">🚫</div><div><strong>flag and do not use this output</strong>：标记为不可用</div></div>
-      <div class="consent-item"><div class="consent-icon">✅</div><div><strong>accept with minor edits</strong>：接受输出，仅做最小修改</div></div>
-    </div>
-  `));
+  const actionsHtml = T.warmup_actions.map(([n, desc]) =>
+    `<div class="consent-item"><div class="consent-icon">${n}</div><div>${desc}</div></div>`
+  ).join("");
+  w.append(card(T.warmup_actions_title, `<div class="consent-grid">${actionsHtml}</div>`));
 
   const btns = el("div", "button-row");
-  btns.append(btn("我已了解，开始前测", "primary", () => {
+  btns.append(btn(T.warmup_btn, "primary", () => {
     S.stage = "pretest";
     S.pretestIndex = 0;
     S.pretestResponses = [];
@@ -294,19 +488,18 @@ function renderItemScreen(phase) {
 
   // Header metrics
   const hdr = el("div", "metric-grid");
+  const phaseLabel = phase === "pretest" ? T.phase_pretest : T.phase_posttest;
   const phaseTag = phase === "pretest" ? "pretest" : "posttest";
   hdr.innerHTML = `
-    <div class="metric"><div class="label">Phase</div><div class="value"><span class="phase-tag ${phaseTag}">${phase}</span></div></div>
-    <div class="metric"><div class="label">Item</div><div class="value">${item.id}</div></div>
-    <div class="metric"><div class="label">Category</div><div class="value">${item.category}</div></div>
-    <div class="metric"><div class="label">Progress</div><div class="value">${idx + 1} / ${items.length}</div></div>
+    <div class="metric"><div class="label">${esc(T.item_phase)}</div><div class="value"><span class="phase-tag ${phaseTag}">${esc(phaseLabel)}</span></div></div>
+    <div class="metric"><div class="label">${esc(T.item_id)}</div><div class="value">${item.id}</div></div>
+    <div class="metric"><div class="label">${esc(T.item_category)}</div><div class="value">${esc(T.cat_label[item.category] || item.category)}</div></div>
+    <div class="metric"><div class="label">${esc(T.item_progress)}</div><div class="value">${idx + 1} / ${items.length}</div></div>
   `;
   container.append(hdr);
 
   // AI-free reminder
-  const reminderText = phase === "pretest"
-    ? "前测阶段：请仅基于屏幕上的材料独立判断，不得使用任何 AI 或搜索工具。"
-    : "后测阶段：请独立判断，不会有任何 AI 辅助。";
+  const reminderText = phase === "pretest" ? T.reminder_pretest : T.reminder_posttest;
   container.append(createCallout(reminderText, "warn-callout"));
 
   // Split layout
@@ -314,10 +507,10 @@ function renderItemScreen(phase) {
 
   // Left: stimulus
   const left = el("div", "screen-stack");
-  left.append(card("Writing Goal 写作目标", `<div class="answer-box">${esc(item.writing_goal_zh)}</div>`));
-  left.append(card("AI Output", renderAiOutput(item)));
-  left.append(card("Evidence Card 证据卡", renderEvidence(item.evidence_card)));
-  left.append(card("Prompt 题目要求", `<div class="answer-box">${esc(item.participant_prompt_zh)}</div>`));
+  left.append(card(T.card_goal, `<div class="answer-box">${esc(item.writing_goal_zh)}</div>`));
+  left.append(card(T.card_ai, renderAiOutput(item)));
+  left.append(card(T.card_evidence, renderEvidence(item.evidence_card)));
+  left.append(card(T.card_prompt, `<div class="answer-box">${esc(item.participant_prompt_zh)}</div>`));
 
   // Right: response form
   const right = el("div", "screen-stack");
@@ -334,8 +527,8 @@ function renderAiOutput(item) {
   }
   return `
     <div class="field-stack" style="gap:10px">
-      <div class="answer-box"><strong>Answer A</strong><br>${esc(item.ai_answers.A)}</div>
-      <div class="answer-box"><strong>Answer B</strong><br>${esc(item.ai_answers.B)}</div>
+      <div class="answer-box"><strong>${esc(T.answer_a)}</strong><br>${esc(item.ai_answers.A)}</div>
+      <div class="answer-box"><strong>${esc(T.answer_b)}</strong><br>${esc(item.ai_answers.B)}</div>
     </div>
   `;
 }
@@ -347,25 +540,23 @@ function renderEvidence(ec) {
 
 function createResponseForm(item, phase) {
   const form = el("form", "card field-stack");
-  form.innerHTML = `<h2 class="card-title">Your Response 你的回答</h2>`;
+  form.innerHTML = `<h2 class="card-title">${esc(T.form_title)}</h2>`;
 
   const opts = item.response_mode === "comparative_judgment"
     ? S.materials.response_schema.comparative_judgment
     : S.materials.response_schema.single_judgment;
 
-  form.append(createRadioGroup("Judgment 判断", "judgment", opts));
-  form.append(createTextArea("Reason 理由", "reason", "用 1-3 句话说明你为什么这样判断。"));
-  form.append(createSelect("Next Action 下一步", "next_action", S.materials.response_schema.next_action));
-  form.append(createRadioGroup("Confidence 信心", "confidence",
-    ["1 - very unsure", "2 - somewhat unsure", "3 - not sure", "4 - fairly confident", "5 - very confident"]
-  ));
+  form.append(createRadioGroup(T.label_judgment, "judgment", opts));
+  form.append(createTextArea(T.label_reason, "reason", T.reason_placeholder));
+  form.append(createSelect(T.label_next_action, "next_action", S.materials.response_schema.next_action));
+  form.append(createRadioGroup(T.label_confidence, "confidence", T.confidence_opts));
 
   const errNode = el("div", "error-text");
   errNode.hidden = true;
   form.append(errNode);
 
   const actions = el("div", "button-row");
-  actions.append(btn("保存并继续 →", "primary", (e) => {
+  actions.append(btn(T.btn_save_next, "primary", (e) => {
     e.preventDefault();
     const fd = new FormData(form);
     const judgment = fd.get("judgment");
@@ -375,7 +566,7 @@ function createResponseForm(item, phase) {
 
     if (!judgment || !reason || !nextAction || !confidence) {
       errNode.hidden = false;
-      errNode.textContent = "请完成所有四个字段再继续。";
+      errNode.textContent = T.err_incomplete;
       return;
     }
 
@@ -416,24 +607,25 @@ function renderProfile() {
   $screen.innerHTML = "";
   const w = el("div", "screen-stack");
 
-  w.append(card("前测诊断结果", `
-    <div class="callout">系统基于 judgment accuracy + action quality 做初步推荐。Explanation quality 需后续用 rubric 人工评分。</div>
+  const joiner = LANG === "en" ? ", " : "、";
+  w.append(card(T.profile_title, `
+    <div class="callout">${esc(T.profile_callout)}</div>
     <div class="metric-grid" style="margin-top:14px">
       ${rec.categorySummaries.map(s => `
         <div class="metric">
-          <div class="label">${esc(s.category)}</div>
+          <div class="label">${esc(T.cat_label[s.category] || s.category)}</div>
           <div class="value">${s.score} / ${s.maxScore}</div>
           <div class="category-bar"><div class="category-bar-fill ${s.score <= 1 ? 'low' : s.score <= 2 ? 'mid' : 'high'}" style="width:${(s.score / s.maxScore * 100).toFixed(0)}%"></div></div>
         </div>
       `).join("")}
     </div>
-    <p style="margin-top:14px"><strong>推荐 targeted profiles:</strong> ${rec.profiles.map(p => `<code>${p}</code>`).join(", ")}</p>
+    <p style="margin-top:14px"><strong>${esc(T.profile_recommend)}</strong> ${rec.profiles.map(p => `<code>${esc(T.profile_label[p] || p)}</code>`).join(joiner)}</p>
   `));
 
   const profileCard = el("div", "card field-stack");
   profileCard.innerHTML = `
-    <h2 class="card-title">Profile Override（Operator 操作）</h2>
-    <p class="helper-text compact">系统已自动选取最弱的两个 categories。如果与你的直觉不符，可以手动调整并记录。</p>
+    <h2 class="card-title">${esc(T.profile_override_title)}</h2>
+    <p class="helper-text compact">${esc(T.profile_override_help)}</p>
   `;
 
   S.materials.profiles.forEach(profile => {
@@ -444,22 +636,22 @@ function renderProfile() {
     input.value = profile;
     input.checked = S.selectedProfiles.includes(profile);
     const span = document.createElement("span");
-    span.textContent = profile;
+    span.textContent = T.profile_label[profile] || profile;
     label.append(input, span);
     profileCard.append(label);
   });
 
   const overrideNote = el("div", "field-stack");
   overrideNote.innerHTML = `
-    <label for="override-note">Override 备注（如有调整请说明原因）</label>
-    <textarea id="override-note" placeholder="如：explanation text 显示该学生在 source-verification 上比分数反映的更弱"></textarea>
+    <label for="override-note">${esc(T.profile_override_note_label)}</label>
+    <textarea id="override-note" placeholder="${escAttr(T.profile_override_note_placeholder)}"></textarea>
   `;
   profileCard.append(overrideNote);
 
   const actions = el("div", "button-row");
-  actions.append(btn("确认 Profile，进入干预练习", "primary", () => {
+  actions.append(btn(T.profile_btn, "primary", () => {
     const checked = [...profileCard.querySelectorAll('input[name="profile"]:checked')].map(n => n.value);
-    if (checked.length !== 2) { alert("请选择恰好两个 profiles"); return; }
+    if (checked.length !== 2) { alert(T.profile_alert); return; }
     S.selectedProfiles = checked;
     const noteEl = document.getElementById("override-note");
     S.profileOverride = noteEl && noteEl.value.trim() ? noteEl.value.trim() : false;
@@ -470,7 +662,7 @@ function renderProfile() {
     startTimer();
     render();
   }));
-  actions.append(btn("重新测试", "ghost", () => { resetStudy(); render(); }));
+  actions.append(btn(T.profile_btn_reset, "ghost", () => { resetStudy(); render(); }));
   profileCard.append(actions);
   w.append(profileCard);
   $screen.append(w);
@@ -492,17 +684,17 @@ function renderScene() {
   $screen.innerHTML = "";
   const w = el("div", "screen-stack");
 
-  w.append(card("Intervention Scene", `
+  w.append(card(T.scene_title, `
     <div class="pill-row">
       <span class="pill active">${esc(scene.scene_id)}</span>
       <span class="pill">${esc(scene.role)}</span>
-      <span class="phase-tag intervention">Scene ${S.sceneIndex + 1}/${scenes.length}</span>
+      <span class="phase-tag intervention">${esc(T.badge_scene)} ${S.sceneIndex + 1}/${scenes.length}</span>
     </div>
     <p class="subtitle compact" style="margin-top:10px">${esc(filled.learningObjective || "")}</p>
   `));
 
   const sceneCard = el("div", "card field-stack");
-  sceneCard.innerHTML = `<h2 class="card-title">Script</h2>`;
+  sceneCard.innerHTML = `<h2 class="card-title">${esc(T.scene_script_title)}</h2>`;
 
   const box = el("div", "scene-box");
   box.innerHTML = filled.lines.map(l => `<p>${esc(l)}</p>`).join("");
@@ -510,27 +702,27 @@ function renderScene() {
 
   const taskLabel = el("p", "prompt-label compact");
   taskLabel.style.marginTop = "12px";
-  taskLabel.textContent = "Learner Task: " + filled.task;
+  taskLabel.textContent = T.scene_task_label + filled.task;
   sceneCard.append(taskLabel);
 
   const ta = document.createElement("textarea");
   ta.id = "scene-response";
-  ta.placeholder = "输入参与者的回答...";
+  ta.placeholder = T.scene_response_placeholder;
   sceneCard.append(ta);
 
   // Operator real-time observation note
   const obsLabel = el("p", "prompt-label compact");
   obsLabel.style.marginTop = "8px";
-  obsLabel.textContent = "Operator Observation Note（30s 观察记录）";
+  obsLabel.textContent = T.scene_obs_label;
   sceneCard.append(obsLabel);
   const obsTA = document.createElement("textarea");
   obsTA.id = "obs-note";
-  obsTA.placeholder = '如："主动提问为什么 metadata 不匹配" 或 "只看了一眼就写了很短的回答"';
+  obsTA.placeholder = T.scene_obs_placeholder;
   obsTA.style.minHeight = "60px";
   sceneCard.append(obsTA);
 
   const actions = el("div", "button-row");
-  actions.append(btn("保存 Scene 并继续 →", "primary", () => {
+  actions.append(btn(T.scene_btn, "primary", () => {
     const learnerResp = document.getElementById("scene-response").value.trim();
     const obsNote = document.getElementById("obs-note").value.trim();
     S.sceneResponses.push({
@@ -565,16 +757,15 @@ function renderTransition() {
   $screen.innerHTML = "";
   const w = el("div", "screen-stack");
 
-  w.append(card("过渡提示", `
+  w.append(card(T.transition_title, `
     <div class="transition-callout">
-      <p style="font-size:1.3rem;font-weight:700;margin:0 0 12px">接下来的题目需要你独立判断</p>
-      <p style="margin:0">不会有任何 AI 辅助。请像自己审稿一样作答。</p>
-      <p style="margin:10px 0 0;font-size:0.95rem;color:var(--muted)">Next, you will judge independently. There will be no AI assistance.</p>
+      <p style="font-size:1.3rem;font-weight:700;margin:0 0 12px">${esc(T.transition_main)}</p>
+      <p style="margin:0">${esc(T.transition_sub)}</p>
     </div>
   `));
 
   const btns = el("div", "button-row");
-  btns.append(btn("我已准备好，开始后测", "primary", () => {
+  btns.append(btn(T.transition_btn, "primary", () => {
     S.posttestStartedAt = Date.now();
     S.stage = "posttest";
     startTimer();
@@ -590,27 +781,20 @@ function renderInterview() {
   $screen.innerHTML = "";
   const w = el("div", "screen-stack");
 
-  const questions = [
-    "哪个 scene 最有帮助？为什么？",
-    "你现在最常用的判断规则是什么？",
-    "哪种错误你仍然最容易犯？",
-    "如果把这个系统嵌入真实课程，你会在哪一步使用它？",
-    "在刚才的过程中，有没有哪个环节让你感到困惑或不确定？",
-    "如果让你删掉一个环节，你会删哪个？为什么？"
-  ];
+  const questions = T.interview_questions;
 
-  w.append(card("短访谈（8-10 分钟）", `
-    <span class="phase-tag interview">Interview</span>
-    <p style="margin-top:10px">请口头回答以下问题，实验员记录要点。</p>
+  w.append(card(T.interview_title, `
+    <span class="phase-tag interview">${esc(T.interview_tag)}</span>
+    <p style="margin-top:10px">${esc(T.interview_intro)}</p>
   `));
 
   const formCard = el("div", "card field-stack");
   questions.forEach((q, i) => {
     const qBlock = el("div", "interview-question");
-    qBlock.innerHTML = `<div class="q-number">Q${i + 1}</div><p style="margin:6px 0 10px;font-weight:600">${esc(q)}</p>`;
+    qBlock.innerHTML = `<div class="q-number">${esc(T.interview_q_prefix)} ${i + 1}</div><p style="margin:6px 0 10px;font-weight:600">${esc(q)}</p>`;
     const ta = document.createElement("textarea");
     ta.name = `interview_q${i}`;
-    ta.placeholder = "记录参与者的回答要点...";
+    ta.placeholder = T.interview_placeholder;
     ta.style.minHeight = "70px";
     ta.value = S.interviewResponses[`q${i}`] || "";
     qBlock.append(ta);
@@ -618,7 +802,7 @@ function renderInterview() {
   });
 
   const actions = el("div", "button-row");
-  actions.append(btn("完成访谈，进入结束页", "primary", () => {
+  actions.append(btn(T.interview_btn, "primary", () => {
     const tas = formCard.querySelectorAll("textarea");
     tas.forEach((ta, i) => { S.interviewResponses[`q${i}`] = ta.value.trim(); });
     S.stage = "debrief";
@@ -636,50 +820,49 @@ function renderDebrief() {
   const w = el("div", "screen-stack");
 
   // Debrief message
-  w.append(card("感谢参与", `
-    <p>感谢你的参与！本研究中的部分 citation 与 source 情景是为实验目的而设计的 <strong>controlled materials</strong>，其中包含故意构造的错误样例，用于测试 AI judgment，而不代表真实可引用文献。</p>
-  `));
+  w.append(card(T.debrief_title, `<p>${T.debrief_msg}</p>`));
 
   // Summary stats
   const totalTime = S.sessionStartedAt ? Math.round((Date.now() - S.sessionStartedAt) / 60000) : 0;
-  w.append(card("Session Summary", `
+  const joiner2 = LANG === "en" ? ", " : "、";
+  w.append(card(T.summary_title, `
     <div class="metric-grid">
-      <div class="metric"><div class="label">Participant</div><div class="value">${esc(S.participantId)}</div></div>
-      <div class="metric"><div class="label">Total time</div><div class="value">${totalTime} min</div></div>
-      <div class="metric"><div class="label">Pretest</div><div class="value">${S.pretestResponses.length} items</div></div>
-      <div class="metric"><div class="label">Scenes</div><div class="value">${S.sceneResponses.length} scenes</div></div>
-      <div class="metric"><div class="label">Posttest</div><div class="value">${S.posttestResponses.length} items</div></div>
-      <div class="metric"><div class="label">Profiles</div><div class="value">${S.selectedProfiles.join(", ")}</div></div>
+      <div class="metric"><div class="label">${esc(T.summary_participant)}</div><div class="value">${esc(S.participantId)}</div></div>
+      <div class="metric"><div class="label">${esc(T.summary_time)}</div><div class="value">${totalTime} ${esc(T.summary_min)}</div></div>
+      <div class="metric"><div class="label">${esc(T.summary_pretest)}</div><div class="value">${S.pretestResponses.length} ${esc(T.summary_items)}</div></div>
+      <div class="metric"><div class="label">${esc(T.summary_scenes)}</div><div class="value">${S.sceneResponses.length} ${esc(T.summary_scenes_unit)}</div></div>
+      <div class="metric"><div class="label">${esc(T.summary_posttest)}</div><div class="value">${S.posttestResponses.length} ${esc(T.summary_items)}</div></div>
+      <div class="metric"><div class="label">${esc(T.summary_profiles)}</div><div class="value">${S.selectedProfiles.map(p => T.profile_label[p] || p).join(joiner2)}</div></div>
     </div>
   `));
 
   // Interaction pattern annotation
   const codingCard = el("div", "card field-stack");
-  codingCard.innerHTML = `<h2 class="card-title">Interaction Pattern Annotation（Operator）</h2>
-    <p class="helper-text compact">根据 codebook 为该参与者标注主要交互模式。</p>`;
+  codingCard.innerHTML = `<h2 class="card-title">${esc(T.coding_title)}</h2>
+    <p class="helper-text compact">${esc(T.coding_help)}</p>`;
   const patterns = S.materials.interaction_pattern_codebook.map(e => e.code);
-  codingCard.append(createSelect("Primary pattern", "primary_pattern", patterns));
-  codingCard.append(createSelect("Secondary pattern (optional)", "secondary_pattern", patterns));
-  codingCard.append(createTextArea("Evidence note", "pattern_note", "简要记录编码依据"));
+  codingCard.append(createSelect(T.coding_primary, "primary_pattern", patterns));
+  codingCard.append(createSelect(T.coding_secondary, "secondary_pattern", patterns));
+  codingCard.append(createTextArea(T.coding_evidence, "pattern_note", T.coding_evidence_placeholder));
   w.append(codingCard);
 
   // Export buttons
   const actions = el("div", "button-row");
-  actions.append(btn("下载 Session JSON", "primary", () => {
+  actions.append(btn(T.btn_download, "primary", () => {
     syncCoding();
     downloadJson(buildExport());
   }));
-  actions.append(btn("复制 JSON 到剪贴板", "secondary", async () => {
+  actions.append(btn(T.btn_copy, "secondary", async () => {
     syncCoding();
     await navigator.clipboard.writeText(JSON.stringify(buildExport(), null, 2));
-    alert("JSON 已复制到剪贴板！");
+    alert(T.copy_alert);
   }));
-  actions.append(btn("开始新参与者", "ghost", () => { resetStudy(); render(); }));
+  actions.append(btn(T.btn_new, "ghost", () => { resetStudy(); render(); }));
   w.append(actions);
 
   // Preview
   const preview = el("div", "card");
-  preview.innerHTML = `<h2 class="card-title">Export Preview</h2><div class="answer-box" style="max-height:400px;overflow:auto;font-size:0.85rem">${esc(JSON.stringify(buildExport(), null, 2))}</div>`;
+  preview.innerHTML = `<h2 class="card-title">${esc(T.preview_title)}</h2><div class="answer-box" style="max-height:400px;overflow:auto;font-size:0.85rem">${esc(JSON.stringify(buildExport(), null, 2))}</div>`;
   w.append(preview);
 
   $screen.append(w);
@@ -729,7 +912,8 @@ function fillSlots(scene) {
   const targetedProfile = profileFromSceneId(scene.scene_id);
   const sourceResp = findFailedResponse(targetedProfile);
   const sourceItem = S.materials.items.find(i => i.id === sourceResp?.item_id);
-  const gap = sourceItem?.gold_label.reason_anchor || "the answer exceeded what the evidence could support";
+  const defaultGap = LANG === "en" ? "The answer goes beyond what the evidence supports." : "答案超出了证据所能支持的范围";
+  const gap = sourceItem?.gold_label.reason_anchor || defaultGap;
   const lines = scene.script_lines.map(l =>
     l.replace(/\{failed_item_id\}/g, sourceResp?.item_id || "PRE_UNKNOWN")
      .replace(/\{evidence_gap\}/g, gap)
@@ -892,7 +1076,7 @@ function createSelect(labelText, name, values) {
   const select = document.createElement("select");
   select.name = name; select.id = name;
   const ph = document.createElement("option");
-  ph.value = ""; ph.textContent = "— Select —"; ph.selected = true; ph.disabled = true;
+  ph.value = ""; ph.textContent = T.select_placeholder; ph.selected = true; ph.disabled = true;
   select.append(ph);
   values.forEach(v => {
     const opt = document.createElement("option");
@@ -914,9 +1098,9 @@ function renderError() {
   $screen.innerHTML = `
     <div class="screen-stack">
       <div class="callout warn-callout">
-        <strong>无法加载实验材料</strong>
-        <p class="compact">${esc(S.errors || "Unknown error")}</p>
-        <p class="compact">请在 plan 目录运行 <code>python3 -m http.server</code>，然后通过 <code>http://localhost:8000/prototype/</code> 打开。</p>
+        <strong>${esc(T.error_title)}</strong>
+        <p class="compact">${esc(S.errors || T.error_unknown)}</p>
+        <p class="compact">${T.error_help}</p>
       </div>
     </div>
   `;

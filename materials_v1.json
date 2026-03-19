@@ -7,50 +7,50 @@
     "pretest": {
       "ai_allowed": false,
       "web_search_allowed": false,
-      "purpose": "AI-free baseline judgment assessment"
+      "purpose": "无 AI 辅助的基线判断评估"
     },
     "intervention": {
       "ai_allowed": true,
       "web_search_allowed": false,
-      "purpose": "bounded scaffolded support through scripted scenes"
+      "purpose": "通过脚本化场景提供有边界的支架式支持"
     },
     "posttest": {
       "ai_allowed": false,
       "web_search_allowed": false,
-      "purpose": "AI-free judgment assessment"
+      "purpose": "无 AI 辅助的判断评估"
     },
     "interview": {
       "ai_allowed": false,
       "web_search_allowed": false,
-      "purpose": "retrospective explanation and usability feedback"
+      "purpose": "回顾性解释与可用性反馈"
     }
   },
   "response_schema": {
     "single_judgment": [
-      "Accept",
-      "Revise",
-      "Reject"
+      "接受",
+      "修改",
+      "拒绝"
     ],
     "comparative_judgment": [
-      "Prefer A",
-      "Prefer B"
+      "选择 A",
+      "选择 B"
     ],
     "next_action": [
-      "verify or inspect the source",
-      "ask AI to regenerate with supporting evidence",
-      "weaken the claim wording",
-      "flag and do not use this output",
-      "accept with minor edits"
+      "核查或检视原始来源",
+      "要求 AI 重新生成并附上证据",
+      "弱化论述措辞",
+      "标记为不可用",
+      "接受并做小幅修改"
     ],
     "confidence_scale": {
       "min": 1,
       "max": 5,
       "labels": {
-        "1": "very unsure",
-        "2": "somewhat unsure",
-        "3": "not sure",
-        "4": "fairly confident",
-        "5": "very confident"
+        "1": "非常不确定",
+        "2": "比较不确定",
+        "3": "不太确定",
+        "4": "比较确定",
+        "5": "非常确定"
       }
     }
   },
@@ -62,66 +62,66 @@
   ],
   "interaction_pattern_codebook": [
     {
-      "code": "rule-seeking",
-      "orientation": "high-engagement",
-      "description": "Participant tries to extract a reusable rule rather than only solve the current item.",
+      "code": "规则提取型",
+      "orientation": "高参与",
+      "description": "参与者尝试提炼可复用的规则，而不只是解决当前题目。",
       "examples": [
-        "asks what rule should be applied next time",
-        "summarizes a transfer-ready heuristic"
+        "主动询问下次应该用什么规则",
+        "总结出一条可迁移的判断启发式"
       ]
     },
     {
-      "code": "evidence-checking",
-      "orientation": "high-engagement",
-      "description": "Participant explicitly anchors decisions in the evidence card or source-text mismatch.",
+      "code": "证据核查型",
+      "orientation": "高参与",
+      "description": "参与者明确以证据卡或来源文本的不匹配之处作为决策依据。",
       "examples": [
-        "points to abstract mismatch",
-        "checks whether claim strength matches evidence strength"
+        "指出摘要与声明的不匹配",
+        "检查声明强度是否与证据强度相符"
       ]
     },
     {
-      "code": "answer-comparing",
-      "orientation": "high-engagement",
-      "description": "Participant compares alternatives by boundary language and evidence support rather than style.",
+      "code": "答案比较型",
+      "orientation": "高参与",
+      "description": "参与者通过边界语言和证据支持来比较备选答案，而非依据文风。",
       "examples": [
-        "prefers cautious answer because it matches evidence limits",
-        "rejects fluent but unsupported wording"
+        "因谨慎表述与证据限制相符而选择某个答案",
+        "拒绝流畅但无证据支持的表述"
       ]
     },
     {
-      "code": "uncertainty-monitoring",
-      "orientation": "high-engagement",
-      "description": "Participant notices uncertainty, requests verification, or withholds acceptance pending more evidence.",
+      "code": "不确定性监控型",
+      "orientation": "高参与",
+      "description": "参与者注意到不确定性，要求核查，或在获得更多证据前保留判断。",
       "examples": [
-        "states that the answer cannot be trusted yet",
-        "chooses verify or inspect before use"
+        "表示该答案尚不可信",
+        "在使用前选择核查或检视来源"
       ]
     },
     {
-      "code": "authority-following",
-      "orientation": "low-engagement",
-      "description": "Participant treats the AI answer as authoritative without sufficiently checking evidence.",
+      "code": "权威服从型",
+      "orientation": "低参与",
+      "description": "参与者将 AI 答案视为权威，未充分核查证据。",
       "examples": [
-        "accepts because it sounds academic",
-        "defers to the AI answer despite mismatch signals"
+        "因为听起来很学术就接受了",
+        "尽管有不匹配信号仍听从 AI 答案"
       ]
     },
     {
-      "code": "surface-editing",
-      "orientation": "low-engagement",
-      "description": "Participant focuses on wording polish while missing the underlying evidence problem.",
+      "code": "表面编辑型",
+      "orientation": "低参与",
+      "description": "参与者只关注措辞润色，忽略了底层的证据问题。",
       "examples": [
-        "rewrites style without fixing unsupported claim",
-        "treats fabricated citation as a phrasing issue"
+        "只改文风却没有修正无依据的声明",
+        "把虚构的引用当作措辞问题来处理"
       ]
     },
     {
-      "code": "scope-checking",
-      "orientation": "high-engagement",
-      "description": "Participant notices that the AI claim exceeds the original study's scope, sample, or context.",
+      "code": "范围审查型",
+      "orientation": "高参与",
+      "description": "参与者注意到 AI 声明超出了原始研究的范围、样本或语境。",
       "examples": [
-        "notes that the study only covered one institution or discipline",
-        "identifies overgeneralization words like 'all', 'universally', 'across'"
+        "指出研究仅覆盖一所院校或一个学科",
+        "识别出「所有」「普遍」「各层次」等过度泛化词汇"
       ]
     }
   ],
@@ -132,28 +132,28 @@
       "category": "hallucinated-citation",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "你正在写一篇关于 undergraduate writing 的引言，需要给这句话补一条支持性引用：Online peer feedback can improve revision quality in undergraduate writing courses.",
-      "ai_answer": "You can cite: Morgan, T., Ellis, P., & Zhao, R. (2022). Real-time AI Peer Review Loops Increase Revision Quality in College Composition. Journal of Learning Analytics, 14(3), 44-61.",
+      "writing_goal_zh": "你正在写一篇关于本科写作教学的引言，需要给这句话补一条支持性引用：「在线同伴反馈可以提高本科写作课程中的修改质量。」",
+      "ai_answer": "你可以引用：Morgan, T., Ellis, P., & Zhao, R. (2022). 实时AI同伴评审循环提高大学写作课修改质量. 学习分析学报, 14(3), 44-61.",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "证据卡",
         "bullets": [
-          "Database lookup: No record found for Journal of Learning Analytics, 14(3), 44-61.",
-          "Database lookup: No DOI resolved for the full citation above.",
-          "Related search hit: Morgan, T. & Ellis, P. (2021). Peer Feedback Engagement Patterns in Large Enrollment Writing Courses. Proceedings of SIGCSE 2021, poster.",
-          "This paper examines feedback engagement in writing courses but does not study AI peer review loops, revision quality, or first-year composition specifically.",
-          "Author names partially overlap with the AI-cited paper, but the topic, venue, and year differ."
+          "数据库检索：未找到《学习分析学报》第14卷第3期第44-61页的记录。",
+          "数据库检索：该引用未检索到对应 DOI。",
+          "相关检索结果：Morgan, T. & Ellis, P. (2021). 大规模写作课程中的同伴反馈参与模式. SIGCSE 2021 会议论文集, 海报.",
+          "该论文研究写作课程中的反馈参与模式，但未涉及 AI 同伴评审循环、修改质量或大一写作课程。",
+          "作者姓名与 AI 给出的引用部分重合，但主题、发表场所和年份均不一致。"
         ]
       },
-      "participant_prompt_zh": "你会如何处理这条 AI 给出的 citation？",
+      "participant_prompt_zh": "你会如何处理这条 AI 给出的引用？",
       "gold_label": {
         "judgment": [
-          "Reject"
+          "拒绝"
         ],
         "next_action": [
-          "flag and do not use this output",
-          "verify or inspect the source"
+          "标记为不可用",
+          "核查或检视原始来源"
         ],
-        "reason_anchor": "The citation metadata cannot be verified and the nearby result does not match the claimed paper."
+        "reason_anchor": "该引用的元数据无法验证，相近的检索结果也与声称的论文不匹配。"
       }
     },
     {
@@ -162,26 +162,26 @@
       "category": "hallucinated-citation",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "你想在 related work 中支持这句话：LLM-based writing assistants have been shown to increase student motivation.",
-      "ai_answer": "Use this source: Hart, N., Liu, S., & Patel, R. (2024). Motivation Gains from Large Language Models in University Writing Classrooms. Computers and Composition Education, 9(2), 101-118.",
+      "writing_goal_zh": "你想在相关研究中支持这句话：「基于大语言模型的写作助手已被证明能提高学生的写作动机。」",
+      "ai_answer": "可以使用这条来源：Hart, N., Liu, S., & Patel, R. (2024). 大学写作课堂中大语言模型带来的动机提升. 计算机与写作教育, 9(2), 101-118.",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "证据卡",
         "bullets": [
-          "Crossref-style check: No journal indexed as Computers and Composition Education.",
-          "Crossref-style check: DOI field empty.",
-          "Nearby real-looking source: Student Engagement with AI Writing Support in Upper-Division STEM Courses (2024).",
-          "The nearby source discusses engagement and perceived efficiency, not direct motivation gain."
+          "交叉引用检查：未找到名为《计算机与写作教育》的索引期刊。",
+          "交叉引用检查：DOI 字段为空。",
+          "相近的真实来源：《高年级理工科课程中学生与 AI 写作支持工具的互动》(2024).",
+          "该相近来源讨论的是互动参与度和感知效率，而非直接的动机提升。"
         ]
       },
       "participant_prompt_zh": "你会接受、修改还是拒绝这条 AI 建议？为什么？",
       "gold_label": {
         "judgment": [
-          "Reject"
+          "拒绝"
         ],
         "next_action": [
-          "flag and do not use this output"
+          "标记为不可用"
         ],
-        "reason_anchor": "The suggested citation itself is not verifiable and the nearby real source cannot stand in for it."
+        "reason_anchor": "所建议的引用本身不可验证，相近的真实来源也无法替代。"
       }
     },
     {
@@ -190,27 +190,27 @@
       "category": "source-verification",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "你在写文献综述，想表达：AI writing tools reduce revision time without harming writing quality.",
-      "ai_answer": "Prior studies show that AI writing tools reduce revision time without harming writing quality.",
+      "writing_goal_zh": "你在写文献综述，想表达：「AI 写作工具在不损害写作质量的前提下缩短了修改时间。」",
+      "ai_answer": "已有研究表明，AI 写作工具在不损害写作质量的前提下缩短了修改时间。",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "证据卡",
         "bullets": [
-          "Source title: Students' Perceptions of Generative AI in Revision Workflows.",
-          "Students reported that AI assistance made revision feel faster.",
-          "The study collected perceived efficiency and satisfaction data.",
-          "The study did not evaluate writing quality outcomes."
+          "来源标题：《学生对生成式 AI 在修改流程中作用的感知》",
+          "学生反馈称 AI 辅助使修改感觉更快。",
+          "该研究收集的是感知效率和满意度数据。",
+          "该研究并未评估写作质量方面的结果。"
         ]
       },
-      "participant_prompt_zh": "对这句 AI 生成的 related work 表述，你会怎么处理？",
+      "participant_prompt_zh": "对这句 AI 生成的文献综述表述，你会怎么处理？",
       "gold_label": {
         "judgment": [
-          "Revise"
+          "修改"
         ],
         "next_action": [
-          "weaken the claim wording",
-          "verify or inspect the source"
+          "弱化论述措辞",
+          "核查或检视原始来源"
         ],
-        "reason_anchor": "The source only supports perceived efficiency, not the claim that quality was unharmed."
+        "reason_anchor": "该来源仅支持感知效率方面的结论，并不支持写作质量未受损的说法。"
       }
     },
     {
@@ -219,26 +219,26 @@
       "category": "source-verification",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "你想总结 AI literacy 相关研究：An intervention study demonstrated that structured AI literacy instruction improves students' verification behavior.",
-      "ai_answer": "A recent intervention study demonstrated that structured AI literacy instruction improves students' verification behavior.",
+      "writing_goal_zh": "你想总结 AI 素养相关研究：「一项干预研究证明，结构化的 AI 素养教学提高了学生的核查行为。」",
+      "ai_answer": "一项近期的干预研究证明，结构化的 AI 素养教学提高了学生的核查行为。",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "证据卡",
         "bullets": [
-          "Source title: A Framework for AI Literacy in Higher Education.",
-          "The paper proposes dimensions of AI literacy.",
-          "It argues that verification and critical evaluation should be included in curriculum design.",
-          "It does not report an intervention or measured behavior change."
+          "来源标题：《高等教育中的 AI 素养框架》",
+          "该论文提出了 AI 素养的若干维度。",
+          "它主张应将核查和批判性评估纳入课程设计。",
+          "该论文未报告任何干预实验或实测的行为变化。"
         ]
       },
-      "participant_prompt_zh": "你会如何处理这句 AI 生成总结？",
+      "participant_prompt_zh": "你会如何处理这句 AI 生成的总结？",
       "gold_label": {
         "judgment": [
-          "Revise"
+          "修改"
         ],
         "next_action": [
-          "verify or inspect the source"
+          "核查或检视原始来源"
         ],
-        "reason_anchor": "The source is a conceptual framework paper, not an intervention study with measured outcomes."
+        "reason_anchor": "该来源是概念性框架论文，并非有实测结果的干预研究。"
       }
     },
     {
@@ -247,29 +247,29 @@
       "category": "trust-calibration",
       "response_mode": "comparative_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "你想写一句关于 AI use in writing courses 的综述。",
+      "writing_goal_zh": "你想写一句关于写作课程中 AI 使用的综述。",
       "ai_answers": {
-        "A": "Research confirms that ethical AI use policies consistently improve student learning in writing courses.",
-        "B": "Emerging research suggests that explicit AI use policies may help structure students' writing practices, but evidence on direct learning improvement remains limited."
+        "A": "研究证实，伦理性的 AI 使用政策能持续改善写作课程中的学生学习效果。",
+        "B": "初步研究表明，明确的 AI 使用政策可能有助于规范学生的写作实践，但关于其对学习效果的直接改善，现有证据仍然有限。"
       },
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "证据卡",
         "bullets": [
-          "Several instructors introduced AI use policies and structured guidance.",
-          "The paper discusses implementation challenges and classroom practice.",
-          "Direct evidence of improved learning outcomes is not established."
+          "多位教师引入了 AI 使用政策和结构化指导。",
+          "论文讨论了实施过程中的挑战和课堂实践。",
+          "尚未建立直接证据证明学习效果得到了改善。"
         ]
       },
       "participant_prompt_zh": "哪个答案更可信？你会如何继续处理它？",
       "gold_label": {
         "judgment": [
-          "Prefer B"
+          "选择 B"
         ],
         "next_action": [
-          "verify or inspect the source",
-          "weaken the claim wording"
+          "核查或检视原始来源",
+          "弱化论述措辞"
         ],
-        "reason_anchor": "Answer B better matches the bounded evidence and avoids overclaiming direct learning improvement."
+        "reason_anchor": "答案 B 更好地匹配了有限的证据，避免了对学习效果直接改善的过度声称。"
       }
     },
     {
@@ -278,203 +278,28 @@
       "category": "trust-calibration",
       "response_mode": "comparative_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "你要写一句关于 AI-assisted source use 的 related work。",
+      "writing_goal_zh": "你要写一句关于 AI 辅助文献引用的相关研究。",
       "ai_answers": {
-        "A": "AI support clearly improves students' evidence-based writing because it gives immediate citation suggestions.",
-        "B": "AI support may help students locate candidate sources more quickly, but students still need to verify whether those sources actually support their claims."
+        "A": "AI 辅助显然改善了学生的循证写作，因为它能即时提供引用建议。",
+        "B": "AI 辅助可能帮助学生更快定位候选来源，但学生仍需核查这些来源是否真正支持其论点。"
       },
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "证据卡",
         "bullets": [
-          "Students used AI to surface candidate references during drafting.",
-          "The study reports both usefulness and frequent mismatches between AI suggestions and actual source support."
+          "学生在写作过程中使用 AI 来检索候选参考文献。",
+          "该研究同时报告了有用性和 AI 建议与实际来源支持之间频繁出现的不匹配。"
         ]
       },
       "participant_prompt_zh": "哪个答案更可信？原因是什么？",
       "gold_label": {
         "judgment": [
-          "Prefer B"
+          "选择 B"
         ],
         "next_action": [
-          "ask AI to regenerate with supporting evidence",
-          "verify or inspect the source"
+          "要求 AI 重新生成并附上证据",
+          "核查或检视原始来源"
         ],
-        "reason_anchor": "Answer B preserves the benefit while keeping the verification burden visible."
-      }
-    },
-    {
-      "id": "POST_A1",
-      "phase": "posttest",
-      "category": "hallucinated-citation",
-      "response_mode": "single_judgment",
-      "estimated_time_sec": 150,
-      "writing_goal_zh": "你正在写有关 writing feedback 的 related work，需要补一条引用：Automated feedback can support revision planning in academic writing.",
-      "ai_answer": "Use: Bennett, K., Ramos, J., & Wu, L. (2023). Intelligent Feedback Maps Improve Revision Planning in First-Year Composition. International Review of Writing Analytics, 11(4), 72-90.",
-      "evidence_card": {
-        "title": "Evidence Card",
-        "bullets": [
-          "Metadata check: No record found for International Review of Writing Analytics.",
-          "Metadata check: ISSN not available.",
-          "Similar source snippet: Bennett, K. & Wu, L. (2022). Visual Feedback Interfaces for Writing Process Awareness. Conference on Human-Computer Interaction in Education, short paper.",
-          "This paper discusses visual feedback tools for writing awareness, not intelligent feedback maps or revision planning in first-year composition.",
-          "Two author names overlap with the AI-cited paper, but the focus, venue, and year differ."
-        ]
-      },
-      "participant_prompt_zh": "你会如何处理这条 AI citation 建议？",
-      "gold_label": {
-        "judgment": [
-          "Reject"
-        ],
-        "next_action": [
-          "verify or inspect the source",
-          "flag and do not use this output"
-        ],
-        "reason_anchor": "The source itself cannot be validated and the nearby material does not support the claimed content."
-      }
-    },
-    {
-      "id": "POST_A2",
-      "phase": "posttest",
-      "category": "hallucinated-citation",
-      "response_mode": "single_judgment",
-      "estimated_time_sec": 150,
-      "writing_goal_zh": "你想支持这句话：AI-assisted writing tools improve students' self-regulated learning.",
-      "ai_answer": "Cite: Ibrahim, D. & Chen, P. (2024). Self-Regulation Gains from Generative Writing Agents in Undergraduate Classrooms. Journal of Digital Writing Pedagogy, 6(1), 13-29.",
-      "evidence_card": {
-        "title": "Evidence Card",
-        "bullets": [
-          "Lookup note: No DOI or journal index found for the cited paper.",
-          "Related source excerpt: A study on drafting support reports faster idea generation and higher perceived ease of use.",
-          "No self-regulated learning measure was included."
-        ]
-      },
-      "participant_prompt_zh": "这条 AI 建议可不可以直接用？为什么？",
-      "gold_label": {
-        "judgment": [
-          "Reject"
-        ],
-        "next_action": [
-          "flag and do not use this output"
-        ],
-        "reason_anchor": "The citation is not verifiable and the nearby source still does not support the specific claim."
-      }
-    },
-    {
-      "id": "POST_B1",
-      "phase": "posttest",
-      "category": "source-verification",
-      "response_mode": "single_judgment",
-      "estimated_time_sec": 150,
-      "writing_goal_zh": "你要写：AI-assisted source recommendation improves argument quality.",
-      "ai_answer": "Prior work shows that AI-assisted source recommendation improves argument quality.",
-      "evidence_card": {
-        "title": "Evidence Card",
-        "bullets": [
-          "Source title: Students' Experiences with AI-Suggested Sources in Synthesis Writing.",
-          "Students reported that AI helped them find candidate sources more quickly.",
-          "Many students still struggled to determine whether the sources truly supported their claims.",
-          "No direct measure of final argument quality improvement is reported."
-        ]
-      },
-      "participant_prompt_zh": "你会保留、修改还是拒绝这句话？",
-      "gold_label": {
-        "judgment": [
-          "Revise"
-        ],
-        "next_action": [
-          "weaken the claim wording",
-          "verify or inspect the source"
-        ],
-        "reason_anchor": "The evidence supports faster source discovery, not improved argument quality."
-      }
-    },
-    {
-      "id": "POST_B2",
-      "phase": "posttest",
-      "category": "source-verification",
-      "response_mode": "single_judgment",
-      "estimated_time_sec": 150,
-      "writing_goal_zh": "你想写：A classroom policy study proved that citation-use guidance reduces AI misuse.",
-      "ai_answer": "A classroom policy study proved that citation-use guidance reduces AI misuse.",
-      "evidence_card": {
-        "title": "Evidence Card",
-        "bullets": [
-          "Source title: Design Considerations for Citation Transparency in AI-Supported Writing Courses.",
-          "The paper proposes instructional design principles for citation transparency.",
-          "It discusses why explicit guidance may reduce problematic use.",
-          "It does not provide outcome data demonstrating reduced misuse."
-        ]
-      },
-      "participant_prompt_zh": "你会如何处理这句总结？",
-      "gold_label": {
-        "judgment": [
-          "Revise"
-        ],
-        "next_action": [
-          "verify or inspect the source"
-        ],
-        "reason_anchor": "This is a design or principles paper, not proof of a reduced misuse outcome."
-      }
-    },
-    {
-      "id": "POST_C1",
-      "phase": "posttest",
-      "category": "trust-calibration",
-      "response_mode": "comparative_judgment",
-      "estimated_time_sec": 150,
-      "writing_goal_zh": "你要写一句关于 source evaluation in synthesis writing 的综述。",
-      "ai_answers": {
-        "A": "While AI-generated source summaries can provide useful orientation during early drafting, students should verify that these summaries accurately reflect the original sources before relying on them.",
-        "B": "AI-generated source summaries reliably improve students' synthesis writing by providing comprehensive and accurate overviews of source material."
-      },
-      "evidence_card": {
-        "title": "Evidence Card",
-        "bullets": [
-          "AI summaries were useful for early orientation.",
-          "Students sometimes relied on summaries that omitted limitations or nuance.",
-          "The paper recommends explicit verification instruction."
-        ]
-      },
-      "participant_prompt_zh": "哪个答案更可信？下一步你会怎么做？",
-      "gold_label": {
-        "judgment": [
-          "Prefer A"
-        ],
-        "next_action": [
-          "verify or inspect the source",
-          "accept with minor edits"
-        ],
-        "reason_anchor": "A aligns with the verification requirement and bounded nature of the evidence. B overclaims reliability and comprehensiveness without evidence."
-      }
-    },
-    {
-      "id": "POST_C2",
-      "phase": "posttest",
-      "category": "trust-calibration",
-      "response_mode": "comparative_judgment",
-      "estimated_time_sec": 150,
-      "writing_goal_zh": "你要写一句关于 evidence-based claim revision 的文献综述。",
-      "ai_answers": {
-        "A": "AI feedback ensures students make evidence-based revisions because it instantly flags weak claims.",
-        "B": "AI feedback may help students notice potentially weak claims, but students still need to inspect the supporting evidence before revising with confidence."
-      },
-      "evidence_card": {
-        "title": "Evidence Card",
-        "bullets": [
-          "Students used AI feedback to identify places needing revision.",
-          "Instructors reported that students still needed support interpreting evidence quality.",
-          "The study does not claim that AI alone ensures evidence-based revision."
-        ]
-      },
-      "participant_prompt_zh": "哪个答案更可信？为什么？",
-      "gold_label": {
-        "judgment": [
-          "Prefer B"
-        ],
-        "next_action": [
-          "verify or inspect the source"
-        ],
-        "reason_anchor": "Answer B preserves the human verification step and does not overclaim automation."
+        "reason_anchor": "答案 B 保留了有益之处，同时展示了核查的必要性。"
       }
     },
     {
@@ -483,25 +308,25 @@
       "category": "scope-generalization",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "你在写一段关于 AI writing tools 对学生写作能力影响的 literature review。",
-      "ai_answer": "Studies consistently show that AI writing tools improve essay quality across all student populations.",
+      "writing_goal_zh": "你在写一段关于 AI 写作工具对学生写作能力影响的文献综述。",
+      "ai_answer": "研究一致表明，AI 写作工具能提升所有学生群体的论文质量。",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "证据卡",
         "bullets": [
-          "A study of 30 undergraduate STEM majors at a single research university",
-          "Found modest improvement in essay organization scores when using AI assistance",
-          "The authors note the finding may not generalize to other disciplines, institutions, or writing tasks"
+          "一项研究对象为某研究型大学的30名本科理工科学生。",
+          "发现使用 AI 辅助时论文组织结构得分有适度提升。",
+          "作者注明该发现可能无法推广到其他学科、院校或写作类型。"
         ]
       },
       "participant_prompt_zh": "你会保留、修改还是拒绝这句 AI 生成的总结？",
       "gold_label": {
         "judgment": [
-          "Revise"
+          "修改"
         ],
         "next_action": [
-          "weaken the claim wording"
+          "弱化论述措辞"
         ],
-        "reason_anchor": "The original study only covered one university's STEM students. AI improperly generalized to 'all student populations'. The scope needs narrowing."
+        "reason_anchor": "原始研究仅涉及一所大学的理工科学生。AI 不当地泛化到了「所有学生群体」。需要缩小表述范围。"
       }
     },
     {
@@ -510,25 +335,200 @@
       "category": "scope-generalization",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "你在总结 AI feedback 在教育中的效果。",
-      "ai_answer": "AI-generated feedback has been proven effective in improving writing across educational levels.",
+      "writing_goal_zh": "你在总结 AI 反馈在教育中的效果。",
+      "ai_answer": "AI 生成的反馈已被证明在各教育层次上均能有效提升写作水平。",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "证据卡",
         "bullets": [
-          "A classroom study with 45 graduate students in an MBA program",
-          "Found that AI-generated feedback helped students identify surface-level errors in business writing",
-          "The authors note the study was limited to business writing in one program and did not assess deeper argumentative or analytical writing skills"
+          "一项课堂研究对象为某 MBA 项目的45名研究生。",
+          "发现 AI 生成的反馈帮助学生识别了商务写作中的表面层错误。",
+          "作者注明该研究仅限于某一项目的商务写作，未评估更深层的论证或分析性写作能力。"
         ]
       },
       "participant_prompt_zh": "你会如何处理这句 AI 总结？",
       "gold_label": {
         "judgment": [
-          "Revise"
+          "修改"
         ],
         "next_action": [
-          "weaken the claim wording"
+          "弱化论述措辞"
         ],
-        "reason_anchor": "The study only tested surface-level errors in MBA business writing. AI overclaimed to 'across educational levels' and broader writing improvement. Scope must be limited."
+        "reason_anchor": "该研究仅测试了 MBA 商务写作中的表面层错误。AI 过度声称为「各教育层次」和更广泛的写作提升。必须限定表述范围。"
+      }
+    },
+    {
+      "id": "POST_A1",
+      "phase": "posttest",
+      "category": "hallucinated-citation",
+      "response_mode": "single_judgment",
+      "estimated_time_sec": 150,
+      "writing_goal_zh": "你正在写有关写作反馈的相关研究，需要补一条引用：「自动化反馈可以支持学术写作中的修改规划。」",
+      "ai_answer": "可以引用：Bennett, K., Ramos, J., & Wu, L. (2023). 智能反馈图谱改善大一写作课的修改规划. 写作分析国际评论, 11(4), 72-90.",
+      "evidence_card": {
+        "title": "证据卡",
+        "bullets": [
+          "元数据检查：未找到《写作分析国际评论》的记录。",
+          "元数据检查：ISSN 不可用。",
+          "相似来源片段：Bennett, K. & Wu, L. (2022). 写作过程意识的可视化反馈界面. 教育领域人机交互会议, 短论文.",
+          "该论文讨论的是写作意识的可视化反馈工具，而非智能反馈图谱或大一写作课的修改规划。",
+          "两位作者姓名与 AI 引用的论文重合，但研究重点、发表场所和年份不同。"
+        ]
+      },
+      "participant_prompt_zh": "你会如何处理这条 AI 引用建议？",
+      "gold_label": {
+        "judgment": [
+          "拒绝"
+        ],
+        "next_action": [
+          "核查或检视原始来源",
+          "标记为不可用"
+        ],
+        "reason_anchor": "来源本身无法验证，相近的材料也不支持所声称的内容。"
+      }
+    },
+    {
+      "id": "POST_A2",
+      "phase": "posttest",
+      "category": "hallucinated-citation",
+      "response_mode": "single_judgment",
+      "estimated_time_sec": 150,
+      "writing_goal_zh": "你想支持这句话：「AI 辅助写作工具能提升学生的自我调节学习能力。」",
+      "ai_answer": "可以引用：Ibrahim, D. & Chen, P. (2024). 生成式写作智能体在本科课堂中带来的自我调节能力提升. 数字写作教学法学报, 6(1), 13-29.",
+      "evidence_card": {
+        "title": "证据卡",
+        "bullets": [
+          "检索说明：未找到该引用的 DOI 或期刊索引。",
+          "相关来源摘录：一项关于起草辅助的研究报告了更快的构思生成和更高的感知易用性。",
+          "未包含自我调节学习的测量指标。"
+        ]
+      },
+      "participant_prompt_zh": "这条 AI 建议可不可以直接用？为什么？",
+      "gold_label": {
+        "judgment": [
+          "拒绝"
+        ],
+        "next_action": [
+          "标记为不可用"
+        ],
+        "reason_anchor": "该引用不可验证，相近来源也不支持所声称的具体内容。"
+      }
+    },
+    {
+      "id": "POST_B1",
+      "phase": "posttest",
+      "category": "source-verification",
+      "response_mode": "single_judgment",
+      "estimated_time_sec": 150,
+      "writing_goal_zh": "你要写：「AI 辅助的文献推荐提高了论证质量。」",
+      "ai_answer": "已有研究表明，AI 辅助的文献推荐提高了论证质量。",
+      "evidence_card": {
+        "title": "证据卡",
+        "bullets": [
+          "来源标题：《综合写作中学生使用 AI 推荐文献的体验》",
+          "学生反馈称 AI 帮助他们更快找到候选来源。",
+          "许多学生仍然难以判断这些来源是否真正支持其论点。",
+          "未报告论证质量改善的直接测量指标。"
+        ]
+      },
+      "participant_prompt_zh": "你会保留、修改还是拒绝这句话？",
+      "gold_label": {
+        "judgment": [
+          "修改"
+        ],
+        "next_action": [
+          "弱化论述措辞",
+          "核查或检视原始来源"
+        ],
+        "reason_anchor": "证据支持的是更快的文献发现，而非论证质量的改善。"
+      }
+    },
+    {
+      "id": "POST_B2",
+      "phase": "posttest",
+      "category": "source-verification",
+      "response_mode": "single_judgment",
+      "estimated_time_sec": 150,
+      "writing_goal_zh": "你想写：「一项课堂政策研究证明，引用使用指导减少了 AI 误用。」",
+      "ai_answer": "一项课堂政策研究证明，引用使用指导减少了 AI 误用。",
+      "evidence_card": {
+        "title": "证据卡",
+        "bullets": [
+          "来源标题：《AI 辅助写作课程中引用透明度的设计考量》",
+          "该论文提出了关于引用透明度的教学设计原则。",
+          "它讨论了为什么明确的指导可能减少有问题的使用。",
+          "未提供证明误用减少的结果数据。"
+        ]
+      },
+      "participant_prompt_zh": "你会如何处理这句总结？",
+      "gold_label": {
+        "judgment": [
+          "修改"
+        ],
+        "next_action": [
+          "核查或检视原始来源"
+        ],
+        "reason_anchor": "这是一篇设计或原则性论文，并非减少误用这一结果的实证证明。"
+      }
+    },
+    {
+      "id": "POST_C1",
+      "phase": "posttest",
+      "category": "trust-calibration",
+      "response_mode": "comparative_judgment",
+      "estimated_time_sec": 150,
+      "writing_goal_zh": "你要写一句关于综合写作中来源评估的综述。",
+      "ai_answers": {
+        "A": "虽然 AI 生成的来源摘要可以在早期起草阶段提供有用的方向指引，但学生在依赖这些摘要前应核实其是否准确反映了原始来源。",
+        "B": "AI 生成的来源摘要通过提供全面而准确的来源概述，可靠地改善了学生的综合写作。"
+      },
+      "evidence_card": {
+        "title": "证据卡",
+        "bullets": [
+          "AI 摘要在早期方向指引方面有用。",
+          "学生有时依赖的摘要遗漏了局限性或细微差别。",
+          "论文建议进行明确的核查教学。"
+        ]
+      },
+      "participant_prompt_zh": "哪个答案更可信？下一步你会怎么做？",
+      "gold_label": {
+        "judgment": [
+          "选择 A"
+        ],
+        "next_action": [
+          "核查或检视原始来源",
+          "接受并做小幅修改"
+        ],
+        "reason_anchor": "A 与核查要求和证据的有限性相符。B 在没有证据的情况下过度声称了可靠性和全面性。"
+      }
+    },
+    {
+      "id": "POST_C2",
+      "phase": "posttest",
+      "category": "trust-calibration",
+      "response_mode": "comparative_judgment",
+      "estimated_time_sec": 150,
+      "writing_goal_zh": "你要写一句关于循证论述修改的文献综述。",
+      "ai_answers": {
+        "A": "AI 反馈确保了学生进行循证修改，因为它能即时标记薄弱论述。",
+        "B": "AI 反馈可能帮助学生注意到潜在的薄弱论述，但学生在有把握地修改前仍需检查支持性证据。"
+      },
+      "evidence_card": {
+        "title": "证据卡",
+        "bullets": [
+          "学生使用 AI 反馈来定位需要修改的地方。",
+          "教师反馈称学生仍需要支持来理解证据质量。",
+          "该研究并未声称 AI 本身能确保循证修改。"
+        ]
+      },
+      "participant_prompt_zh": "哪个答案更可信？为什么？",
+      "gold_label": {
+        "judgment": [
+          "选择 B"
+        ],
+        "next_action": [
+          "核查或检视原始来源"
+        ],
+        "reason_anchor": "答案 B 保留了人工核查的步骤，未过度声称自动化。"
       }
     },
     {
@@ -537,25 +537,25 @@
       "category": "scope-generalization",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "你在写 AI-assisted learning 的综述。",
-      "ai_answer": "Research demonstrates that AI tutoring systems universally enhance critical thinking skills.",
+      "writing_goal_zh": "你在写 AI 辅助学习的综述。",
+      "ai_answer": "研究表明，AI 辅导系统普遍提升了批判性思维能力。",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "证据卡",
         "bullets": [
-          "A study of 25 first-year psychology students using an AI tutoring tool",
-          "Showed improved performance on multiple-choice recall questions",
-          "The authors explicitly state that critical thinking was not directly measured and that results may not extend beyond factual recall tasks"
+          "一项研究对象为25名使用 AI 辅导工具的大一心理学专业学生。",
+          "在选择题回忆测试中表现有所提升。",
+          "作者明确指出未直接测量批判性思维，且结果可能无法推广至事实性回忆任务之外。"
         ]
       },
       "participant_prompt_zh": "你会接受、修改还是拒绝这个说法？",
       "gold_label": {
         "judgment": [
-          "Revise"
+          "修改"
         ],
         "next_action": [
-          "weaken the claim wording"
+          "弱化论述措辞"
         ],
-        "reason_anchor": "The study only measured recall ability, not critical thinking. AI wrongly claimed universal enhancement of critical thinking skills. Scope must be narrowed to recall in introductory psychology."
+        "reason_anchor": "该研究仅测量了回忆能力，而非批判性思维。AI 错误地声称普遍提升了批判性思维。必须将范围缩小到心理学导论课程中的回忆能力。"
       }
     },
     {
@@ -564,25 +564,25 @@
       "category": "scope-generalization",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "你在写 AI-mediated peer review 的综述。",
-      "ai_answer": "AI-mediated peer review has been shown to improve feedback quality in all types of courses.",
+      "writing_goal_zh": "你在写 AI 辅助同伴评审的综述。",
+      "ai_answer": "AI 辅助的同伴评审已被证明能在所有类型的课程中提高反馈质量。",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "证据卡",
         "bullets": [
-          "A pilot study in a single introductory composition course with 18 students",
-          "Found that AI-mediated peer comments were rated slightly more specific than unassisted comments",
-          "The authors caution this was a single-course pilot and results should not be generalized to other course types or student levels"
+          "一项在某门写作入门课程中进行的小规模试点研究，参与者为18名学生。",
+          "发现 AI 辅助的同伴评语比无辅助的评语略微更加具体。",
+          "作者提醒这是单门课程的试点研究，结果不应推广到其他课程类型或学生层次。"
         ]
       },
       "participant_prompt_zh": "你会如何处理这句话？",
       "gold_label": {
         "judgment": [
-          "Revise"
+          "修改"
         ],
         "next_action": [
-          "weaken the claim wording"
+          "弱化论述措辞"
         ],
-        "reason_anchor": "An 18-person pilot in one composition course was overgeneralized to 'all types of courses'. Scope must be cautiously limited to preliminary findings in introductory composition."
+        "reason_anchor": "一门写作入门课中18人的试点研究被过度泛化到了「所有类型的课程」。必须将范围审慎限定在写作入门课程的初步发现。"
       }
     }
   ],
@@ -590,111 +590,111 @@
     "hallucination-weak": [
       {
         "scene_id": "H1_TUTOR",
-        "role": "Tutor",
-        "learning_objective_zh": "学会在使用 AI citation 时优先检查是否存在、是否匹配、是否相关。",
+        "role": "导师",
+        "learning_objective_zh": "学会在使用 AI 引用时优先检查是否存在、是否匹配、是否相关。",
         "script_lines": [
-          "A citation can look academic and still be unusable.",
-          "Before trusting it, check three things: existence, metadata match, and topical fit.",
-          "If the source cannot be verified, do not soften it. Reject it.",
-          "In your earlier response to {failed_item_id}, the key problem was: {evidence_gap}.",
-          "A safer rule is: if the citation itself cannot be validated, rewrite instead of patching."
+          "一条引用可能看起来很学术，但实际上不可用。",
+          "在信任之前，检查三件事：是否存在、元数据是否匹配、主题是否相关。",
+          "如果来源无法验证，不要弱化它——直接拒绝。",
+          "在你之前回答 {failed_item_id} 时，关键问题是：{evidence_gap}",
+          "一个更安全的规则是：如果引用本身无法验证，就重写而不是修补。"
         ],
-        "learner_task_zh": "写一条你下次在接受 AI citation 前会先检查的规则。",
-        "expected_signal": "mentions existence or metadata match before use"
+        "learner_task_zh": "写一条你下次在接受 AI 引用前会先检查的规则。",
+        "expected_signal": "提到在使用前先检查是否存在或元数据是否匹配"
       },
       {
         "scene_id": "H2_SKEPTIC_REFLECT",
-        "role": "Skeptic+Reflector",
+        "role": "质疑者+反思者",
         "script_lines": [
-          "This citation looks polished, but what exactly makes it unreliable?",
-          "Point to one field or one mismatch that makes you stop trusting it.",
-          "Good. Now convert that observation into a reusable rule.",
-          "Complete this sentence: If a citation cannot be verified by metadata, I should ______."
+          "这条引用看起来很规范，但它到底哪里不可靠？",
+          "指出一个字段或一处不匹配，使你不再信任它。",
+          "很好。现在把这个观察转化为一条可复用的规则。",
+          "完成这个句子：如果一条引用的元数据无法验证，我应该______。"
         ],
-        "learner_task_zh": "指出最可疑的字段或 mismatch，并把它改写成一条可复用规则。",
-        "expected_signal": "reject or rewrite rather than continue using the citation"
+        "learner_task_zh": "指出最可疑的字段或不匹配之处，并把它改写成一条可复用规则。",
+        "expected_signal": "拒绝或重写，而不是继续使用该引用"
       }
     ],
     "verification-weak": [
       {
         "scene_id": "V1_TUTOR",
-        "role": "Tutor",
-        "learning_objective_zh": "学会区分 source 存在 与 source 真正支持该 claim。",
+        "role": "导师",
+        "learning_objective_zh": "学会区分来源存在与来源真正支持该声明。",
         "script_lines": [
-          "A real source can still be used incorrectly.",
-          "Your job is not only to check whether a paper exists, but whether it supports this exact wording.",
-          "When the evidence is weaker than the claim, revise the claim.",
-          "In {failed_item_id}, the mismatch was: {evidence_gap}.",
-          "A safer rule is: align claim strength with source strength."
+          "一个真实的来源仍然可能被错误使用。",
+          "你的任务不仅是检查论文是否存在，还要检查它是否支持这个具体表述。",
+          "当证据弱于声明时，应修改声明。",
+          "在 {failed_item_id} 中，不匹配之处是：{evidence_gap}",
+          "一个更安全的规则是：让声明的强度与来源的强度对齐。"
         ],
         "learner_task_zh": "把原句改写成一个更弱但与证据对齐的版本。",
-        "expected_signal": "shifts from strong causal wording to limited or suggestive wording"
+        "expected_signal": "从强因果措辞转变为有限或暗示性的措辞"
       },
       {
         "scene_id": "V2_SKEPTIC_REFLECT",
-        "role": "Skeptic+Reflector",
+        "role": "质疑者+反思者",
         "script_lines": [
-          "Which exact phrase in the AI answer goes beyond the source?",
-          "Is the problem causality, certainty, or outcome inflation?",
-          "Now write one rule for future reading: when should you weaken a claim instead of accepting it?"
+          "AI 答案中具体哪个短语超出了来源的支持？",
+          "问题出在因果性、确定性还是结果夸大？",
+          "现在写一条未来的阅读规则：什么时候应该弱化声明而不是接受它？"
         ],
-        "learner_task_zh": "标出 overstated phrase，并写一条以后什么时候该弱化 claim 的规则。",
-        "expected_signal": "points to unsupported causal or outcome language"
+        "learner_task_zh": "标出夸大的短语，并写一条关于何时应弱化声明的规则。",
+        "expected_signal": "指出无支持的因果性或结果性语言"
       }
     ],
     "trust-calibration-weak": [
       {
         "scene_id": "T1_TUTOR",
-        "role": "Tutor",
-        "learning_objective_zh": "学会在两个 AI answers 之间比较谁更可信，而不是谁更流畅。",
+        "role": "导师",
+        "learning_objective_zh": "学会在两个 AI 答案之间比较谁更可信，而不是谁更流畅。",
         "script_lines": [
-          "The more fluent answer is not always the more trustworthy one.",
-          "A more trustworthy answer usually shows evidence boundaries.",
-          "Look for cautious wording, explicit limits, and alignment with the source.",
-          "In {failed_item_id}, the stronger answer was less trustworthy because {evidence_gap}.",
-          "A safer rule is: trust the answer that stays closer to what the evidence can support."
+          "更流畅的答案不一定更值得信任。",
+          "更可信的答案通常会展示证据的边界。",
+          "留意谨慎的措辞、明确的局限说明以及与来源的对齐程度。",
+          "在 {failed_item_id} 中，更强势的答案反而不够可信，因为：{evidence_gap}",
+          "一个更安全的规则是：信任更贴近证据所能支持范围的答案。"
         ],
-        "learner_task_zh": "写出一个会让 AI answer 听起来很自信但其实证据不足的信号。",
-        "expected_signal": "mentions overconfident wording, missing evidence, universal claims, or causal inflation"
+        "learner_task_zh": "写出一个会让 AI 答案听起来很自信但其实证据不足的信号。",
+        "expected_signal": "提到过度自信的措辞、缺失的证据、普遍性声明或因果夸大"
       },
       {
         "scene_id": "T2_SKEPTIC_REFLECT",
-        "role": "Skeptic+Reflector",
+        "role": "质疑者+反思者",
         "script_lines": [
-          "If you had to defend your choice in front of a reviewer, what evidence-based reason would you give?",
-          "Do not say it sounds better. Say what makes it more trustworthy.",
-          "Complete this rule: When two AI answers disagree, I should prefer the one that ______."
+          "如果你需要在审稿人面前为自己的选择辩护，你会给出什么基于证据的理由？",
+          "不要说它「听起来更好」。说出是什么让它更值得信任。",
+          "完成这条规则：当两个 AI 答案相互矛盾时，我应该选择那个______的答案。"
         ],
-        "learner_task_zh": "用 evidence-based 的理由为你的选择辩护，并把理由写成一条规则。",
-        "expected_signal": "refers to evidence anchoring, boundary language, or explicit uncertainty"
+        "learner_task_zh": "用基于证据的理由为你的选择辩护，并把理由写成一条规则。",
+        "expected_signal": "引用证据锚定、边界语言或明确的不确定性"
       }
     ],
     "scope-generalization-weak": [
       {
         "scene_id": "D1_TUTOR",
-        "role": "Tutor",
-        "learning_objective_zh": "学会检查 AI 是否将原始研究的有限结论泛化到了更广的范围",
+        "role": "导师",
+        "learning_objective_zh": "学会检查 AI 是否将原始研究的有限结论泛化到了更广的范围。",
         "script_lines": [
-          "An AI answer can make a finding sound universal when the study was actually quite limited.",
-          "Before accepting a broad claim, check: What was the sample? What was the context? What were the authors' own stated limitations?",
-          "If the original study was small, narrow, or discipline-specific, the claim should reflect that scope.",
-          "In your earlier response to {failed_item_id}, the key problem was: {evidence_gap}.",
-          "A safer rule is: match the scope of the claim to the scope of the evidence."
+          "AI 的答案可以让一个研究发现听起来具有普遍性，但实际上原始研究可能非常有限。",
+          "在接受一个宽泛的声明之前，检查：样本是什么？语境是什么？作者自己陈述的局限性是什么？",
+          "如果原始研究是小规模的、窄范围的或特定于某个学科的，声明应该反映这个范围。",
+          "在你之前回答 {failed_item_id} 时，关键问题是：{evidence_gap}",
+          "一个更安全的规则是：让声明的范围与证据的范围相匹配。"
         ],
-        "learner_task_zh": "写一条你以后用来检查 AI claim 是否超出研究范围的规则。",
-        "expected_signal": "mentions checking sample size, study context, or author-stated limitations before accepting broad claims"
+        "learner_task_zh": "写一条你以后用来检查 AI 声明是否超出研究范围的规则。",
+        "expected_signal": "提到在接受宽泛声明前先检查样本量、研究语境或作者所述的局限性"
       },
       {
         "scene_id": "D2_SKEPTIC_REFLECT",
-        "role": "Skeptic+Reflector",
+        "role": "质疑者+反思者",
         "script_lines": [
-          "This claim sounds broad. Can you find the specific words that go beyond the original study?",
-          "Point to one word or phrase that makes the claim wider than what the evidence supports.",
-          "Good. Now convert that into a reusable rule.",
-          "Complete this sentence: When an AI claim uses words like 'all' or 'universally', I should first check ______."
+          "这个声明听起来很宽泛。你能找到其中超出原始研究范围的具体词语吗？",
+          "指出一个让声明比证据支持的范围更广的词或短语。",
+          "很好。现在把它转化为一条可复用的规则。",
+          "完成这个句子：当 AI 声明中出现「所有」「普遍」之类的词时，我应该先检查______。"
         ],
         "learner_task_zh": "标出泛化最严重的词，并把它改写成一条可复用规则。",
-        "expected_signal": "mentions checking whether the source's sample, context, or conclusions actually support that level of generalization"
+        "expected_signal": "提到检查来源的样本、语境或结论是否真正支持该泛化程度"
       }
     ]
   }

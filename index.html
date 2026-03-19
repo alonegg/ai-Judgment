@@ -1,21 +1,28 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Judgment Micro-Intervention Pilot</title>
     <link rel="stylesheet" href="./styles.css" />
+    <script>
+      // Set lang attribute and title before first paint
+      (function() {
+        var isEn = new URLSearchParams(location.search).get("lang") === "en";
+        document.documentElement.lang = isEn ? "en" : "zh-CN";
+        document.title = isEn ? "AI Judgment Micro-Intervention" : "AI 判断力微干预实验";
+      })();
+    </script>
   </head>
   <body>
     <main class="app-shell">
       <header class="app-header">
         <div>
-          <p class="eyebrow">ICAIE 2026 Pilot</p>
-          <h1>AI Judgment Micro-Intervention</h1>
+          <p class="eyebrow" id="header-eyebrow"></p>
+          <h1 id="header-title"></h1>
         </div>
         <div class="header-right">
           <div id="timer" class="timer" hidden>00:00</div>
-          <div id="session-badge" class="session-badge">Not started</div>
+          <div id="session-badge" class="session-badge"></div>
         </div>
       </header>
 
@@ -25,7 +32,7 @@
       </div>
 
       <section id="screen" class="screen-panel">
-        <p>Loading study materials...</p>
+        <p id="loading-text"></p>
       </section>
     </main>
 
@@ -36,6 +43,16 @@
       </label>
     </template>
 
+    <script>
+      // Set initial text based on language before app.js loads
+      (function() {
+        var isEn = new URLSearchParams(location.search).get("lang") === "en";
+        document.getElementById("header-eyebrow").textContent = isEn ? "ICAIE 2026 Pilot Study" : "ICAIE 2026 试点实验";
+        document.getElementById("header-title").textContent = isEn ? "AI Judgment Micro-Intervention" : "AI 判断力微干预";
+        document.getElementById("session-badge").textContent = isEn ? "Not started" : "未开始";
+        document.getElementById("loading-text").textContent = isEn ? "Loading study materials..." : "正在加载实验材料...";
+      })();
+    </script>
     <script src="./app.js"></script>
   </body>
 </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Judgment Micro-Intervention Pilot</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">ICAIE 2026 Pilot</p>
+          <h1>AI Judgment Micro-Intervention</h1>
+        </div>
+        <div class="header-right">
+          <div id="timer" class="timer" hidden>00:00</div>
+          <div id="session-badge" class="session-badge">Not started</div>
+        </div>
+      </header>
+
+      <div id="progress-bar" class="progress-bar" hidden>
+        <div id="progress-fill" class="progress-fill"></div>
+        <div id="progress-steps" class="progress-steps"></div>
+      </div>
+
+      <section id="screen" class="screen-panel">
+        <p>Loading study materials...</p>
+      </section>
+    </main>
+
+    <template id="radio-group-template">
+      <label class="option-row">
+        <input type="radio" />
+        <span></span>
+      </label>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

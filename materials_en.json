@@ -132,16 +132,16 @@
       "category": "hallucinated-citation",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "I am drafting a research report on how young job seekers use AI tools. My prompt is: \"Semi-structured interviews can help identify the main concerns young job seekers have when using AI resume tools.\"",
-      "ai_answer": "You can cite: Lin, Y., Romero, J., & Singh, P. (2023). A National Interview Study of AI Resume Tools Among Young Job Seekers. Journal of Digital Society Research, 12(4), 55-73.",
+      "writing_goal_zh": "I am drafting background context for a report on youth job-search services and want to add one sentence: \"Some studies suggest that when applicants use generative tools to rewrite resumes, one of their main concerns is that the result becomes too templated.\" My prompt to the AI is: \"Based on this sentence, give me one citation I can place at the end.\"",
+      "ai_answer": "You could cite: Lin, Y., Romero, J., & Singh, P. (2023). Interview Study of Young Job Seekers Using AI Resume Tools. China Digital Society Review, 12(4), 55-73.",
       "evidence_card": {
         "title": "Facts",
         "bullets": [
-          "Database lookup: no record is found for Journal of Digital Society Research, 12(4), 55-73.",
-          "Database lookup: no DOI or stable index entry is resolved for the citation above.",
-          "Related search hit: Lin, Y. & Singh, P. (2022). Interview Notes on Digital Job-Search Assistance in One Career Center. Working paper.",
-          "That working paper discusses digital job-search support in one career center, not a national interview study of AI resume tools.",
-          "The author names partially overlap, but the title, publication form, and study scope do not match the AI citation."
+          "Database search: no record was found for China Digital Society Review, Vol. 12, Issue 4, pp. 55-73.",
+          "Database search: no DOI or stable link was found for this item.",
+          "Closest result: Lin, Y. & Singh, P. (2022). Interview Notes on Digital Job-Search Support in Employment Service Centers. working paper.",
+          "That working paper is about digital job-search support in service centers, not generative AI resume rewriting tools.",
+          "The authors partly overlap, but the study object, title framing, and publication format do not match the AI citation."
         ]
       },
       "participant_prompt_zh": "How would you handle this AI-suggested citation?",
@@ -153,7 +153,7 @@
           "flag and do not use this output",
           "verify or inspect the source"
         ],
-        "reason_anchor": "The citation metadata cannot be verified, and the closest search hit does not support the title, venue, or scope claimed by the AI."
+        "reason_anchor": "The key citation details cannot be validated, and the closest real source only overlaps on authorship rather than supporting the title, publication format, and study object given by the AI."
       }
     },
     {
@@ -190,15 +190,15 @@
       "category": "source-verification",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "I am drafting a short financial note on a company. My prompt is: \"After adopting AI customer service, the company improved profitability without affecting customer retention.\"",
-      "ai_answer": "Available materials show that the company improved profitability after adopting AI customer service without affecting customer retention.",
+      "writing_goal_zh": "I am drafting two lines of investor communication from a Q3 earnings-call summary. My prompt to the AI is: \"Summarize the business impact after the AI customer-service rollout in a sell-side-note tone.\"",
+      "ai_answer": "Management commentary suggests that after the AI customer-service rollout, service efficiency improved, the margin rebound indicates that the initiative is already feeding into financial performance, and customer retention appears to have remained stable in the short run.",
       "evidence_card": {
         "title": "Facts",
         "bullets": [
           "Source title: Q3 Earnings Call Summary.",
-          "Management states that customer-service costs declined in the quarter after the AI support tool went live.",
-          "The summary notes that operating margin improved in the same quarter.",
-          "The material does not provide evidence about customer retention, and it does not prove that the margin improvement was caused by the AI tool."
+          "Management states that after the AI customer-service tool went live, customer-service labor cost and average response time both declined in the quarter.",
+          "The summary also notes that operating margin improved in the same quarter, but it also mentions product-mix adjustment and lower marketing spend.",
+          "The material provides no evidence that customer retention stayed stable, and it does not show that the margin improvement was primarily caused by the AI tool."
         ]
       },
       "participant_prompt_zh": "How would you handle this AI-generated analytical statement?",
@@ -210,7 +210,7 @@
           "weaken the claim wording",
           "verify or inspect the source"
         ],
-        "reason_anchor": "The source supports at most that lower service costs and higher margin appeared in the same quarter; it does not support the claim that retention was unaffected or that the AI tool clearly caused the change."
+        "reason_anchor": "The source supports improved service efficiency and a margin rebound in the same quarter, but it does not support direct causal attribution to the AI rollout, nor does it support the added claim that customer retention remained stable."
       }
     },
     {
@@ -309,14 +309,15 @@
       "category": "scope-generalization",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "I am writing a user-research summary. My prompt is: \"Please summarize the most common concerns of first-time users of robo-advisory tools.\"",
-      "ai_answer": "The research consistently shows that all retail investors are most concerned about algorithmic opacity when using robo-advisory tools.",
+      "writing_goal_zh": "I am preparing one user-insight line for a weekly product meeting. My prompt to the AI is: \"Based on these interview notes, write the single most homepage-worthy finding.\"",
+      "ai_answer": "Interviewees broadly treated “not understanding how the model made its recommendation” as the core barrier to using robo-advisory tools, which suggests that algorithm transparency remains the most sensitive issue for ordinary investors in this category.",
       "evidence_card": {
         "title": "Facts",
         "bullets": [
-          "The study is based on interviews with 24 first-time robo-advisory users from two branches in Shanghai.",
-          "Many interviewees mentioned opacity of the algorithm as a concern.",
-          "The authors caution that the sample only covers novice users in one city and should not represent all retail investors."
+          "The study is based on interviews with 24 first-time robo-advisory users at two Shanghai branch locations.",
+          "A number of interviewees said they found it hard to understand why the system produced a given recommendation.",
+          "The authors also recorded other concerns among novice users, including unclear risk disclosures and switching costs.",
+          "The authors caution that the sample is limited to novice users in one city and should not be treated as representative of ordinary investors overall."
         ]
       },
       "participant_prompt_zh": "Would you keep, revise, or reject this AI summary?",
@@ -328,7 +329,7 @@
           "weaken the claim wording",
           "verify or inspect the source"
         ],
-        "reason_anchor": "The original study supports only that many novice users in Shanghai mentioned opacity; the AI improperly expands this into the top concern of all retail investors."
+        "reason_anchor": "The material supports at most that algorithm transparency was a common concern in this Shanghai novice-user interview set; it does not support elevating that concern into the core barrier for ordinary investors overall."
       }
     },
     {
@@ -451,15 +452,15 @@
       "category": "source-verification",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "I am writing a short review of historical methods. My prompt is: \"A historical study proves that genealogical records can directly reconstruct the daily economic behavior of ordinary people.\"",
-      "ai_answer": "A historical study proves that genealogical records can directly reconstruct the daily economic behavior of ordinary people.",
+      "writing_goal_zh": "I am writing one sentence in a historiographical methods review and want to summarize the value of genealogical records. My prompt to the AI is: \"Based on this methods paper, write one sentence that could go directly into the paragraph.\"",
+      "ai_answer": "The article argues that although genealogical records are biased, they can still serve as a fairly reliable basis for reconstructing the everyday economic behavior of ordinary households.",
       "evidence_card": {
         "title": "Facts",
         "bullets": [
           "Source title: Using Genealogies as Historical Clues.",
-          "The paper argues that genealogies can offer clues about lineage strategies and selected economic activities.",
-          "The paper repeatedly discusses biases, silences, and representational limits in genealogical materials.",
-          "It does not claim that ordinary people’s daily economic behavior can be directly or completely reconstructed from those records."
+          "The paper argues that genealogical records can provide clues about family strategy, marriage arrangement, and some economic activities.",
+          "The author repeatedly discusses bias, silences, class skew, and representativeness limits in genealogical materials.",
+          "The paper does not claim that genealogical records can fairly reliably reconstruct the full everyday economic behavior of ordinary households."
         ]
       },
       "participant_prompt_zh": "How would you handle this statement?",
@@ -471,7 +472,7 @@
           "weaken the claim wording",
           "verify or inspect the source"
         ],
-        "reason_anchor": "The source supports only that genealogies provide partial clues; it does not support the much stronger claim of directly reconstructing ordinary people’s daily economic behavior."
+        "reason_anchor": "The source supports “providing clues,” not “fairly reliable reconstruction of everyday economic behavior”; the AI turns a methodological clue into a much stronger reconstruction claim."
       }
     },
     {
@@ -511,17 +512,17 @@
       "category": "trust-calibration",
       "response_mode": "comparative_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "I am writing a short methods review for market research. My prompt is: \"Please summarize the role of AI summaries when organizing interview material.\"",
+      "writing_goal_zh": "I am writing one sentence in a market-research methods review. My prompt to the AI is: \"Based on this article, write one sentence describing what AI summaries are useful for when working with interview records.\"",
       "ai_answers": {
-        "A": "AI summaries ensure that researchers obtain accurate and complete interview findings.",
-        "B": "AI summaries may help researchers organize interview material more quickly, but the original interview records still need to be checked before formal conclusions are cited."
+        "A": "AI summaries can clearly speed up early-stage organization, and many teams will directly use them to derive interview conclusions.",
+        "B": "AI summaries are suitable for early-stage synthesis, but before writing formal conclusions, researchers still need to return to the original interview records to check context and limitations."
       },
       "evidence_card": {
         "title": "Facts",
         "bullets": [
-          "The research team used AI summaries to organize interview notes more quickly.",
-          "Some summaries omitted caveats or conflated statements from different interviewees.",
-          "The authors recommend checking the original interview records before drawing formal conclusions."
+          "After using AI summaries, the research team completed the first-pass organization of interview notes more quickly.",
+          "Some AI summaries omitted qualifiers or blended statements from different interviewees.",
+          "The authors recommend revisiting the original interview records before turning the material into formal conclusions."
         ]
       },
       "participant_prompt_zh": "Which answer is more trustworthy? Why?",
@@ -532,7 +533,7 @@
         "next_action": [
           "verify or inspect the source"
         ],
-        "reason_anchor": "Answer B keeps the efficiency benefit of AI summaries while retaining the crucial human step of checking the original records."
+        "reason_anchor": "B preserves the efficiency value of AI summaries while retaining the required validation step of checking original records; A turns a common but risky shortcut into an endorsed practice."
       }
     },
     {
@@ -569,14 +570,15 @@
       "category": "scope-generalization",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "I am writing an industry comment. My prompt is: \"Please summarize the impact of generative AI on margins in retail.\"",
-      "ai_answer": "Generative AI has been proven to deliver sustained margin improvement across all retail sub-sectors.",
+      "writing_goal_zh": "I am writing one line for a retail-industry comment. My prompt to the AI is: \"Based on this case material, use one sentence to summarize how generative AI affects profit margin and close the paragraph.\"",
+      "ai_answer": "Based on the current case, generative AI is already showing margin-improvement effects in retail, especially in customer service and product-copy workflows, and that improvement will likely keep spreading across most sub-sectors.",
       "evidence_card": {
         "title": "Facts",
         "bullets": [
-          "The source examines customer-service automation pilots in six apparel retailers over two quarters.",
-          "Some firms reported short-term margin improvement.",
-          "The authors caution that there is no evidence yet for groceries, luxury retail, or other sub-sectors, and no basis for a long-term conclusion."
+          "The source material describes a three-month generative-AI pilot at one apparel retailer.",
+          "The pilot was mainly used for customer-service reply drafting and product-copy generation, and labor time declined in both workflows.",
+          "Margin improved slightly in the same period, but the material also notes lower inventory discounting and seasonal sales recovery.",
+          "The author cautions that this is a single-company, short-horizon case and should not be generalized to other retail sub-sectors or treated as evidence of a lasting margin effect."
         ]
       },
       "participant_prompt_zh": "How would you handle this statement?",
@@ -588,7 +590,7 @@
           "weaken the claim wording",
           "verify or inspect the source"
         ],
-        "reason_anchor": "The source supports only short-term improvement in some apparel retailers, whereas the AI rewrites this as sustained gains across all retail sub-sectors."
+        "reason_anchor": "The material supports at most that process efficiency improved and margin also improved slightly in one apparel-retail case; it does not support treating that pattern as a durable rule for most retail sub-sectors."
       }
     }
   ],

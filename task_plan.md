@@ -37,6 +37,7 @@
 - `2026-03-20` 已完成第一轮全局重构：A 类 `A2` 改为 boundary citation case，B 类新增 `2` 道 calibrated-acceptance item，C 类 `PRE_C2` 改成 evidence-alignment comparison，D 类 `PRE_D2` / `POST_D1` 纯化为 scope-only case；并已同步到 `item_bank`、`materials`、`participant packet`、`protocol`、`rubric`、`runbook` 与 prototype/networked participant 文案。
 - `2026-03-20` 已将题目矩阵从单一教育写作语境重构为 `4 categories × 4 domains` 的跨域版本，覆盖 `调研报告 / 金融分析 / 数据处理 / 历史人文`，以降低 topic-specific cue learning，并更接近 cross-domain judgment calibration。
 - `2026-03-20` 已修正 intervention scene 语境缺口：当学习任务要求参与者改写“原句”或指出“这句话/这个声明”的问题时，界面必须显式展示对应失败 pretest item 的题干、AI 输出、事实情况与关键问题说明，不能让参与者仅凭记忆完成任务。
+- `2026-03-20` 已完成第一轮 realism pass：优先重写 `PRE_A1 / PRE_B1 / PRE_D1 / POST_B2 / POST_C2 / POST_D2` 六道最刻意的题，使题干更接近真实工作指令、AI 输出更像真实滑坡式越界、事实情况更像材料片段而非标准答案提示。
 - `16` 道完整题目（8+8 扩展）、gold labels、scene scripts、scoring rubric 已完成 v2，待 dry run 验证。
 - 已补齐 `materials_v2.json`、participant packet、pilot runbook、CSV templates 与最小 prototype，可直接服务内部 dry run。
 - 已引入 `interaction pattern` codebook，并将 `AI-free posttest` 与过程编码 hooks 写入 protocol / materials / prototype。

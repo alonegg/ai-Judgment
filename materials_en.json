@@ -162,15 +162,15 @@
       "category": "hallucinated-citation",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "I am writing a historical overview of how local gazetteers are used. My prompt is: \"Tax records in local gazetteers can help researchers trace changes in regional commercial activity in the late Qing.\"",
-      "ai_answer": "You can use this source: Wang, H. & Keller, M. (2024). Merchant Tax Records in Late Qing Local Gazetteers. Historical Text Studies, 18(2), 88-109.",
+      "writing_goal_zh": "I am revising a short literature review on local fiscal history. One sentence says, \"Some local gazetteers record broker taxes, transit levies, and market dues, which can help recover regional trade signals missing from formal archives.\" My prompt to the AI is: \"Give me the most suitable citation for this sentence, preferably one I can drop straight into a footnote.\"",
+      "ai_answer": "You could cite: Wang, H. & Keller, M. (2024). Tax Notes in Late-Qing Gazetteers. Historical Text Studies, 18(2), 88-109.",
       "evidence_card": {
         "title": "Facts",
         "bullets": [
-          "Database lookup: a real 2024 source by Wang and Keller with the same title is found.",
-          "The actual source is an edited-volume chapter, not a journal article in Historical Text Studies.",
-          "The real source does not have journal-style volume or issue metadata.",
-          "The abstract indicates that merchant tax records in local gazetteers can be used to analyze changes in commercial activity in specific late-Qing regions."
+          "Database lookup: a 2024 source by Wang and Keller with the same title is found.",
+          "The record shows that the study appears as a chapter in the edited volume Regional Trade and Local Records in Late Qing China.",
+          "The chapter pages really are 88-109, but no corresponding entry is found for Historical Text Studies, 18(2).",
+          "The abstract says that tax entries in local gazetteers can serve as supplementary clues for tracing trade activity in specific regions."
         ]
       },
       "participant_prompt_zh": "Would you accept, revise, or reject this AI suggestion? Why?",
@@ -181,7 +181,7 @@
         "next_action": [
           "verify or inspect the source"
         ],
-        "reason_anchor": "The source appears real and topically relevant, but the publication form and journal metadata supplied by the AI are inaccurate, so the citation cannot be copied directly."
+        "reason_anchor": "The source is not fully fabricated, but the AI converts a real chapter into a journal article. The title and page range are partly real, making this a more realistic repairable citation mismatch."
       }
     },
     {
@@ -219,15 +219,15 @@
       "category": "source-verification",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "I am writing a short note on data-processing procedures. My prompt is: \"Before merging tables from multiple sources, date formats should be standardized and duplicate records should be checked.\"",
-      "ai_answer": "Before merging tables from multiple sources, date formats should be standardized and duplicate records should be checked. The data-cleaning guide explicitly recommends these as basic steps.",
+      "writing_goal_zh": "I am adding one line to a team wiki page for our data-integration SOP. My prompt is: \"Write the two checks we must do before a merge in one sentence, in the tone of an internal operations note.\"",
+      "ai_answer": "Before we merge the CRM, ticketing, and payments tables, we first align the date fields to one format and then check duplicates and conflicting IDs; the data-cleaning manual lists both as pre-merge checks.",
       "evidence_card": {
         "title": "Facts",
         "bullets": [
-          "Source title: Practical Guide to Merging Administrative Tables.",
-          "The guide explicitly recommends standardizing date and time formats before a merge.",
-          "The guide explicitly recommends checking duplicates and conflicting IDs before integration.",
-          "The source is procedural guidance rather than an outcome study, but these steps are directly recommended."
+          "Source title: Operating Instructions for Merging Multi-Source Business Tables.",
+          "The manual requires standardizing date/time field formats and timezone notation before a merge.",
+          "The manual requires checking duplicate records and conflicting IDs before integration.",
+          "This is an operations document rather than an outcome study, but those two steps are explicitly listed as pre-merge checks."
         ]
       },
       "participant_prompt_zh": "How would you handle this AI-generated methodological suggestion?",
@@ -238,7 +238,7 @@
         "next_action": [
           "accept with minor edits"
         ],
-        "reason_anchor": "The sentence accurately summarizes the guide’s direct recommendation and does not misstate procedural guidance as empirical performance evidence."
+        "reason_anchor": "The AI sentence is basically a compressed restatement of the manual’s pre-merge checklist. It does not inflate a procedural recommendation into a validated performance claim."
       }
     },
     {
@@ -247,17 +247,17 @@
       "category": "trust-calibration",
       "response_mode": "comparative_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "I am writing a historical overview of late-Qing newspaper circulation. My prompt is: \"Please summarize research on the relationship between late-Qing newspaper circulation and urban public discussion.\"",
+      "writing_goal_zh": "I am drafting a literature review on late-Qing newspaper history. My prompt is: \"Summarize the relationship between newspaper circulation and urban public discussion in one sentence, in the tone of a review paragraph.\"",
       "ai_answers": {
-        "A": "Research has established that the expansion of newspapers in the late Qing steadily drove the formation of public discussion nationwide.",
-        "B": "Some regional studies suggest that newspaper circulation may have expanded spaces for public discussion in specific cities, but there were still substantial differences across regions and periods."
+        "A": "Current research generally treats newspaper expansion as an important condition behind the acceleration of urban public discussion in the late Qing.",
+        "B": "Some city-level case studies suggest that newspaper circulation may have widened spaces for public discussion in certain cities, but the effect still seems shaped by region, period, and political context."
       },
       "evidence_card": {
         "title": "Facts",
         "bullets": [
-          "Existing studies mainly analyze newspapers and public discussion in a few cities such as Shanghai and Tianjin.",
-          "These studies suggest that circulation may have expanded discussion spaces in those specific urban settings.",
-          "The authors caution that current evidence is insufficient for a nationwide conclusion and does not imply uniform effects across regions or periods."
+          "Existing studies are concentrated in a few cities such as Shanghai and Tianjin.",
+          "Case studies indicate that newspaper expansion coincided with wider discussion spaces in some of those urban settings.",
+          "The authors caution that current evidence is not enough to turn that pattern into a general rule across places, and it does not imply the same effect in every city or period."
         ]
       },
       "participant_prompt_zh": "Which answer is more trustworthy? How would you proceed?",
@@ -269,7 +269,7 @@
           "verify or inspect the source",
           "weaken the claim wording"
         ],
-        "reason_anchor": "Answer B preserves the regional evidence and its limits, whereas Answer A turns a small set of city-based studies into a national, stable conclusion."
+        "reason_anchor": "Answer B keeps the positive possibility without upgrading a handful of city cases into a broad consensus. Answer A is wrong in a more realistic way: it sounds like a smooth review sentence that quietly overstates the evidence base."
       }
     },
     {
@@ -278,17 +278,17 @@
       "category": "trust-calibration",
       "response_mode": "comparative_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "I am writing a comment on a company’s latest earnings report. My prompt is: \"Please summarize what this company’s latest report implies for margins.\"",
+      "writing_goal_zh": "I am preparing a one-page internal earnings note for an investment committee. My prompt is: \"Summarize what this earnings release means for margins in one sentence, in the tone of an internal comment.\"",
       "ai_answers": {
-        "A": "The report shows that the company faced margin pressure this quarter, and management also signaled that short-term cost control remains important.",
-        "B": "The report may reflect some noteworthy changes, but more observation is still needed."
+        "A": "At minimum, this release suggests margins were still under pressure this quarter, and management is still focused on destocking and cost control.",
+        "B": "This release sends some signals worth watching, but it is still too early to say much about where margins are going."
       },
       "evidence_card": {
         "title": "Facts",
         "bullets": [
-          "The Q2 report shows gross margin declining from 34% to 29%.",
-          "Management attributes the pressure to inventory adjustments and states that cost control remains a priority next quarter.",
-          "The material does not support a long-term trend claim, but it does support describing margin pressure in the current quarter."
+          "The Q2 report shows gross margin falling from 34% to 29%.",
+          "Management attributes the pressure to inventory adjustment and says cost control will remain necessary next quarter.",
+          "The material does not support a long-run trend claim, but it does support describing this quarter as margin pressure."
         ]
       },
       "participant_prompt_zh": "Which answer is more trustworthy? Why?",
@@ -300,7 +300,7 @@
           "accept with minor edits",
           "verify or inspect the source"
         ],
-        "reason_anchor": "Answer A is specific and aligned with the material, whereas Answer B is more vague and fails to capture the key point that the report clearly supports."
+        "reason_anchor": "Answer A sounds like internal analysis language, but its substantive claims are still supported by the report. Answer B sounds cautious, yet it withholds information that the source already makes reasonably clear."
       }
     },
     {
@@ -338,14 +338,15 @@
       "category": "scope-generalization",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "I am summarizing the results of a city-traffic data-cleaning experiment. My prompt is: \"Please summarize the effectiveness of this cleaning rule set.\"",
-      "ai_answer": "This cleaning rule set has been proven to identify anomalous GPS records reliably in urban traffic data nationwide.",
+      "writing_goal_zh": "I am writing a short retrospective on an urban mobility data project. My prompt is: \"Summarize the applicability of this GPS-cleaning rule set in one sentence for the project wrap-up.\"",
+      "ai_answer": "This rule set performed stably in urban traffic GPS cleaning, and it should also serve as a general anomaly-detection solution when we move the pipeline to other cities.",
       "evidence_card": {
         "title": "Facts",
         "bullets": [
-          "The experiment is based on one month of taxi GPS data from three districts in Hangzhou.",
-          "On that dataset, the rule set improved anomaly detection.",
-          "The authors caution that there is no evidence yet for direct transfer to other cities, seasons, or sensing systems."
+          "The trial used one month of taxi GPS data from three districts in Hangzhou.",
+          "On that dataset, the rules improved detection of drift points and duplicate-location records.",
+          "The study does not include other cities, seasons, or data-collection devices.",
+          "The author only recommends further testing in similar data streams; the paper does not claim general portability across urban traffic data."
         ]
       },
       "participant_prompt_zh": "How would you handle this AI summary?",
@@ -357,7 +358,7 @@
           "weaken the claim wording",
           "verify or inspect the source"
         ],
-        "reason_anchor": "The study supports effectiveness on a specific Hangzhou dataset, not the broader claim that the rules work reliably across urban traffic data nationwide."
+        "reason_anchor": "The AI does not say the rules were proven nationwide, but it still slides from a single-city pilot to a portable general solution. That softer extrapolation is closer to what people actually write in practice."
       }
     },
     {
@@ -366,16 +367,16 @@
       "category": "hallucinated-citation",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "I am writing an industry note. My prompt is: \"Independent research reports indicate that mid-sized retail banks are using generative AI to reduce customer-service costs.\"",
-      "ai_answer": "You can cite: Garcia, L., Moore, T., & Zhou, X. (2024). Generative AI Reduces Service Costs Across Mid-Sized Retail Banks. Journal of Applied Financial Strategy, 7(3), 41-59.",
+      "writing_goal_zh": "I am revising a short overview of digital transformation in banking. One sentence says, \"Some mid-tier retail banks are prioritizing generative AI for customer-service cost reduction.\" My prompt to the AI is: \"Give me a citation that looks like a formal industry study.\"",
+      "ai_answer": "You can cite: Garcia, L., Zhou, X., & Moore, T. (2024). Generative AI and Service Cost Compression in Mid-Tier Retail Banking. Applied Finance Strategy Report Series, 7(3), 41-59.",
       "evidence_card": {
         "title": "Facts",
         "bullets": [
-          "Database lookup: no record is found for Journal of Applied Financial Strategy, 7(3), 41-59.",
-          "Database lookup: no DOI is resolved for the citation above.",
-          "Related search hit: Garcia, L. & Zhou, X. (2023). AI Pilots in Retail Banking Service Operations. Industry webinar brief.",
-          "That brief discusses pilots in two banks, not a formal study across mid-sized retail banks.",
-          "The author names partially overlap, but the title, publication form, and study scope do not match the AI citation."
+          "Database lookup: no matching record is found for Applied Finance Strategy Report Series, Series 7, Number 3.",
+          "No DOI or institutional report link is found for that title.",
+          "The closest result is a 2023 webinar brief by Garcia and Zhou on AI customer-service pilots in two retail banks.",
+          "That brief is neither a formal report series publication nor a study of mid-tier retail banking as a whole.",
+          "The authors partly overlap, but the outlet, title, and study scope do not line up."
         ]
       },
       "participant_prompt_zh": "How would you handle this AI citation suggestion?",
@@ -387,7 +388,7 @@
           "verify or inspect the source",
           "flag and do not use this output"
         ],
-        "reason_anchor": "The citation cannot be verified, and the closest related source does not support the journal, pagination, or scope written by the AI."
+        "reason_anchor": "This is more realistic than a fake academic journal citation because it looks like a consultancy-style report reference. But the key metadata still cannot be validated, and the closest real material does not support the scope claimed by the AI."
       }
     },
     {
@@ -396,15 +397,15 @@
       "category": "hallucinated-citation",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "I am writing a short note on data-engineering practice. My prompt is: \"Manual review after stratified sampling can help reveal systematic bias in auto-labeled data.\"",
-      "ai_answer": "You can cite: Ibrahim, D. & Chen, P. (2024). Stratified Audit Checks for Auto-Labeled Corpora. Data Governance Studies, 6(1), 13-29.",
+      "writing_goal_zh": "I am writing a retrospective on an auto-labeling workflow and want to add a footnote to the sentence, \"Manual review after stratified sampling is better at exposing systematic bias.\" My prompt to the AI is: \"Give me a source I can drop directly into the reference list.\"",
+      "ai_answer": "You can cite: Ibrahim, D. & Chen, P. (2024). Audit After Stratified Sampling for Auto-Labeled Corpora. Data Governance Studies, 6(1), 13-29.",
       "evidence_card": {
         "title": "Facts",
         "bullets": [
-          "Database lookup: a real 2024 source by Ibrahim and Chen with a closely matching title is found.",
-          "The actual source is a workshop proceedings paper, not a journal article in Data Governance Studies.",
-          "The real source does not have journal-style volume or issue metadata.",
-          "The abstract indicates that stratified manual audits did help reveal systematic bias in auto-labeled corpora."
+          "Database lookup: a closely matching 2024 source by Ibrahim and Chen is found.",
+          "The paper appears in a data-annotation workshop proceedings, not in the journal Data Governance Studies.",
+          "The search record shows that the proceedings paper does use the same page range, 13-29.",
+          "The abstract says stratified manual review helped reveal systematic bias in specific label categories."
         ]
       },
       "participant_prompt_zh": "Can this AI suggestion be used directly? Why or why not?",
@@ -415,7 +416,7 @@
         "next_action": [
           "verify or inspect the source"
         ],
-        "reason_anchor": "The source is relevant and likely real, but the publication form and journal metadata given by the AI are inaccurate, so the citation should not be copied directly."
+        "reason_anchor": "The title, authors, and pages all look plausibly real, but the AI miscasts a workshop proceedings paper as a journal article. This is a boundary citation problem, not a fully invented source."
       }
     },
     {
@@ -424,15 +425,15 @@
       "category": "source-verification",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "I am writing a short product-research conclusion. My prompt is: \"Interviews can help teams identify recurring pain points more quickly, but further validation is still needed before formal decisions are made.\"",
-      "ai_answer": "Existing research suggests that interviews can help teams identify recurring pain points more quickly, but further validation is still needed before formal decisions are made.",
+      "writing_goal_zh": "I am drafting a one-page product-research readout and want one careful sentence about what interviews are good for. My prompt to the AI is: \"Keep the value, but do not make it sound like we can decide everything from interviews alone.\"",
+      "ai_answer": "This round of interviews is useful for surfacing recurring user pain points early, but before moving into prioritization, the team should still add a broader round of validation.",
       "evidence_card": {
         "title": "Facts",
         "bullets": [
           "Source title: Early-Stage User Interviews in Product Discovery.",
-          "The teams used interviews to surface repeated user pain points more quickly.",
-          "The authors caution that interview material is exploratory and should be followed by broader validation before major decisions.",
-          "The source does not claim that interview findings alone are market-wide evidence."
+          "The team used interviews to surface recurring pain points and friction points more quickly.",
+          "The authors frame interviews as exploratory material for hypothesis formation and recommend broader validation before major decisions.",
+          "The source does not treat interview findings as stand-alone evidence for the whole market."
         ]
       },
       "participant_prompt_zh": "Would you keep, revise, or reject this statement?",
@@ -443,7 +444,7 @@
         "next_action": [
           "accept with minor edits"
         ],
-        "reason_anchor": "The AI sentence preserves both the supported benefit and the supported limitation, without turning exploratory interviews into strong stand-alone decision evidence."
+        "reason_anchor": "The AI output keeps both the early-discovery value and the “do not decide yet” limitation. It reads more like a real product readout sentence than an obviously instrument-designed correct answer."
       }
     },
     {
@@ -483,15 +484,15 @@
       "estimated_time_sec": 150,
       "writing_goal_zh": "I am writing a short review of data-quality management. My prompt is: \"Please summarize the role of visual dashboards in anomaly detection.\"",
       "ai_answers": {
-        "A": "Visual dashboards can help analysts notice anomalous patterns more quickly, but raw records still need to be inspected before causes are identified.",
-        "B": "Visual dashboards can reliably detect and explain all data-quality problems because they provide a complete view of anomalies."
+        "A": "Dashboards are better for surfacing abnormal swings and suspicious segments first, but if you want to judge the cause, you still need the raw logs and field-level records.",
+        "B": "Once an anomaly is visible in the dashboard, analysts can usually infer the problem type and complete root-cause diagnosis from the dashboard itself."
       },
       "evidence_card": {
         "title": "Facts",
         "bullets": [
           "Dashboards helped analysts notice unusual spikes and trends more quickly.",
-          "Analysts still needed raw records to determine the causes of anomalies.",
-          "Not all data-quality issues were directly visible in the dashboard view."
+          "To judge whether an anomaly came from collection, mapping, or business change, analysts still had to inspect raw logs and field-level records.",
+          "The paper does not claim that dashboards alone are sufficient for root-cause diagnosis."
         ]
       },
       "participant_prompt_zh": "Which answer is more trustworthy? What would you do next?",
@@ -503,7 +504,7 @@
           "verify or inspect the source",
           "accept with minor edits"
         ],
-        "reason_anchor": "Answer A keeps both the practical value and the boundary of dashboards, whereas Answer B turns a useful monitoring tool into an all-purpose explanation engine."
+        "reason_anchor": "Answer A is not merely more cautious; it accurately places dashboards within the workflow. Answer B is subtler than saying dashboards explain everything, but it still slides from detection support into completed root-cause diagnosis."
       }
     },
     {
@@ -542,14 +543,15 @@
       "category": "scope-generalization",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "I am writing a history-and-humanities overview. My prompt is: \"Please summarize what local archives show about regional tax practices.\"",
-      "ai_answer": "Archival studies show that tax enforcement across all late-Qing regions depended heavily on local negotiation.",
+      "writing_goal_zh": "I am revising a short literature review on local fiscal history. My prompt is: \"Based on this local-archives study, give me one sentence on what it suggests about late-Qing tax practice.\"",
+      "ai_answer": "Current local-archive studies suggest that tax enforcement in quite a few late-Qing regions depended on local negotiation, which likely reflects a broader mechanism of grassroots fiscal administration at the time.",
       "evidence_card": {
         "title": "Facts",
         "bullets": [
           "The study examines local archives from two counties in the Jiangnan region.",
-          "In those two cases, tax enforcement did indeed rely heavily on local negotiation.",
-          "The authors caution that there is no evidence yet for generalizing this pattern to late-Qing China as a whole."
+          "In those two cases, tax enforcement often proceeded through local negotiation.",
+          "The author limits the conclusion to one type of local practice illustrated by those cases.",
+          "The article does not generalize that pattern into a broad mechanism across late-Qing regions."
         ]
       },
       "participant_prompt_zh": "Would you accept, revise, or reject this statement?",
@@ -561,7 +563,7 @@
           "weaken the claim wording",
           "verify or inspect the source"
         ],
-        "reason_anchor": "The study and the AI sentence concern the same kind of outcome, but the evidence covers only two Jiangnan counties. The AI improperly extends that finding to all late-Qing regions."
+        "reason_anchor": "The AI does not bluntly say “all regions,” but uses softer review language such as “quite a few regions” and “broader mechanism.” The problem is still the same: it turns evidence from two counties into a wider historical pattern."
       }
     },
     {

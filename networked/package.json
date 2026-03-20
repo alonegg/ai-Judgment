@@ -1,0 +1,10 @@
+{
+  "name": "ai-judgment-pilot",
+  "version": "1.0.0",
+  "description": "AI Judgment Micro-Intervention Pilot — Networked Version (zero dependencies)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {}
+}

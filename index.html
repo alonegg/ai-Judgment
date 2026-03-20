@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f8f9fa" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles.css" />
     <script>
       // Set lang attribute and title before first paint
@@ -14,27 +21,63 @@
     </script>
   </head>
   <body>
-    <main class="app-shell">
-      <header class="app-header">
-        <div>
-          <p class="eyebrow" id="header-eyebrow"></p>
-          <h1 id="header-title"></h1>
-        </div>
-        <div class="header-right">
-          <div id="timer" class="timer" hidden>00:00</div>
-          <div id="session-badge" class="session-badge"></div>
-        </div>
-      </header>
-
-      <div id="progress-bar" class="progress-bar" hidden>
-        <div id="progress-fill" class="progress-fill"></div>
-        <div id="progress-steps" class="progress-steps"></div>
+    <header class="masthead">
+      <div class="masthead-left">
+        <span id="masthead-brand" class="masthead-brand"></span>
+        <nav class="masthead-nav" aria-label="Primary">
+          <span id="masthead-session" class="masthead-tab is-active"></span>
+          <span id="masthead-mode" class="masthead-meta"></span>
+        </nav>
       </div>
+      <div class="masthead-actions">
+        <span id="masthead-note" class="masthead-meta"></span>
+      </div>
+    </header>
 
-      <section id="screen" class="screen-panel">
-        <p id="loading-text"></p>
-      </section>
-    </main>
+    <div class="page-frame">
+      <aside class="guide-rail" aria-label="Experiment Guide">
+        <div class="guide-intro">
+          <h2 id="guide-title" class="guide-title"></h2>
+          <p id="guide-label" class="guide-label"></p>
+        </div>
+        <nav class="guide-nav" aria-label="Stages">
+          <div class="guide-link active"><span class="guide-index">01</span><span id="guide-step-1"></span></div>
+          <div class="guide-link"><span class="guide-index">02</span><span id="guide-step-2"></span></div>
+          <div class="guide-link"><span class="guide-index">03</span><span id="guide-step-3"></span></div>
+          <div class="guide-link"><span class="guide-index">04</span><span id="guide-step-4"></span></div>
+        </nav>
+        <div class="guide-help">
+          <p id="guide-help-title" class="guide-help-title"></p>
+          <button id="guide-help-btn" class="guide-help-btn" type="button"></button>
+        </div>
+        <div class="guide-meta">
+          <div id="guide-support"></div>
+          <div id="guide-exit"></div>
+        </div>
+      </aside>
+
+      <main class="app-shell">
+        <header class="app-header">
+          <div>
+            <p class="eyebrow" id="header-eyebrow"></p>
+            <h1 id="header-title"></h1>
+          </div>
+          <div class="header-right">
+            <div id="timer" class="timer" hidden>00:00</div>
+            <div id="session-badge" class="session-badge"></div>
+          </div>
+        </header>
+
+        <div id="progress-bar" class="progress-bar" hidden>
+          <div id="progress-fill" class="progress-fill"></div>
+          <div id="progress-steps" class="progress-steps"></div>
+        </div>
+
+        <section id="screen" class="screen-panel">
+          <p id="loading-text"></p>
+        </section>
+      </main>
+    </div>
 
     <template id="radio-group-template">
       <label class="option-row">
@@ -51,6 +94,20 @@
         document.getElementById("header-title").textContent = isEn ? "AI Judgment Micro-Intervention" : "AI 判断力微干预";
         document.getElementById("session-badge").textContent = isEn ? "Not started" : "未开始";
         document.getElementById("loading-text").textContent = isEn ? "Loading study materials..." : "正在加载实验材料...";
+        document.getElementById("masthead-brand").textContent = "Research Lab";
+        document.getElementById("masthead-session").textContent = isEn ? "Session Alpha" : "实验进程";
+        document.getElementById("masthead-mode").textContent = isEn ? "Guided Flow" : "引导流程";
+        document.getElementById("masthead-note").textContent = isEn ? "Editorial Research UI" : "Editorial Research UI";
+        document.getElementById("guide-title").textContent = isEn ? "Experiment Guide" : "实验导引";
+        document.getElementById("guide-label").textContent = isEn ? "Active Session" : "当前会话";
+        document.getElementById("guide-step-1").textContent = isEn ? "Judgment" : "判断";
+        document.getElementById("guide-step-2").textContent = isEn ? "Reasoning" : "解释";
+        document.getElementById("guide-step-3").textContent = isEn ? "Action" : "动作";
+        document.getElementById("guide-step-4").textContent = isEn ? "Confidence" : "信心";
+        document.getElementById("guide-help-title").textContent = isEn ? "Need assistance?" : "需要帮助？";
+        document.getElementById("guide-help-btn").textContent = isEn ? "View Tips" : "查看提示";
+        document.getElementById("guide-support").textContent = isEn ? "Support" : "支持";
+        document.getElementById("guide-exit").textContent = isEn ? "Exit" : "退出";
       })();
     </script>
     <script src="./app.js"></script>

@@ -15,8 +15,8 @@ const T = LANG === "en" ? {
   badge_posttest: "Posttest", badge_interview: "Interview", badge_debrief: "Export",
   // Consent
   consent_title: "Welcome to This Study",
-  consent_intro: "This study examines how university students judge the trustworthiness of generative AI outputs in academic writing tasks.",
-  consent_task: "You will see writing goals, AI-generated answers, and evidence cards. Your task is not to polish the text, but to judge whether the AI output can be used directly, identify problems, and decide on a next action.",
+  consent_intro: "This study examines how university students judge the trustworthiness of generative AI outputs in bounded knowledge tasks such as research reports, financial analysis, data processing, and history/humanities summaries.",
+  consent_task: "You will see task prompts, AI-generated answers, and facts packages. Your task is not to polish the text, but to judge whether the AI output can be used directly, identify problems, and decide on a next action. Not every AI output is wrong: some should be rejected, some revised, and some cautiously retained.",
   consent_flow_title: "Experiment Flow",
   consent_pills: ["Consent", "Warm-up", "Pre ×8", "Profiling", "Intervention ×4", "Post ×8", "Interview", "End"],
   consent_duration: "Estimated duration: <strong>75–90 minutes</strong>",
@@ -33,20 +33,20 @@ const T = LANG === "en" ? {
   consent_pid_alert: "Please enter a Participant ID",
   // Warmup
   warmup_title: "Warm-up Exercise",
-  warmup_intro: "Before the formal test, let's go through one example to help you get familiar with the response format.",
+  warmup_intro: "Before the formal test, let's go through one example to help you get familiar with the response format. In the real study, not every item is problematic.",
   warmup_goal_title: "Example: Writing Goal",
-  warmup_goal: 'You want to write a related work sentence:<br>"Some students use AI tools during early drafting."',
+  warmup_goal: 'You are writing a short user-research summary:<br>"Some interviewees use AI tools during early planning."',
   warmup_ai_title: "Example: AI Answer",
-  warmup_ai: '"Research proves that all students benefit equally from AI drafting tools."',
+  warmup_ai: '"Research proves that all users benefit equally from AI planning tools."',
   warmup_ev_title: "Example: Evidence Card",
   warmup_ev_bullets: [
-    "A small class-based study reports that some students found AI useful for early brainstorming.",
-    "The paper does not compare all students.",
-    "The paper does not show equal benefit across students."
+    "A small interview study reports that some participants found AI useful for early planning.",
+    "The study does not cover all users.",
+    "The study does not show equal benefit across participants."
   ],
   warmup_explain_title: "Walkthrough",
   warmup_judgment: '<strong>Reasonable judgment:</strong> <code>Revise</code>',
-  warmup_reason: 'Because "all students", "benefit equally", and "proves" in the AI answer go beyond what the evidence card states.',
+  warmup_reason: 'Because "all users", "benefit equally", and "proves" in the AI answer go beyond what the facts package states.',
   warmup_next_action: 'A good next action would be <code>weaken the claim wording</code>.',
   warmup_steps_label: "Four response steps:",
   warmup_steps: ["Make a judgment (Accept / Revise / Reject or Prefer A / Prefer B)", "Write 1–3 sentences of reasoning", "Choose a next action", "Rate your confidence 1–5"],
@@ -84,6 +84,7 @@ const T = LANG === "en" ? {
   profile_alert: "Please select exactly two profiles",
   // Scene
   scene_title: "Intervention Scene", scene_script_title: "Script",
+  scene_recap_title: "Scene Recap", scene_issue_title: "Key Issue",
   scene_task_label: "Learner Task: ", scene_response_placeholder: "Enter the participant's response...",
   scene_obs_label: "Operator Observation Note (30s quick note)",
   scene_obs_placeholder: "e.g. \"Actively asked why the metadata didn't match\" or \"Glanced briefly and wrote a very short answer\"",
@@ -134,8 +135,8 @@ const T = LANG === "en" ? {
   badge_profile: "诊断", badge_scene: "场景", badge_transition: "过渡",
   badge_posttest: "后测", badge_interview: "访谈", badge_debrief: "导出",
   consent_title: "欢迎参加本研究",
-  consent_intro: "本研究关注大学生在使用生成式 AI 处理学术写作任务时，如何判断 AI 输出是否可信。",
-  consent_task: "在本研究中，你将看到若干写作目标、AI 生成的回答、以及配套证据卡。你的任务不是「把句子写得更漂亮」，而是判断 AI 输出能不能直接用、问题出在哪里、下一步应该怎么做。",
+  consent_intro: "本研究关注大学生在使用生成式 AI 处理有边界的知识任务时，如何判断 AI 输出是否可信。题目会覆盖调研报告、金融分析、数据处理和历史人文等语境。",
+  consent_task: "在本研究中，你将看到若干题干、AI 生成的回答、以及配套事实情况。这里的题干就是你给 AI 的 prompt 或写作需求。你的任务不是「把句子写得更漂亮」，而是判断 AI 输出能不能直接用、问题出在哪里、下一步应该怎么做。并非每个 AI 输出都有问题；有些应拒绝，有些应修改，也有些可以谨慎保留。",
   consent_flow_title: "实验流程概览",
   consent_pills: ["同意书", "热身", "前测 ×8", "个性化诊断", "干预练习 ×4", "后测 ×8", "访谈", "结束"],
   consent_duration: "总时长约 <strong>75-90 分钟</strong>",
@@ -151,20 +152,20 @@ const T = LANG === "en" ? {
   consent_btn: "我已阅读并同意，开始实验",
   consent_pid_alert: "请输入参与者编号",
   warmup_title: "热身练习",
-  warmup_intro: "在正式测试前，我们先用一道示例帮助你熟悉答题格式。",
-  warmup_goal_title: "示例：写作目标",
-  warmup_goal: '你要写一句相关研究：<br>「部分学生在初稿阶段使用了 AI 工具。」',
-  warmup_ai_title: "示例：AI 回答",
-  warmup_ai: '「研究证明所有学生都同等受益于 AI 起草工具。」',
-  warmup_ev_title: "示例：证据卡",
+  warmup_intro: "在正式测试前，我们先用一道示例帮助你熟悉答题格式。正式题目里并不是每一道都有问题。",
+  warmup_goal_title: "示例：题干",
+  warmup_goal: '我在写一段用户调研总结，我输入的 prompt 是：<br>「部分受访者会在早期规划阶段使用 AI 工具。」',
+  warmup_ai_title: "示例：AI 输出",
+  warmup_ai: '「研究证明所有用户都同等受益于 AI 规划工具。」',
+  warmup_ev_title: "示例：事实情况",
   warmup_ev_bullets: [
-    "一项小规模课堂研究报告，部分学生认为 AI 对早期头脑风暴有帮助。",
-    "该论文没有比较所有学生。",
-    "该论文没有证明不同学生之间存在同等收益。"
+    "一项小规模访谈研究发现，部分受访者认为 AI 对早期规划有帮助。",
+    "该研究并未覆盖所有用户。",
+    "该研究没有证明不同受访者之间存在同等收益。"
   ],
   warmup_explain_title: "示例讲解",
   warmup_judgment: '<strong>合理判断：</strong><code>修改</code>',
-  warmup_reason: '因为 AI 的回答中「所有学生」「同等受益」「证明」都超出了证据卡给出的信息。',
+  warmup_reason: '因为 AI 的回答中「所有用户」「同等受益」「证明」都超出了事实情况给出的信息。',
   warmup_next_action: '下一步动作可以选择 <code>弱化论述措辞</code>。',
   warmup_steps_label: "答题四步骤：",
   warmup_steps: ["做出判断（接受 / 修改 / 拒绝 或 选择 A / 选择 B）", "写 1-3 句理由", "选择下一步动作", "打 1-5 的信心分"],
@@ -181,7 +182,7 @@ const T = LANG === "en" ? {
   phase_pretest: "前测", phase_posttest: "后测",
   reminder_pretest: "前测阶段：请仅基于屏幕上的材料独立判断，不得使用任何 AI 或搜索工具。",
   reminder_posttest: "后测阶段：请独立判断，不会有任何 AI 辅助。",
-  card_goal: "写作目标", card_ai: "AI 输出", card_evidence: "证据卡", card_prompt: "题目要求",
+  card_goal: "题干", card_ai: "AI 输出", card_evidence: "事实情况", card_prompt: "作答要求",
   answer_a: "答案 A", answer_b: "答案 B",
   form_title: "你的回答",
   label_judgment: "判断", label_reason: "理由", label_next_action: "下一步动作", label_confidence: "信心程度",
@@ -199,6 +200,7 @@ const T = LANG === "en" ? {
   profile_btn: "确认诊断，进入干预练习", profile_btn_reset: "重新测试",
   profile_alert: "请选择恰好两个类别",
   scene_title: "干预场景", scene_script_title: "脚本内容",
+  scene_recap_title: "场景回顾", scene_issue_title: "关键问题",
   scene_task_label: "学习任务：", scene_response_placeholder: "输入参与者的回答...",
   scene_obs_label: "操作员观察记录（30秒快记）",
   scene_obs_placeholder: '如：「主动提问为什么元数据不匹配」或「只看了一眼就写了很短的回答」',
@@ -422,12 +424,12 @@ function renderWarmup() {
 
   w.append(card(T.warmup_title, `<p>${T.warmup_intro}</p>`));
 
-  w.append(card(T.warmup_goal_title, `<div class="answer-box">${T.warmup_goal}</div>`));
+  w.append(contextCard("goal", T.warmup_goal_title, `<div class="answer-box">${T.warmup_goal}</div>`));
 
-  w.append(card(T.warmup_ai_title, `<div class="answer-box">${T.warmup_ai}</div>`));
+  w.append(contextCard("ai", T.warmup_ai_title, `<div class="answer-box">${T.warmup_ai}</div>`));
 
   const evBullets = T.warmup_ev_bullets.map(b => `<li>${esc(b)}</li>`).join("");
-  w.append(card(T.warmup_ev_title, `<div class="answer-box"><ul class="list-tight">${evBullets}</ul></div>`));
+  w.append(contextCard("fact", T.warmup_ev_title, `<div class="answer-box"><ul class="list-tight">${evBullets}</ul></div>`));
 
   const stepsHtml = T.warmup_steps.map(s => `<li>${esc(s)}</li>`).join("");
   w.append(card(T.warmup_explain_title, `
@@ -507,10 +509,10 @@ function renderItemScreen(phase) {
 
   // Left: stimulus
   const left = el("div", "screen-stack");
-  left.append(card(T.card_goal, `<div class="answer-box">${esc(item.writing_goal_zh)}</div>`));
-  left.append(card(T.card_ai, renderAiOutput(item)));
-  left.append(card(T.card_evidence, renderEvidence(item.evidence_card)));
-  left.append(card(T.card_prompt, `<div class="answer-box">${esc(item.participant_prompt_zh)}</div>`));
+  left.append(contextCard("goal", T.card_goal, `<div class="answer-box">${esc(item.writing_goal_zh)}</div>`));
+  left.append(contextCard("ai", T.card_ai, renderAiOutput(item)));
+  left.append(contextCard("fact", T.card_evidence, renderEvidence(item.evidence_card)));
+  left.append(contextCard("task", T.card_prompt, `<div class="answer-box">${esc(item.participant_prompt_zh)}</div>`));
 
   // Right: response form
   const right = el("div", "screen-stack");
@@ -535,7 +537,7 @@ function renderAiOutput(item) {
 
 function renderEvidence(ec) {
   const bullets = ec.bullets.map(b => `<li>${esc(b)}</li>`).join("");
-  return `<div class="answer-box"><strong>${esc(ec.title)}</strong><ul class="list-tight">${bullets}</ul></div>`;
+  return `<div class="answer-box"><ul class="list-tight">${bullets}</ul></div>`;
 }
 
 function createResponseForm(item, phase) {
@@ -693,6 +695,14 @@ function renderScene() {
     <p class="subtitle compact" style="margin-top:10px">${esc(filled.learningObjective || "")}</p>
   `));
 
+  if (filled.sourceItem) {
+    w.append(card(T.scene_recap_title, `<p class="helper-text compact">${esc(buildSceneRecapIntro(filled.failedItemId))}</p>`));
+    w.append(contextCard("goal", T.card_goal, `<div class="answer-box">${esc(filled.sourceItem.writing_goal_zh)}</div>`));
+    w.append(contextCard("ai", T.card_ai, renderAiOutput(filled.sourceItem)));
+    w.append(contextCard("fact", T.card_evidence, renderEvidence(filled.sourceItem.evidence_card)));
+    w.append(contextCard("task", T.scene_issue_title, `<div class="answer-box">${esc(filled.evidenceGap)}</div>`));
+  }
+
   const sceneCard = el("div", "card field-stack");
   sceneCard.innerHTML = `<h2 class="card-title">${esc(T.scene_script_title)}</h2>`;
 
@@ -704,6 +714,7 @@ function renderScene() {
   taskLabel.style.marginTop = "12px";
   taskLabel.textContent = T.scene_task_label + filled.task;
   sceneCard.append(taskLabel);
+  sceneCard.append(createCallout(`<p>${esc(filled.taskHelp)}</p>`));
 
   const ta = document.createElement("textarea");
   ta.id = "scene-response";
@@ -912,7 +923,7 @@ function fillSlots(scene) {
   const targetedProfile = profileFromSceneId(scene.scene_id);
   const sourceResp = findFailedResponse(targetedProfile);
   const sourceItem = S.materials.items.find(i => i.id === sourceResp?.item_id);
-  const defaultGap = LANG === "en" ? "The answer goes beyond what the evidence supports." : "答案超出了证据所能支持的范围";
+  const defaultGap = LANG === "en" ? "The answer goes beyond what the facts package or source supports." : "答案超出了事实情况或来源所能支持的范围";
   const gap = sourceItem?.gold_label.reason_anchor || defaultGap;
   const lines = scene.script_lines.map(l =>
     l.replace(/\{failed_item_id\}/g, sourceResp?.item_id || "PRE_UNKNOWN")
@@ -922,9 +933,33 @@ function fillSlots(scene) {
     targetedProfile,
     failedItemId: sourceResp?.item_id || "PRE_UNKNOWN",
     learningObjective: scene.learning_objective_zh,
+    sourceItem,
+    evidenceGap: gap,
     lines,
-    task: scene.learner_task_zh
+    task: scene.learner_task_zh,
+    taskHelp: buildSceneTaskHelp(scene.learner_task_zh, sourceResp?.item_id || "PRE_UNKNOWN")
   };
+}
+
+function buildSceneRecapIntro(itemId) {
+  if (LANG === "en") {
+    return `This scene is based on your earlier pretest item ${itemId}. Review the original task, AI output, and facts package before answering.`;
+  }
+  return `本场景基于你之前的前测题 ${itemId}。请先查看原始题干、AI 输出和事实情况，再完成下面的学习任务。`;
+}
+
+function buildSceneTaskHelp(task, itemId) {
+  const mentionsOriginal = /原句|这句话|这个声明|原始句子|original sentence|this phrase|this claim/i.test(task || "");
+  if (LANG === "en") {
+    if (mentionsOriginal) {
+      return `This task refers to pretest item ${itemId}. “The original sentence” or “this claim” means the AI output shown in the recap above.`;
+    }
+    return `Use the recap above for pretest item ${itemId}. Base your answer on the displayed AI output and facts package rather than memory alone.`;
+  }
+  if (mentionsOriginal) {
+    return `说明：本任务对应前测题 ${itemId}。如果题目中提到“原句”“这句话”或“这个声明”，都指上方回顾中展示的 AI 输出。`;
+  }
+  return `说明：本任务对应前测题 ${itemId}。请根据上方回顾中的 AI 输出和事实情况作答，不要只凭记忆作答。`;
 }
 
 function profileFromSceneId(id) {
@@ -1031,10 +1066,14 @@ function el(tag, cls) {
   return e;
 }
 
-function card(title, html) {
-  const c = el("div", "card");
-  c.innerHTML = `<h2 class="card-title">${title}</h2>${html}`;
+function card(title, html, cls = "") {
+  const c = el("div", cls ? `card ${cls}` : "card");
+  c.innerHTML = `${title ? `<h2 class="card-title">${title}</h2>` : ""}${html}`;
   return c;
+}
+
+function contextCard(kind, title, html) {
+  return card(title, html, `context-card context-${kind}`);
 }
 
 function createCallout(text, cls) {

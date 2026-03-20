@@ -1,7 +1,7 @@
 {
   "study_id": "icaie_ai_judgment_micro_intervention_v1",
   "version": "2026-03-19",
-  "task_scenario": "academic writing and source verification",
+  "task_scenario": "bounded knowledge tasks and source verification",
   "positioning": "pilot feasibility study",
   "stage_policies": {
     "pretest": {
@@ -73,7 +73,7 @@
     {
       "code": "evidence-checking",
       "orientation": "high-engagement",
-      "description": "Participant explicitly anchors decisions in the evidence card or source-text mismatch.",
+      "description": "Participant explicitly anchors decisions in the facts package or source-text mismatch.",
       "examples": [
         "points to abstract mismatch",
         "checks whether claim strength matches evidence strength"
@@ -132,16 +132,16 @@
       "category": "hallucinated-citation",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "You are writing an introduction about undergraduate writing instruction and need a supporting citation for: \"Online peer feedback can improve revision quality in undergraduate writing courses.\"",
-      "ai_answer": "You can cite: Morgan, T., Ellis, P., & Zhao, R. (2022). Real-time AI Peer Review Loops Increase Revision Quality in College Composition. Journal of Learning Analytics, 14(3), 44-61.",
+      "writing_goal_zh": "I am drafting a research report on how young job seekers use AI tools. My prompt is: \"Semi-structured interviews can help identify the main concerns young job seekers have when using AI resume tools.\"",
+      "ai_answer": "You can cite: Lin, Y., Romero, J., & Singh, P. (2023). A National Interview Study of AI Resume Tools Among Young Job Seekers. Journal of Digital Society Research, 12(4), 55-73.",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "Facts",
         "bullets": [
-          "Database lookup: No record found for Journal of Learning Analytics, 14(3), 44-61.",
-          "Database lookup: No DOI resolved for the full citation above.",
-          "Related search hit: Morgan, T. & Ellis, P. (2021). Peer Feedback Engagement Patterns in Large Enrollment Writing Courses. Proceedings of SIGCSE 2021, poster.",
-          "This paper examines feedback engagement in writing courses but does not study AI peer review loops, revision quality, or first-year composition specifically.",
-          "Author names partially overlap with the AI-cited paper, but the topic, venue, and year differ."
+          "Database lookup: no record is found for Journal of Digital Society Research, 12(4), 55-73.",
+          "Database lookup: no DOI or stable index entry is resolved for the citation above.",
+          "Related search hit: Lin, Y. & Singh, P. (2022). Interview Notes on Digital Job-Search Assistance in One Career Center. Working paper.",
+          "That working paper discusses digital job-search support in one career center, not a national interview study of AI resume tools.",
+          "The author names partially overlap, but the title, publication form, and study scope do not match the AI citation."
         ]
       },
       "participant_prompt_zh": "How would you handle this AI-suggested citation?",
@@ -153,7 +153,7 @@
           "flag and do not use this output",
           "verify or inspect the source"
         ],
-        "reason_anchor": "The citation metadata cannot be verified and the nearby result does not match the claimed paper."
+        "reason_anchor": "The citation metadata cannot be verified, and the closest search hit does not support the title, venue, or scope claimed by the AI."
       }
     },
     {
@@ -162,26 +162,26 @@
       "category": "hallucinated-citation",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "You want to support this statement in your related work: \"LLM-based writing assistants have been shown to increase student motivation.\"",
-      "ai_answer": "Use this source: Hart, N., Liu, S., & Patel, R. (2024). Motivation Gains from Large Language Models in University Writing Classrooms. Computers and Composition Education, 9(2), 101-118.",
+      "writing_goal_zh": "I am writing a historical overview of how local gazetteers are used. My prompt is: \"Tax records in local gazetteers can help researchers trace changes in regional commercial activity in the late Qing.\"",
+      "ai_answer": "You can use this source: Wang, H. & Keller, M. (2024). Merchant Tax Records in Late Qing Local Gazetteers. Historical Text Studies, 18(2), 88-109.",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "Facts",
         "bullets": [
-          "Crossref-style check: No journal indexed as Computers and Composition Education.",
-          "Crossref-style check: DOI field empty.",
-          "Nearby real-looking source: Student Engagement with AI Writing Support in Upper-Division STEM Courses (2024).",
-          "The nearby source discusses engagement and perceived efficiency, not direct motivation gain."
+          "Database lookup: a real 2024 source by Wang and Keller with the same title is found.",
+          "The actual source is an edited-volume chapter, not a journal article in Historical Text Studies.",
+          "The real source does not have journal-style volume or issue metadata.",
+          "The abstract indicates that merchant tax records in local gazetteers can be used to analyze changes in commercial activity in specific late-Qing regions."
         ]
       },
       "participant_prompt_zh": "Would you accept, revise, or reject this AI suggestion? Why?",
       "gold_label": {
         "judgment": [
-          "Reject"
+          "Revise"
         ],
         "next_action": [
-          "flag and do not use this output"
+          "verify or inspect the source"
         ],
-        "reason_anchor": "The suggested citation itself is not verifiable and the nearby real source cannot stand in for it."
+        "reason_anchor": "The source appears real and topically relevant, but the publication form and journal metadata supplied by the AI are inaccurate, so the citation cannot be copied directly."
       }
     },
     {
@@ -190,18 +190,18 @@
       "category": "source-verification",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "You are writing a literature review and want to state: \"AI writing tools reduce revision time without harming writing quality.\"",
-      "ai_answer": "Prior studies show that AI writing tools reduce revision time without harming writing quality.",
+      "writing_goal_zh": "I am drafting a short financial note on a company. My prompt is: \"After adopting AI customer service, the company improved profitability without affecting customer retention.\"",
+      "ai_answer": "Available materials show that the company improved profitability after adopting AI customer service without affecting customer retention.",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "Facts",
         "bullets": [
-          "Source title: Students' Perceptions of Generative AI in Revision Workflows.",
-          "Students reported that AI assistance made revision feel faster.",
-          "The study collected perceived efficiency and satisfaction data.",
-          "The study did not evaluate writing quality outcomes."
+          "Source title: Q3 Earnings Call Summary.",
+          "Management states that customer-service costs declined in the quarter after the AI support tool went live.",
+          "The summary notes that operating margin improved in the same quarter.",
+          "The material does not provide evidence about customer retention, and it does not prove that the margin improvement was caused by the AI tool."
         ]
       },
-      "participant_prompt_zh": "How would you handle this AI-generated literature review statement?",
+      "participant_prompt_zh": "How would you handle this AI-generated analytical statement?",
       "gold_label": {
         "judgment": [
           "Revise"
@@ -210,7 +210,7 @@
           "weaken the claim wording",
           "verify or inspect the source"
         ],
-        "reason_anchor": "The source only supports perceived efficiency, not the claim that quality was unharmed."
+        "reason_anchor": "The source supports at most that lower service costs and higher margin appeared in the same quarter; it does not support the claim that retention was unaffected or that the AI tool clearly caused the change."
       }
     },
     {
@@ -219,26 +219,26 @@
       "category": "source-verification",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "You want to summarize AI literacy research: \"An intervention study demonstrated that structured AI literacy instruction improves students' verification behavior.\"",
-      "ai_answer": "A recent intervention study demonstrated that structured AI literacy instruction improves students' verification behavior.",
+      "writing_goal_zh": "I am writing a short note on data-processing procedures. My prompt is: \"Before merging tables from multiple sources, date formats should be standardized and duplicate records should be checked.\"",
+      "ai_answer": "Before merging tables from multiple sources, date formats should be standardized and duplicate records should be checked. The data-cleaning guide explicitly recommends these as basic steps.",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "Facts",
         "bullets": [
-          "Source title: A Framework for AI Literacy in Higher Education.",
-          "The paper proposes dimensions of AI literacy.",
-          "It argues that verification and critical evaluation should be included in curriculum design.",
-          "It does not report an intervention or measured behavior change."
+          "Source title: Practical Guide to Merging Administrative Tables.",
+          "The guide explicitly recommends standardizing date and time formats before a merge.",
+          "The guide explicitly recommends checking duplicates and conflicting IDs before integration.",
+          "The source is procedural guidance rather than an outcome study, but these steps are directly recommended."
         ]
       },
-      "participant_prompt_zh": "How would you handle this AI-generated summary?",
+      "participant_prompt_zh": "How would you handle this AI-generated methodological suggestion?",
       "gold_label": {
         "judgment": [
-          "Revise"
+          "Accept"
         ],
         "next_action": [
-          "verify or inspect the source"
+          "accept with minor edits"
         ],
-        "reason_anchor": "The source is a conceptual framework paper, not an intervention study with measured outcomes."
+        "reason_anchor": "The sentence accurately summarizes the guide’s direct recommendation and does not misstate procedural guidance as empirical performance evidence."
       }
     },
     {
@@ -247,17 +247,17 @@
       "category": "trust-calibration",
       "response_mode": "comparative_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "You want to write a review sentence about AI use in writing courses.",
+      "writing_goal_zh": "I am writing a historical overview of late-Qing newspaper circulation. My prompt is: \"Please summarize research on the relationship between late-Qing newspaper circulation and urban public discussion.\"",
       "ai_answers": {
-        "A": "Research confirms that ethical AI use policies consistently improve student learning in writing courses.",
-        "B": "Emerging research suggests that explicit AI use policies may help structure students' writing practices, but evidence on direct learning improvement remains limited."
+        "A": "Research has established that the expansion of newspapers in the late Qing steadily drove the formation of public discussion nationwide.",
+        "B": "Some regional studies suggest that newspaper circulation may have expanded spaces for public discussion in specific cities, but there were still substantial differences across regions and periods."
       },
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "Facts",
         "bullets": [
-          "Several instructors introduced AI use policies and structured guidance.",
-          "The paper discusses implementation challenges and classroom practice.",
-          "Direct evidence of improved learning outcomes is not established."
+          "Existing studies mainly analyze newspapers and public discussion in a few cities such as Shanghai and Tianjin.",
+          "These studies suggest that circulation may have expanded discussion spaces in those specific urban settings.",
+          "The authors caution that current evidence is insufficient for a nationwide conclusion and does not imply uniform effects across regions or periods."
         ]
       },
       "participant_prompt_zh": "Which answer is more trustworthy? How would you proceed?",
@@ -269,7 +269,7 @@
           "verify or inspect the source",
           "weaken the claim wording"
         ],
-        "reason_anchor": "Answer B better matches the bounded evidence and avoids overclaiming direct learning improvement."
+        "reason_anchor": "Answer B preserves the regional evidence and its limits, whereas Answer A turns a small set of city-based studies into a national, stable conclusion."
       }
     },
     {
@@ -278,28 +278,29 @@
       "category": "trust-calibration",
       "response_mode": "comparative_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "You want to write a related work sentence about AI-assisted source use.",
+      "writing_goal_zh": "I am writing a comment on a company’s latest earnings report. My prompt is: \"Please summarize what this company’s latest report implies for margins.\"",
       "ai_answers": {
-        "A": "AI support clearly improves students' evidence-based writing because it gives immediate citation suggestions.",
-        "B": "AI support may help students locate candidate sources more quickly, but students still need to verify whether those sources actually support their claims."
+        "A": "The report shows that the company faced margin pressure this quarter, and management also signaled that short-term cost control remains important.",
+        "B": "The report may reflect some noteworthy changes, but more observation is still needed."
       },
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "Facts",
         "bullets": [
-          "Students used AI to surface candidate references during drafting.",
-          "The study reports both usefulness and frequent mismatches between AI suggestions and actual source support."
+          "The Q2 report shows gross margin declining from 34% to 29%.",
+          "Management attributes the pressure to inventory adjustments and states that cost control remains a priority next quarter.",
+          "The material does not support a long-term trend claim, but it does support describing margin pressure in the current quarter."
         ]
       },
       "participant_prompt_zh": "Which answer is more trustworthy? Why?",
       "gold_label": {
         "judgment": [
-          "Prefer B"
+          "Prefer A"
         ],
         "next_action": [
-          "ask AI to regenerate with supporting evidence",
+          "accept with minor edits",
           "verify or inspect the source"
         ],
-        "reason_anchor": "Answer B preserves the benefit while keeping the verification burden visible."
+        "reason_anchor": "Answer A is specific and aligned with the material, whereas Answer B is more vague and fails to capture the key point that the report clearly supports."
       }
     },
     {
@@ -308,25 +309,26 @@
       "category": "scope-generalization",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "You are writing a literature review on the impact of AI writing tools on student writing ability.",
-      "ai_answer": "Studies consistently show that AI writing tools improve essay quality across all student populations.",
+      "writing_goal_zh": "I am writing a user-research summary. My prompt is: \"Please summarize the most common concerns of first-time users of robo-advisory tools.\"",
+      "ai_answer": "The research consistently shows that all retail investors are most concerned about algorithmic opacity when using robo-advisory tools.",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "Facts",
         "bullets": [
-          "A study of 30 undergraduate STEM majors at a single research university.",
-          "Found modest improvement in essay organization scores when using AI assistance.",
-          "The authors note the finding may not generalize to other disciplines, institutions, or writing tasks."
+          "The study is based on interviews with 24 first-time robo-advisory users from two branches in Shanghai.",
+          "Many interviewees mentioned opacity of the algorithm as a concern.",
+          "The authors caution that the sample only covers novice users in one city and should not represent all retail investors."
         ]
       },
-      "participant_prompt_zh": "Would you keep, revise, or reject this AI-generated summary?",
+      "participant_prompt_zh": "Would you keep, revise, or reject this AI summary?",
       "gold_label": {
         "judgment": [
           "Revise"
         ],
         "next_action": [
-          "weaken the claim wording"
+          "weaken the claim wording",
+          "verify or inspect the source"
         ],
-        "reason_anchor": "The original study only covered one university's STEM students. AI improperly generalized to 'all student populations'. The scope needs narrowing."
+        "reason_anchor": "The original study supports only that many novice users in Shanghai mentioned opacity; the AI improperly expands this into the top concern of all retail investors."
       }
     },
     {
@@ -335,14 +337,14 @@
       "category": "scope-generalization",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "You are summarizing the effectiveness of AI feedback in education.",
-      "ai_answer": "AI-generated feedback has been proven effective in improving writing across educational levels.",
+      "writing_goal_zh": "I am summarizing the results of a city-traffic data-cleaning experiment. My prompt is: \"Please summarize the effectiveness of this cleaning rule set.\"",
+      "ai_answer": "This cleaning rule set has been proven to identify anomalous GPS records reliably in urban traffic data nationwide.",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "Facts",
         "bullets": [
-          "A classroom study with 45 graduate students in an MBA program.",
-          "Found that AI-generated feedback helped students identify surface-level errors in business writing.",
-          "The authors note the study was limited to business writing in one program and did not assess deeper argumentative or analytical writing skills."
+          "The experiment is based on one month of taxi GPS data from three districts in Hangzhou.",
+          "On that dataset, the rule set improved anomaly detection.",
+          "The authors caution that there is no evidence yet for direct transfer to other cities, seasons, or sensing systems."
         ]
       },
       "participant_prompt_zh": "How would you handle this AI summary?",
@@ -351,9 +353,10 @@
           "Revise"
         ],
         "next_action": [
-          "weaken the claim wording"
+          "weaken the claim wording",
+          "verify or inspect the source"
         ],
-        "reason_anchor": "The study only tested surface-level errors in MBA business writing. AI overclaimed to 'across educational levels' and broader writing improvement. Scope must be limited."
+        "reason_anchor": "The study supports effectiveness on a specific Hangzhou dataset, not the broader claim that the rules work reliably across urban traffic data nationwide."
       }
     },
     {
@@ -362,16 +365,16 @@
       "category": "hallucinated-citation",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "You are writing related work on writing feedback and need a citation for: \"Automated feedback can support revision planning in academic writing.\"",
-      "ai_answer": "Use: Bennett, K., Ramos, J., & Wu, L. (2023). Intelligent Feedback Maps Improve Revision Planning in First-Year Composition. International Review of Writing Analytics, 11(4), 72-90.",
+      "writing_goal_zh": "I am writing an industry note. My prompt is: \"Independent research reports indicate that mid-sized retail banks are using generative AI to reduce customer-service costs.\"",
+      "ai_answer": "You can cite: Garcia, L., Moore, T., & Zhou, X. (2024). Generative AI Reduces Service Costs Across Mid-Sized Retail Banks. Journal of Applied Financial Strategy, 7(3), 41-59.",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "Facts",
         "bullets": [
-          "Metadata check: No record found for International Review of Writing Analytics.",
-          "Metadata check: ISSN not available.",
-          "Similar source snippet: Bennett, K. & Wu, L. (2022). Visual Feedback Interfaces for Writing Process Awareness. Conference on Human-Computer Interaction in Education, short paper.",
-          "This paper discusses visual feedback tools for writing awareness, not intelligent feedback maps or revision planning in first-year composition.",
-          "Two author names overlap with the AI-cited paper, but the focus, venue, and year differ."
+          "Database lookup: no record is found for Journal of Applied Financial Strategy, 7(3), 41-59.",
+          "Database lookup: no DOI is resolved for the citation above.",
+          "Related search hit: Garcia, L. & Zhou, X. (2023). AI Pilots in Retail Banking Service Operations. Industry webinar brief.",
+          "That brief discusses pilots in two banks, not a formal study across mid-sized retail banks.",
+          "The author names partially overlap, but the title, publication form, and study scope do not match the AI citation."
         ]
       },
       "participant_prompt_zh": "How would you handle this AI citation suggestion?",
@@ -383,7 +386,7 @@
           "verify or inspect the source",
           "flag and do not use this output"
         ],
-        "reason_anchor": "The source itself cannot be validated and the nearby material does not support the claimed content."
+        "reason_anchor": "The citation cannot be verified, and the closest related source does not support the journal, pagination, or scope written by the AI."
       }
     },
     {
@@ -392,25 +395,26 @@
       "category": "hallucinated-citation",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "You want to support the statement: \"AI-assisted writing tools improve students' self-regulated learning.\"",
-      "ai_answer": "Cite: Ibrahim, D. & Chen, P. (2024). Self-Regulation Gains from Generative Writing Agents in Undergraduate Classrooms. Journal of Digital Writing Pedagogy, 6(1), 13-29.",
+      "writing_goal_zh": "I am writing a short note on data-engineering practice. My prompt is: \"Manual review after stratified sampling can help reveal systematic bias in auto-labeled data.\"",
+      "ai_answer": "You can cite: Ibrahim, D. & Chen, P. (2024). Stratified Audit Checks for Auto-Labeled Corpora. Data Governance Studies, 6(1), 13-29.",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "Facts",
         "bullets": [
-          "Lookup note: No DOI or journal index found for the cited paper.",
-          "Related source excerpt: A study on drafting support reports faster idea generation and higher perceived ease of use.",
-          "No self-regulated learning measure was included."
+          "Database lookup: a real 2024 source by Ibrahim and Chen with a closely matching title is found.",
+          "The actual source is a workshop proceedings paper, not a journal article in Data Governance Studies.",
+          "The real source does not have journal-style volume or issue metadata.",
+          "The abstract indicates that stratified manual audits did help reveal systematic bias in auto-labeled corpora."
         ]
       },
       "participant_prompt_zh": "Can this AI suggestion be used directly? Why or why not?",
       "gold_label": {
         "judgment": [
-          "Reject"
+          "Revise"
         ],
         "next_action": [
-          "flag and do not use this output"
+          "verify or inspect the source"
         ],
-        "reason_anchor": "The citation is not verifiable and the nearby source still does not support the specific claim."
+        "reason_anchor": "The source is relevant and likely real, but the publication form and journal metadata given by the AI are inaccurate, so the citation should not be copied directly."
       }
     },
     {
@@ -419,27 +423,26 @@
       "category": "source-verification",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "You want to write: \"AI-assisted source recommendation improves argument quality.\"",
-      "ai_answer": "Prior work shows that AI-assisted source recommendation improves argument quality.",
+      "writing_goal_zh": "I am writing a short product-research conclusion. My prompt is: \"Interviews can help teams identify recurring pain points more quickly, but further validation is still needed before formal decisions are made.\"",
+      "ai_answer": "Existing research suggests that interviews can help teams identify recurring pain points more quickly, but further validation is still needed before formal decisions are made.",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "Facts",
         "bullets": [
-          "Source title: Students' Experiences with AI-Suggested Sources in Synthesis Writing.",
-          "Students reported that AI helped them find candidate sources more quickly.",
-          "Many students still struggled to determine whether the sources truly supported their claims.",
-          "No direct measure of final argument quality improvement is reported."
+          "Source title: Early-Stage User Interviews in Product Discovery.",
+          "The teams used interviews to surface repeated user pain points more quickly.",
+          "The authors caution that interview material is exploratory and should be followed by broader validation before major decisions.",
+          "The source does not claim that interview findings alone are market-wide evidence."
         ]
       },
       "participant_prompt_zh": "Would you keep, revise, or reject this statement?",
       "gold_label": {
         "judgment": [
-          "Revise"
+          "Accept"
         ],
         "next_action": [
-          "weaken the claim wording",
-          "verify or inspect the source"
+          "accept with minor edits"
         ],
-        "reason_anchor": "The evidence supports faster source discovery, not improved argument quality."
+        "reason_anchor": "The AI sentence preserves both the supported benefit and the supported limitation, without turning exploratory interviews into strong stand-alone decision evidence."
       }
     },
     {
@@ -448,26 +451,27 @@
       "category": "source-verification",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "You want to write: \"A classroom policy study proved that citation-use guidance reduces AI misuse.\"",
-      "ai_answer": "A classroom policy study proved that citation-use guidance reduces AI misuse.",
+      "writing_goal_zh": "I am writing a short review of historical methods. My prompt is: \"A historical study proves that genealogical records can directly reconstruct the daily economic behavior of ordinary people.\"",
+      "ai_answer": "A historical study proves that genealogical records can directly reconstruct the daily economic behavior of ordinary people.",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "Facts",
         "bullets": [
-          "Source title: Design Considerations for Citation Transparency in AI-Supported Writing Courses.",
-          "The paper proposes instructional design principles for citation transparency.",
-          "It discusses why explicit guidance may reduce problematic use.",
-          "It does not provide outcome data demonstrating reduced misuse."
+          "Source title: Using Genealogies as Historical Clues.",
+          "The paper argues that genealogies can offer clues about lineage strategies and selected economic activities.",
+          "The paper repeatedly discusses biases, silences, and representational limits in genealogical materials.",
+          "It does not claim that ordinary people’s daily economic behavior can be directly or completely reconstructed from those records."
         ]
       },
-      "participant_prompt_zh": "How would you handle this summary?",
+      "participant_prompt_zh": "How would you handle this statement?",
       "gold_label": {
         "judgment": [
           "Revise"
         ],
         "next_action": [
+          "weaken the claim wording",
           "verify or inspect the source"
         ],
-        "reason_anchor": "This is a design or principles paper, not proof of a reduced misuse outcome."
+        "reason_anchor": "The source supports only that genealogies provide partial clues; it does not support the much stronger claim of directly reconstructing ordinary people’s daily economic behavior."
       }
     },
     {
@@ -476,17 +480,17 @@
       "category": "trust-calibration",
       "response_mode": "comparative_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "You want to write a review sentence about source evaluation in synthesis writing.",
+      "writing_goal_zh": "I am writing a short review of data-quality management. My prompt is: \"Please summarize the role of visual dashboards in anomaly detection.\"",
       "ai_answers": {
-        "A": "While AI-generated source summaries can provide useful orientation during early drafting, students should verify that these summaries accurately reflect the original sources before relying on them.",
-        "B": "AI-generated source summaries reliably improve students' synthesis writing by providing comprehensive and accurate overviews of source material."
+        "A": "Visual dashboards can help analysts notice anomalous patterns more quickly, but raw records still need to be inspected before causes are identified.",
+        "B": "Visual dashboards can reliably detect and explain all data-quality problems because they provide a complete view of anomalies."
       },
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "Facts",
         "bullets": [
-          "AI summaries were useful for early orientation.",
-          "Students sometimes relied on summaries that omitted limitations or nuance.",
-          "The paper recommends explicit verification instruction."
+          "Dashboards helped analysts notice unusual spikes and trends more quickly.",
+          "Analysts still needed raw records to determine the causes of anomalies.",
+          "Not all data-quality issues were directly visible in the dashboard view."
         ]
       },
       "participant_prompt_zh": "Which answer is more trustworthy? What would you do next?",
@@ -498,7 +502,7 @@
           "verify or inspect the source",
           "accept with minor edits"
         ],
-        "reason_anchor": "A aligns with the verification requirement and bounded nature of the evidence. B overclaims reliability and comprehensiveness without evidence."
+        "reason_anchor": "Answer A keeps both the practical value and the boundary of dashboards, whereas Answer B turns a useful monitoring tool into an all-purpose explanation engine."
       }
     },
     {
@@ -507,17 +511,17 @@
       "category": "trust-calibration",
       "response_mode": "comparative_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "You want to write a literature review sentence about evidence-based claim revision.",
+      "writing_goal_zh": "I am writing a short methods review for market research. My prompt is: \"Please summarize the role of AI summaries when organizing interview material.\"",
       "ai_answers": {
-        "A": "AI feedback ensures students make evidence-based revisions because it instantly flags weak claims.",
-        "B": "AI feedback may help students notice potentially weak claims, but students still need to inspect the supporting evidence before revising with confidence."
+        "A": "AI summaries ensure that researchers obtain accurate and complete interview findings.",
+        "B": "AI summaries may help researchers organize interview material more quickly, but the original interview records still need to be checked before formal conclusions are cited."
       },
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "Facts",
         "bullets": [
-          "Students used AI feedback to identify places needing revision.",
-          "Instructors reported that students still needed support interpreting evidence quality.",
-          "The study does not claim that AI alone ensures evidence-based revision."
+          "The research team used AI summaries to organize interview notes more quickly.",
+          "Some summaries omitted caveats or conflated statements from different interviewees.",
+          "The authors recommend checking the original interview records before drawing formal conclusions."
         ]
       },
       "participant_prompt_zh": "Which answer is more trustworthy? Why?",
@@ -528,7 +532,7 @@
         "next_action": [
           "verify or inspect the source"
         ],
-        "reason_anchor": "Answer B preserves the human verification step and does not overclaim automation."
+        "reason_anchor": "Answer B keeps the efficiency benefit of AI summaries while retaining the crucial human step of checking the original records."
       }
     },
     {
@@ -537,14 +541,14 @@
       "category": "scope-generalization",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "You are writing a review on AI-assisted learning.",
-      "ai_answer": "Research demonstrates that AI tutoring systems universally enhance critical thinking skills.",
+      "writing_goal_zh": "I am writing a history-and-humanities overview. My prompt is: \"Please summarize what local archives show about regional tax practices.\"",
+      "ai_answer": "Archival studies show that tax enforcement across all late-Qing regions depended heavily on local negotiation.",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "Facts",
         "bullets": [
-          "A study of 25 first-year psychology students using an AI tutoring tool.",
-          "Showed improved performance on multiple-choice recall questions.",
-          "The authors explicitly state that critical thinking was not directly measured and that results may not extend beyond factual recall tasks."
+          "The study examines local archives from two counties in the Jiangnan region.",
+          "In those two cases, tax enforcement did indeed rely heavily on local negotiation.",
+          "The authors caution that there is no evidence yet for generalizing this pattern to late-Qing China as a whole."
         ]
       },
       "participant_prompt_zh": "Would you accept, revise, or reject this statement?",
@@ -553,9 +557,10 @@
           "Revise"
         ],
         "next_action": [
-          "weaken the claim wording"
+          "weaken the claim wording",
+          "verify or inspect the source"
         ],
-        "reason_anchor": "The study only measured recall ability, not critical thinking. AI wrongly claimed universal enhancement of critical thinking skills. Scope must be narrowed to recall in introductory psychology."
+        "reason_anchor": "The study and the AI sentence concern the same kind of outcome, but the evidence covers only two Jiangnan counties. The AI improperly extends that finding to all late-Qing regions."
       }
     },
     {
@@ -564,14 +569,14 @@
       "category": "scope-generalization",
       "response_mode": "single_judgment",
       "estimated_time_sec": 150,
-      "writing_goal_zh": "You are writing a review on AI-mediated peer review.",
-      "ai_answer": "AI-mediated peer review has been shown to improve feedback quality in all types of courses.",
+      "writing_goal_zh": "I am writing an industry comment. My prompt is: \"Please summarize the impact of generative AI on margins in retail.\"",
+      "ai_answer": "Generative AI has been proven to deliver sustained margin improvement across all retail sub-sectors.",
       "evidence_card": {
-        "title": "Evidence Card",
+        "title": "Facts",
         "bullets": [
-          "A pilot study in a single introductory composition course with 18 students.",
-          "Found that AI-mediated peer comments were rated slightly more specific than unassisted comments.",
-          "The authors caution this was a single-course pilot and results should not be generalized to other course types or student levels."
+          "The source examines customer-service automation pilots in six apparel retailers over two quarters.",
+          "Some firms reported short-term margin improvement.",
+          "The authors caution that there is no evidence yet for groceries, luxury retail, or other sub-sectors, and no basis for a long-term conclusion."
         ]
       },
       "participant_prompt_zh": "How would you handle this statement?",
@@ -580,9 +585,10 @@
           "Revise"
         ],
         "next_action": [
-          "weaken the claim wording"
+          "weaken the claim wording",
+          "verify or inspect the source"
         ],
-        "reason_anchor": "An 18-person pilot in one composition course was overgeneralized to 'all types of courses'. Scope must be cautiously limited to preliminary findings in introductory composition."
+        "reason_anchor": "The source supports only short-term improvement in some apparel retailers, whereas the AI rewrites this as sustained gains across all retail sub-sectors."
       }
     }
   ],

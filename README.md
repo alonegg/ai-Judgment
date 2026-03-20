@@ -4,6 +4,8 @@ Minimal web prototype for a pilot study on **Personalized Micro-Interventions fo
 
 This is a research instrument, not a production application.
 
+This folder is intentionally kept as a standalone runnable bundle inside the branch. If you want the quickest smoke test of the study flow, start here before moving to `../networked/`.
+
 ## Features
 
 - Pretest item rendering (8 items across 4 judgment categories)
@@ -21,12 +23,15 @@ python3 -m http.server
 
 Then open: [http://localhost:8000/index.html](http://localhost:8000/index.html)
 
+English mode: [http://localhost:8000/index.html?lang=en](http://localhost:8000/index.html?lang=en)
+
 ## Files
 
 - `index.html` — Single-page app shell
 - `styles.css` — Styles
 - `app.js` — Full experiment flow logic
 - `materials_v1.json` — Items, scenes, rubric, and codebook data
+- `materials_en.json` — English materials for `?lang=en`
 
 ## Notes
 

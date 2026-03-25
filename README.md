@@ -1,6 +1,6 @@
 # AI Judgment Micro-Intervention Pilot
 
-Research artifacts and runnable web prototypes for an ICAIE 2026 pilot study on **Personalized AI Judgment Micro-Interventions**. The study focuses on how short, scaffolded interventions help university students judge generative AI outputs in bounded knowledge tasks such as research reports, financial analysis, data processing, and history/humanities summaries.
+Research artifacts and runnable web prototypes for a pilot study on **Personalized AI Judgment Micro-Interventions**. The study focuses on how short, scaffolded interventions help university students judge generative AI outputs in bounded knowledge tasks such as research reports, financial analysis, data processing, and history/humanities summaries.
 
 This repository is a **research instrument bundle**, not a production system. Claims should stay within pilot-study boundaries: feasibility, initial improvement signals, and participant acceptability.
 
@@ -208,4 +208,4 @@ node --check networked_v2_followup/dashboard/dashboard.js
 
 ## Citation
 
-If you use this repository in a paper, presentation, or replication package, cite the associated ICAIE 2026 study and describe whether you used the static prototype or the networked pilot system.
+If you use this repository in a paper, presentation, or replication package, cite the associated paper and describe whether you used the static prototype or the networked pilot system.

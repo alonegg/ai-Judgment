@@ -1,0 +1,4 @@
+.DS_Store
+data/
+data_lean30/*.json
+!data_lean30/.gitkeep

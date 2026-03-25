@@ -8,6 +8,7 @@ This repository is a **research instrument bundle**, not a production system. Cl
 
 - A static single-page prototype under `prototype/` for local dry runs
 - A networked multi-device version for operator-led pilot sessions
+- A follow-up Lean-30 networked runner under `networked_v2_followup/`
 - Structured study materials, item banks, scene scripts, and scoring rubric
 - Pilot operation documents, data capture templates, and architecture notes
 
@@ -15,7 +16,8 @@ This repository is a **research instrument bundle**, not a production system. Cl
 
 - `prototype/` is a self-contained static demo bundle. It keeps its own `README.md`, localized materials, and can be run with `python3 -m http.server` without Node.js.
 - `networked/` is the multi-device pilot runner with a participant client, operator dashboard, and pure-Node WebSocket server.
-- If someone is reviewing the branch for the first time, `prototype/` is the fastest runnable entry point and `networked/` is the full pilot workflow.
+- `networked_v2_followup/` is the Lean-30 follow-up runner. It preserves the AI-free skeleton while compressing the session to `4 pretest items + 2 targeted scenes + 4 posttest items + short interview`.
+- If someone is reviewing the branch for the first time, `prototype/` is the fastest runnable entry point, `networked/` is the original pilot workflow, and `networked_v2_followup/` is the recommended entry point for the revised follow-up study.
 
 ## Repository Structure
 
@@ -37,6 +39,11 @@ This repository is a **research instrument bundle**, not a production system. Cl
 ├── materials_v1.json
 ├── data_capture_template.csv
 ├── rater_sheet_template.csv
+├── experiment_protocol_v2_followup_30mins.md
+├── item_matrix_v2_followup.md
+├── materials_v2_followup.json
+├── system_design_prd_v2_followup.md
+├── data_capture_template_v2_followup.csv
 ├── prototype/
 │   ├── index.html
 │   ├── styles.css
@@ -44,12 +51,19 @@ This repository is a **research instrument bundle**, not a production system. Cl
 │   ├── materials_v1.json
 │   ├── materials_en.json
 │   └── README.md
-└── networked/
+├── networked/
     ├── server.js
     ├── package.json
     ├── participant/
     ├── dashboard/
     └── data/
+└── networked_v2_followup/
+    ├── server.js
+    ├── README.md
+    ├── package.json
+    ├── participant/
+    ├── dashboard/
+    └── data_lean30/
 ```
 
 ## Study Design Snapshot
@@ -119,6 +133,46 @@ PORT=3000 node server.js
 - Local JSON session persistence under `networked/data/`
 - Dual-language UI and materials loading (`zh` / `en`)
 
+## Run The Follow-up Lean-30 Runner
+
+Use the Lean-30 runner when you want the revised follow-up design rather than the original full-length pilot.
+
+### Follow-up Design Snapshot
+
+- Flow: `AI-free pretest -> profiling approval -> targeted micro-intervention -> AI-free posttest -> short interview`
+- Session length target: `24-30 minutes`
+- Fixed structure: `4 pretest items + 2 targeted scenes + 4 posttest items + 3 interview prompts`
+- Canonical materials: `materials_v2_followup.json`
+- Canonical protocol: `experiment_protocol_v2_followup_30mins.md`
+
+### Start
+
+```bash
+cd networked_v2_followup
+npm start
+```
+
+Or:
+
+```bash
+cd networked_v2_followup
+PORT=3000 node server.js
+```
+
+### Access URLs
+
+- Participant client: `http://<server-ip>:3000/participant/`
+- Participant client in English: `http://<server-ip>:3000/participant/?lang=en`
+- Operator dashboard: `http://<server-ip>:3000/dashboard/`
+- Operator dashboard in English: `http://<server-ip>:3000/dashboard/?lang=en`
+
+### Follow-up Runtime Notes
+
+- Session files are written to `networked_v2_followup/data_lean30/`
+- `*_session.json` stores the live ledger
+- `*_final.json` stores the exported finalized record
+- The v2 follow-up runner is kept separate from `networked/` so the original v1 pilot runtime remains unchanged
+
 ## Internationalization
 
 The repository currently supports Chinese and English in both runnable interfaces:
@@ -141,6 +195,9 @@ Useful quick checks:
 node --check networked/server.js
 node --check networked/participant/app.js
 node --check networked/dashboard/dashboard.js
+node --check networked_v2_followup/server.js
+node --check networked_v2_followup/participant/app.js
+node --check networked_v2_followup/dashboard/dashboard.js
 ```
 
 ## Research Use Notes

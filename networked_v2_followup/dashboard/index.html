@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f8f9fa" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <title>操作台 — AI 判断力微干预实验</title>
+  <link rel="stylesheet" href="./dashboard.css" />
+  <script src="./i18n.js"></script>
+</head>
+<body>
+  <div class="dashboard-shell">
+    <header class="top-bar">
+      <div class="top-bar-left">
+        <div>
+          <h1 id="dashboard-title">操作台</h1>
+          <span id="dashboard-subtitle" class="subtitle">AI 判断力微干预实验</span>
+        </div>
+      </div>
+      <div class="top-bar-right">
+        <span id="conn-status" class="conn-badge offline">● 未连接</span>
+        <span id="session-count" class="meta">0 参与者</span>
+        <button id="btn-export-all" class="btn-sm">导出全部</button>
+      </div>
+    </header>
+
+    <main class="dashboard-main">
+      <section class="workspace-card workspace-card-grid">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Live Sessions</p>
+            <h2>参与者状态墙</h2>
+          </div>
+        </div>
+        <section id="participant-grid" class="participant-grid">
+          <div class="empty-state" id="empty-state">
+            <p id="empty-title">暂无参与者连接</p>
+            <p class="hint" id="empty-hint">参与者访问 <code>http://&lt;your-ip&gt;:3000/</code> 后将自动出现</p>
+          </div>
+        </section>
+      </section>
+
+      <section id="action-panel" class="workspace-card action-panel" hidden>
+        <div class="panel-header">
+          <div>
+            <p class="section-kicker">Selected Session</p>
+            <h2 id="panel-title">P01 — 操作面板</h2>
+          </div>
+          <button id="panel-close" class="btn-icon" title="关闭">✕</button>
+        </div>
+        <div id="panel-body" class="panel-body"></div>
+      </section>
+
+      <section class="workspace-card event-log-section">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Telemetry</p>
+            <h2 id="event-log-title">实时事件流</h2>
+          </div>
+        </div>
+        <div id="event-log" class="event-log"></div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    window.DashboardI18n.applyStaticText();
+  </script>
+  <script src="./dashboard.js"></script>
+</body>
+</html>

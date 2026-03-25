@@ -1,0 +1,636 @@
+{
+  "study_id": "ai-judgment-micro-intervention-followup-v2",
+  "version": "v2-lean30-runnable-draft-2026-03-25",
+  "content_status": "lean30_runnable_first_pass_completed",
+  "runnable_scope": "Lean-30 version with 4 pretest items, 4 posttest items, and 1 retained high-density scene per profile. Each participant still receives targeted intervention, but total runtime is optimized for a 24-30 minute session.",
+  "task_scenario": "AI-assisted bounded knowledge tasks",
+  "positioning": "Lean-30 revise-focused follow-up study that preserves AI-free pretest and posttest, keeps decision plus action as co-primary outcomes, and compresses the session to 4 pretest items, 2 targeted scenes, 4 posttest items, and a short interview.",
+  "analysis_contract": {
+    "primary_outcomes": [
+      "targeted_vs_untargeted_decision_differential",
+      "targeted_vs_untargeted_action_differential"
+    ],
+    "mechanism_outcomes": [
+      "dual_rated_explanation_quality",
+      "decision_action_decoupling",
+      "revise_reject_confusion"
+    ],
+    "secondary_outcomes": [
+      "response_time",
+      "confidence",
+      "interview_acceptability"
+    ]
+  },
+  "stage_policies": {
+    "pretest": "AI-free baseline. Participants may only use on-screen materials and may not use AI or web search. Pretest includes 4 items total, one per category.",
+    "intervention": "Targeted micro-scenes. Each participant sees 2 scenes total, one for each targeted category. Each scene teaches Reject, Revise, and Accept with boundary through a single high-density triage structure.",
+    "posttest": "AI-free independent judgment assessment. No AI assistance, no correctness feedback, randomized item order. Posttest includes 4 items total, one per category.",
+    "interview": "Short retrospective interview with 3 fixed prompts focused on rule uptake, revise-vs-reject confusion, and most helpful scene."
+  },
+  "response_schema": {
+    "single_judgment": [
+      "接受",
+      "修改",
+      "拒绝"
+    ],
+    "comparative_judgment": [
+      "选择 A",
+      "选择 B"
+    ],
+    "next_action": [
+      "核查或检视原始来源",
+      "要求 AI 重新生成并附上证据",
+      "弱化论述措辞",
+      "标记为不可用",
+      "接受并做小幅修改"
+    ],
+    "confidence_scale": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "profiles": [
+    "hallucination-weak",
+    "verification-weak",
+    "trust-calibration-weak",
+    "scope-generalization-weak"
+  ],
+  "interaction_pattern_codebook": [
+    {
+      "code": "rule-seeking",
+      "label_zh": "规则提炼",
+      "description_zh": "主动把具体案例转成可迁移规则。"
+    },
+    {
+      "code": "evidence-checking",
+      "label_zh": "证据核查",
+      "description_zh": "持续把判断建立在 facts package 上，而不是凭语感。"
+    },
+    {
+      "code": "answer-comparing",
+      "label_zh": "答案比较",
+      "description_zh": "系统比较 A/B 或多种处置选项。"
+    },
+    {
+      "code": "uncertainty-monitoring",
+      "label_zh": "不确定性监控",
+      "description_zh": "能明确标记自己不确定的部分，并据此降低结论强度。"
+    },
+    {
+      "code": "authority-following",
+      "label_zh": "权威依赖",
+      "description_zh": "倾向于因为 AI 语气流畅或格式完整而接受结论。"
+    },
+    {
+      "code": "surface-editing",
+      "label_zh": "表层修改",
+      "description_zh": "只改措辞或形式，不触及核心证据边界。"
+    }
+  ],
+  "authoring_checklist": [
+    "Lean-30 must keep exactly 4 pretest items and 4 posttest items, one per category in each phase.",
+    "The retained 8 items must preserve the four core archetype functions: clear-reject, calibrated-accept, comparative-trust, and revise-boundary.",
+    "Each retained scene must merge triage teaching and contrastive reflection into one high-density scene.",
+    "Explanation remains analyzable but must be producible in one sentence.",
+    "Posttest items must remain AI-free and structurally parallel to their pretest pairs."
+  ],
+  "items": [
+    {
+      "id": "V2_PRE_A1",
+      "phase": "pretest",
+      "category": "hallucinated-citation",
+      "domain": "research-report",
+      "response_mode": "single_judgment",
+      "item_archetype": "clear-reject",
+      "difficulty_band": "anchor",
+      "decision_family": "reject",
+      "boundary_focus": "citation-nonexistence",
+      "paired_item_id": "V2_POST_A1",
+      "estimated_time_sec": 95,
+      "runner_ready": true,
+      "writing_goal_zh": "我在整理一份关于青年求职服务的调研背景，想补一句“有研究发现，使用生成式工具改写简历时，求职者最担心的是表达变得模板化”。我输入给 AI 的 prompt 是：“根据这句话，给我一条可以放在句末的引用。”",
+      "participant_prompt_zh": "你会如何处理这条 AI 给出的引用？",
+      "ai_answer": "可以在句末补这条：Lin, Y., Romero, J., & Singh, P. (2023). 青年求职者使用生成式工具改写简历的访谈研究. 中国数字社会研究, 12(4), 55-73.",
+      "evidence_card": {
+        "title": "事实情况",
+        "bullets": [
+          "数据库检索：未找到《中国数字社会研究》第 12 卷第 4 期第 55-73 页的正式记录。",
+          "检索结果中没有这条文章的 DOI、稳定链接或图书馆馆藏记录。",
+          "相近结果是 Lin, Y. & Singh, P. (2022) 的一份 working paper，讨论的是就业服务中心中的数字求职支持，而不是生成式简历改写。",
+          "这份 working paper 与 AI 给出的题名、研究对象和发表形式都不一致。"
+        ]
+      },
+      "gold_label": {
+        "judgment": [
+          "拒绝"
+        ],
+        "next_action": [
+          "标记为不可用"
+        ],
+        "reason_anchor": "引用本身无法核验，且相近资料也不能支撑 AI 给出的完整元数据，因此不是可修补的轻微错误，而是不可直接使用的来源问题。",
+        "gold_explanation_points": [
+          "明确指出引用不存在或关键元数据无法核验",
+          "指出相近真实来源并不等于 AI 给出的那条引用",
+          "解释为什么应 Reject 而不是只做 minor edit"
+        ]
+      },
+      "authoring_constraints_zh": [
+        "错误要真实可疑，但不要一眼看出是胡编",
+        "相近真实来源要足以制造迷惑性",
+        "不要把 evidence card 写成直接公布答案"
+      ]
+    },
+    {
+      "id": "V2_PRE_B1",
+      "phase": "pretest",
+      "category": "source-verification",
+      "domain": "financial-analysis",
+      "response_mode": "single_judgment",
+      "item_archetype": "calibrated-accept",
+      "difficulty_band": "boundary",
+      "decision_family": "accept",
+      "boundary_focus": "source-supports-core-claim",
+      "paired_item_id": "V2_POST_B1",
+      "estimated_time_sec": 100,
+      "runner_ready": true,
+      "writing_goal_zh": "我在根据一份 Q3 业绩电话会纪要写两句投资者沟通摘要。我输入给 AI 的 prompt 是：“概括 AI 客服上线后的业务影响，语气像内部 memo，但不要写得过头。”",
+      "participant_prompt_zh": "这条 AI 表述是否可以保留？如果可以，应该怎么处理？",
+      "ai_answer": "管理层信息显示，AI 客服上线后平均响应时间缩短、客服人力成本下降；现阶段更适合把它写成效率改善信号，而不是单独归因于利润率修复。",
+      "evidence_card": {
+        "title": "事实情况",
+        "bullets": [
+          "来源标题：《公司 Q3 业绩电话会纪要》。",
+          "管理层表示，AI 客服工具上线后，本季度平均响应时间下降，客服人力成本有所节约。",
+          "纪要同时提到利润率回升，但也提到产品结构调整和营销费用收缩等共同因素。",
+          "材料没有把利润率改善单独归因于 AI 客服。"
+        ]
+      },
+      "gold_label": {
+        "judgment": [
+          "接受"
+        ],
+        "next_action": [
+          "接受并做小幅修改"
+        ],
+        "reason_anchor": "AI 输出的核心命题与来源对齐，最多只需保持原报告的谨慎措辞或边界说明，因此不应过度修正或拒绝。",
+        "gold_explanation_points": [
+          "指出来源支持核心判断",
+          "说明可接受但最好保留边界或谨慎措辞",
+          "解释为什么不应过度 Revise 或 Reject"
+        ]
+      },
+      "authoring_constraints_zh": [
+        "必须是真正可接受的 case",
+        "不能靠'比别的更没那么错'来构成 accept",
+        "要足以检验 blanket distrust"
+      ]
+    },
+    {
+      "id": "V2_PRE_C2",
+      "phase": "pretest",
+      "category": "trust-calibration",
+      "domain": "financial-analysis",
+      "response_mode": "comparative_judgment",
+      "item_archetype": "comparative-trust",
+      "difficulty_band": "boundary",
+      "decision_family": "prefer_b",
+      "boundary_focus": "cautious-vs-overstated-comparison",
+      "paired_item_id": "V2_POST_C2",
+      "estimated_time_sec": 110,
+      "runner_ready": true,
+      "writing_goal_zh": "我在给投委会准备一页财报快评。我输入给 AI 的 prompt 是：“用一句话概括这份财报对利润率的含义，语气像内部点评。”",
+      "participant_prompt_zh": "如果只能保留一个答案，你会选哪个？下一步怎么做？",
+      "ai_answer": "",
+      "ai_answers": {
+        "A": "本季毛利率回落说明公司的盈利模式进入长期下行通道，后续修复空间有限。",
+        "B": "本季毛利率承压，但现有材料更支持把它理解为库存调整期的阶段性压力；若要判断后续趋势，还需要更多证据。"
+      },
+      "evidence_card": {
+        "title": "事实情况",
+        "bullets": [
+          "Q2 财报显示毛利率由 34% 下降到 29%。",
+          "管理层将压力归因于库存调整，并表示下季度仍需继续控制成本。",
+          "材料并不支持长期趋势判断，但支持对本季度利润率承压的描述。"
+        ]
+      },
+      "gold_label": {
+        "judgment": [
+          "选择 B"
+        ],
+        "next_action": [
+          "要求 AI 重新生成并附上证据"
+        ],
+        "reason_anchor": "更好的选择是较贴近证据边界的答案，但它仍需要进一步补出证据支持，因此不能直接接受。",
+        "gold_explanation_points": [
+          "指出较优答案只是相对更可信，而非已经完全可用",
+          "指出未选答案的 overstatement",
+          "说明为什么下一步应要求附证据重生成"
+        ]
+      },
+      "authoring_constraints_zh": [
+        "要制造'相对更好但仍需处理'的真实感",
+        "不要让一个答案明显好到无需思考",
+        "保证 action 层有辨析空间"
+      ]
+    },
+    {
+      "id": "V2_PRE_D2",
+      "phase": "pretest",
+      "category": "scope-generalization",
+      "domain": "data-processing",
+      "response_mode": "single_judgment",
+      "item_archetype": "revise-boundary",
+      "difficulty_band": "boundary",
+      "decision_family": "revise",
+      "boundary_focus": "scope-overreach-but-salvageable",
+      "paired_item_id": "V2_POST_D2",
+      "estimated_time_sec": 105,
+      "runner_ready": true,
+      "writing_goal_zh": "我在写一段城市交通数据项目复盘。我输入给 AI 的 prompt 是：“用一句话概括这套 GPS 清洗规则的适用性，准备放在方案总结里。”",
+      "participant_prompt_zh": "这条 AI 总结是否需要调整？为什么？",
+      "ai_answer": "这套规则在城市交通 GPS 清洗里表现稳定，后续迁到其他城市的数据流中也可以继续作为通用的异常识别方案。",
+      "evidence_card": {
+        "title": "事实情况",
+        "bullets": [
+          "该试验基于杭州三个城区、一个月的出租车 GPS 数据。",
+          "在这套数据上，这些规则对漂移点和重复定位点的识别效果更好。",
+          "研究记录没有覆盖其他城市、季节或不同采集设备。",
+          "作者只建议在相似数据流中继续测试，没有直接宣称规则可以通用于城市交通数据。"
+        ]
+      },
+      "gold_label": {
+        "judgment": [
+          "修改"
+        ],
+        "next_action": [
+          "弱化论述措辞"
+        ],
+        "reason_anchor": "问题不在于核心发现完全错误，而在于 AI 把适用范围写得过大，因此应收窄范围而不是整句拒绝。",
+        "gold_explanation_points": [
+          "指出研究支持的是特定条件下的结果",
+          "指出 AI 扩大了适用范围",
+          "解释为什么应 Revise 而不是 Reject"
+        ]
+      },
+      "authoring_constraints_zh": [
+        "必须保留可被弱化后使用的核心",
+        "不能把超范围写成完全离题",
+        "要让弱化措辞成为最自然动作"
+      ]
+    },
+    {
+      "id": "V2_POST_A1",
+      "phase": "posttest",
+      "category": "hallucinated-citation",
+      "domain": "financial-analysis",
+      "response_mode": "single_judgment",
+      "item_archetype": "clear-reject",
+      "difficulty_band": "anchor",
+      "decision_family": "reject",
+      "boundary_focus": "citation-nonexistence",
+      "paired_item_id": "V2_PRE_A1",
+      "estimated_time_sec": 95,
+      "runner_ready": true,
+      "writing_goal_zh": "我在整理一段银行数字化转型综述，句子里有一句“部分中型零售银行正把生成式 AI 优先用于客服降本场景”。我输入给 AI 的 prompt 是：“给我补一条看起来像正式行业研究的出处。”",
+      "participant_prompt_zh": "这条 AI 给出的引用能直接用吗？",
+      "ai_answer": "可以引用：Garcia, L., Zhou, X., & Moore, T. (2024). Generative AI and Service Cost Compression in Mid-Tier Retail Banking. Applied Finance Strategy Report Series, 7(3), 41-59.",
+      "evidence_card": {
+        "title": "事实情况",
+        "bullets": [
+          "数据库检索：未找到 Applied Finance Strategy Report Series 第 7 辑第 3 册的对应记录。",
+          "检索结果中没有该题名的 DOI、机构报告链接或稳定网页。",
+          "相近结果是 Garcia 与 Zhou 在 2023 年的一份 webinar brief，讨论两家零售银行的 AI 客服试点。",
+          "该 brief 既不是正式 report series，也没有覆盖 mid-tier retail banking 的整体情况。"
+        ]
+      },
+      "gold_label": {
+        "judgment": [
+          "拒绝"
+        ],
+        "next_action": [
+          "标记为不可用"
+        ],
+        "reason_anchor": "这是一条看似规范但无法核验的引用，且相近来源也无法替它兜底，因此应直接排除。",
+        "gold_explanation_points": [
+          "指出无法核验",
+          "指出相近来源不等于该引用成立",
+          "说明为什么不是 minor repair case"
+        ]
+      },
+      "authoring_constraints_zh": [
+        "保持与 PRE_A1 同 archetype、不同 topic surface",
+        "继续检验 clear-reject anchor"
+      ]
+    },
+    {
+      "id": "V2_POST_B1",
+      "phase": "posttest",
+      "category": "source-verification",
+      "domain": "history-humanities",
+      "response_mode": "single_judgment",
+      "item_archetype": "calibrated-accept",
+      "difficulty_band": "boundary",
+      "decision_family": "accept",
+      "boundary_focus": "source-supports-core-claim",
+      "paired_item_id": "V2_PRE_B1",
+      "estimated_time_sec": 100,
+      "runner_ready": true,
+      "writing_goal_zh": "我在写一段历史方法综述。我输入给 AI 的 prompt 是：“根据这篇方法论文，写一句能够稳妥说明谱牒材料研究价值的表述。”",
+      "participant_prompt_zh": "这条表述能不能留？如果能，怎么留？",
+      "ai_answer": "文章认为，谱牒材料更适合作为观察家族策略、婚姻安排和部分经济活动的线索，而不宜单独拿来还原普通家庭完整的日常经济生活。",
+      "evidence_card": {
+        "title": "事实情况",
+        "bullets": [
+          "来源标题：《把家族谱牒作为历史线索》。",
+          "论文认为家族谱牒可为家族策略、婚姻安排和部分经济活动提供线索。",
+          "作者反复讨论了谱牒材料的偏差、沉默、阶层偏倚和代表性限制。",
+          "论文并没有声称谱牒材料能够较可靠地重建普通家庭完整的日常经济行为。"
+        ]
+      },
+      "gold_label": {
+        "judgment": [
+          "接受"
+        ],
+        "next_action": [
+          "接受并做小幅修改"
+        ],
+        "reason_anchor": "这条表述在实质上并未超出来源，保留即可；如果一律改或拒绝，反而说明出现了过度谨慎。",
+        "gold_explanation_points": [
+          "指出来源支持核心判断",
+          "指出没有发生关键 overclaim",
+          "解释为什么 accept is calibrated here"
+        ]
+      },
+      "authoring_constraints_zh": [
+        "必须仍然是 calibrated-accept",
+        "不要把 AI 输出写得过度完美或过度松散"
+      ]
+    },
+    {
+      "id": "V2_POST_C2",
+      "phase": "posttest",
+      "category": "trust-calibration",
+      "domain": "history-humanities",
+      "response_mode": "comparative_judgment",
+      "item_archetype": "comparative-trust",
+      "difficulty_band": "boundary",
+      "decision_family": "prefer_a",
+      "boundary_focus": "cautious-vs-overstated-comparison",
+      "paired_item_id": "V2_PRE_C2",
+      "estimated_time_sec": 110,
+      "runner_ready": true,
+      "writing_goal_zh": "我在写一段市场调研方法综述。我输入给 AI 的 prompt 是：“根据这篇文章，写一句说明 AI 摘要在处理访谈记录中的用途。”",
+      "participant_prompt_zh": "你更信哪一个？下一步应怎么做？",
+      "ai_answer": "",
+      "ai_answers": {
+        "A": "AI 摘要可以帮助团队更快完成访谈笔记的初步整理，但在形成正式结论前仍需回看原始访谈记录并核对语境。",
+        "B": "只要用 AI 先做摘要，团队通常就可以直接据此提炼受访者共识，不必再系统回看原始记录。"
+      },
+      "evidence_card": {
+        "title": "事实情况",
+        "bullets": [
+          "研究团队使用 AI 摘要后，更快完成了访谈笔记的初步整理。",
+          "部分 AI 摘要会遗漏限制条件，或混淆不同受访者的表述。",
+          "作者建议：在形成正式结论前，仍需回看原始访谈记录并核对语境。"
+        ]
+      },
+      "gold_label": {
+        "judgment": [
+          "选择 A"
+        ],
+        "next_action": [
+          "要求 AI 重新生成并附上证据"
+        ],
+        "reason_anchor": "被选答案只是相对较好，而不是已经完全可靠。正确处理不是直接接受，而是要求其把证据链说清楚。",
+        "gold_explanation_points": [
+          "指出较优答案只是相对更好",
+          "指出仍需补充 evidence support",
+          "说明为什么 action 不应简单等于 accept"
+        ]
+      },
+      "authoring_constraints_zh": [
+        "这题要故意保留 decision-action decoupling 的可见性",
+        "不要让 gold action 被表面 fluency 掩盖"
+      ]
+    },
+    {
+      "id": "V2_POST_D2",
+      "phase": "posttest",
+      "category": "scope-generalization",
+      "domain": "research-report",
+      "response_mode": "single_judgment",
+      "item_archetype": "revise-boundary",
+      "difficulty_band": "boundary",
+      "decision_family": "revise",
+      "boundary_focus": "scope-overreach-but-salvageable",
+      "paired_item_id": "V2_PRE_D2",
+      "estimated_time_sec": 105,
+      "runner_ready": true,
+      "writing_goal_zh": "我在给产品周会准备一条用户洞察摘要。我输入给 AI 的 prompt 是：“根据这组访谈纪要，写一句最值得放在首页的核心发现。”",
+      "participant_prompt_zh": "你会如何处理这条 AI 结论？",
+      "ai_answer": "这组访谈说明，新手用户最敏感的仍然是“看不懂系统为什么给出某类建议”，这大概代表了普通投资者在使用智能投顾时的核心顾虑。",
+      "evidence_card": {
+        "title": "事实情况",
+        "bullets": [
+          "该研究基于上海两家营业点中 24 名首次使用智能投顾的用户访谈。",
+          "不少受访者提到，他们难以理解系统为什么给出某类建议。",
+          "作者同时记录到新手用户还会担心风险提示看不懂、产品切换成本高等问题。",
+          "作者提醒：样本局限于一个城市中的新手用户，不能直接代表普通投资者整体。"
+        ]
+      },
+      "gold_label": {
+        "judgment": [
+          "修改"
+        ],
+        "next_action": [
+          "弱化论述措辞"
+        ],
+        "reason_anchor": "这道题的关键是保留可用核心、收窄适用范围。若一律拒绝，说明仍未掌握 calibrated revision。",
+        "gold_explanation_points": [
+          "指出研究支持的是较窄范围",
+          "指出 AI 的问题是 scope stretch",
+          "说明应通过 narrowing / weakening 来修复"
+        ]
+      },
+      "authoring_constraints_zh": [
+        "这是 D 类的主 boundary item",
+        "不能混入额外 source mismatch 问题",
+        "必须服务 revise-vs-reject 主问题"
+      ]
+    }
+  ],
+  "scene_sequences": {
+    "hallucination-weak": [
+      {
+        "scene_id": "H1_TRIAGE_TUTOR",
+        "role": "导师",
+        "scene_type": "triage-tutor",
+        "decision_focus": "reject",
+        "learning_objective_zh": "学会区分完全不可用的 citation、需要回源核查后修正的 citation，以及基本可信但仍需保留边界的 citation。",
+        "script_lines": [
+          "引用问题不只有一种：有的是不存在，有的是对不上，有的是基本能用但需要保留边界。",
+          "当 citation 无法核验时，应 Reject；当真实来源存在但映射错位时，应 Revise；当来源基本匹配时，才谈 Accept with boundary。",
+          "你在 {failed_item_id} 中遇到的关键问题是：{evidence_gap}",
+          "这次请不要只问'它有没有问题'，而要问'它属于哪一种问题'。"
+        ],
+        "learner_task_zh": "比较下面三种 citation case，并写一句规则：什么时候该 Reject，什么时候该 Revise。",
+        "expected_signal": "能明确区分 fabricated citation 和 mismatched-but-salvageable citation",
+        "forced_choice_prompt": "为什么第二个 case 不能直接当成 Reject？",
+        "rule_template": "如果来源根本不存在，我应该 ____；如果来源存在但 citation 对不上，我应该 ____。",
+        "wrong_option_warning": "常见错误：只要发现 citation 不完美就一律 Reject。",
+        "contrast_cards": [
+          {
+            "case_type": "unusable",
+            "mini_case_framework_zh": "一条期刊引用查无记录，只有作者名与某份 working paper 部分重合。",
+            "correct_decision": "拒绝",
+            "preferred_action": "标记为不可用",
+            "why_not_other_zh": "因为问题不只是格式不精确，而是 citation 本身不成立。"
+          },
+          {
+            "case_type": "repairable",
+            "mini_case_framework_zh": "真实来源存在，但 AI 把年份、题名或研究对象映射错了。",
+            "correct_decision": "修改",
+            "preferred_action": "核查或检视原始来源",
+            "why_not_other_zh": "因为核心来源还在，只是 citation form 不能原样使用。"
+          },
+          {
+            "case_type": "boundary-acceptable",
+            "mini_case_framework_zh": "引用基本匹配，只是转述时最好保留原来源的谨慎语气。",
+            "correct_decision": "接受",
+            "preferred_action": "接受并做小幅修改",
+            "why_not_other_zh": "因为当前风险不在 citation 不存在，而在如何保持边界。"
+          }
+        ]
+      }
+    ],
+    "verification-weak": [
+      {
+        "scene_id": "V1_TRIAGE_TUTOR",
+        "role": "导师",
+        "scene_type": "triage-tutor",
+        "decision_focus": "revise",
+        "learning_objective_zh": "学会区分 source 不支持、source 支持较弱版本、以及 source 基本支持核心结论的三种情形。",
+        "script_lines": [
+          "来源核查的关键不是'有没有来源'，而是'来源到底支持到哪一步'。",
+          "如果来源根本不支持当前结论，应 Reject；如果来源支持较弱版本，应 Revise；如果来源支持核心判断，应 Accept with boundary。",
+          "你在 {failed_item_id} 中遇到的问题是：{evidence_gap}"
+        ],
+        "learner_task_zh": "比较三条 source-support 情境，并写一句规则：什么时候是 Revise，而不是 Reject。",
+        "expected_signal": "能区分 unsupported claim 与 overclaim",
+        "forced_choice_prompt": "如果来源支持较弱版本的结论，为什么不能直接 Reject 整句？",
+        "rule_template": "当来源支持核心判断但不支持当前强度时，我应该 ____，而不是 ____。",
+        "wrong_option_warning": "常见错误：只要 AI 说得比来源强一点，就整体 Reject。",
+        "contrast_cards": [
+          {
+            "case_type": "unusable",
+            "mini_case_framework_zh": "来源根本没有支持该结论，甚至主题或变量都不对应。",
+            "correct_decision": "拒绝",
+            "preferred_action": "标记为不可用",
+            "why_not_other_zh": "因为不存在可保留的证据核心。"
+          },
+          {
+            "case_type": "repairable",
+            "mini_case_framework_zh": "来源支持较弱版本，例如趋势、相关性或限定条件下的效果。",
+            "correct_decision": "修改",
+            "preferred_action": "弱化论述措辞",
+            "why_not_other_zh": "因为可保留的核心在，只是强度过头。"
+          },
+          {
+            "case_type": "boundary-acceptable",
+            "mini_case_framework_zh": "来源已支持当前核心判断，仅需保留原文的谨慎边界。",
+            "correct_decision": "接受",
+            "preferred_action": "接受并做小幅修改",
+            "why_not_other_zh": "因为此时过度怀疑会把可用信息误判成问题。"
+          }
+        ]
+      }
+    ],
+    "trust-calibration-weak": [
+      {
+        "scene_id": "T1_TRIAGE_TUTOR",
+        "role": "导师",
+        "scene_type": "triage-tutor",
+        "decision_focus": "accept-boundary",
+        "learning_objective_zh": "学会比较两个答案时以 evidence alignment 而不是 fluency 决策，并区分'相对更好'和'已经可直接使用'。",
+        "script_lines": [
+          "比较题的关键不是选写得更像专家的那个，而是选更贴近证据的那个。",
+          "但选到较优答案后，还要继续判断：它是 Accept with boundary，还是还需要 Revise？",
+          "你在 {failed_item_id} 中遇到的关键问题是：{evidence_gap}"
+        ],
+        "learner_task_zh": "比较三个状态：明显较差、相对更好但仍需处理、基本可用。写一句规则说明你如何从'选更好'进一步走到'决定下一步动作'。",
+        "expected_signal": "能区分 relative preference 与 final usability",
+        "forced_choice_prompt": "为什么'更可信'不必然等于'可以直接接受'？",
+        "rule_template": "比较题里，我先选更 evidence-aligned 的答案，再判断它需要 ____ 还是 ____。",
+        "wrong_option_warning": "常见错误：把更可信答案自动当成 fully acceptable answer。",
+        "contrast_cards": [
+          {
+            "case_type": "unusable",
+            "mini_case_framework_zh": "答案流畅但明显超出证据边界。",
+            "correct_decision": "不选该答案",
+            "preferred_action": "标记为不可用",
+            "why_not_other_zh": "因为它的问题已不是小修能解决。"
+          },
+          {
+            "case_type": "repairable",
+            "mini_case_framework_zh": "答案是相对更好的那个，但仍需补证据或收窄措辞。",
+            "correct_decision": "选择该答案",
+            "preferred_action": "要求 AI 重新生成并附上证据",
+            "why_not_other_zh": "因为 relative best 不等于 immediate final version。"
+          },
+          {
+            "case_type": "boundary-acceptable",
+            "mini_case_framework_zh": "答案既更 evidence-aligned，也已经接近可用，只需小修。",
+            "correct_decision": "选择该答案",
+            "preferred_action": "接受并做小幅修改",
+            "why_not_other_zh": "因为这时处理重点是 polishing with boundary, not rebuilding."
+          }
+        ]
+      }
+    ],
+    "scope-generalization-weak": [
+      {
+        "scene_id": "D1_TRIAGE_TUTOR",
+        "role": "导师",
+        "scene_type": "triage-tutor",
+        "decision_focus": "revise",
+        "learning_objective_zh": "学会区分不可接受的 scope leap、可修补的 scope overreach，以及本就边界清楚的 acceptable claim。",
+        "script_lines": [
+          "范围问题不总是'一票否决'。关键是看核心发现是否还能在收窄后保留。",
+          "如果 AI 把局部发现写成普遍规律且核心已经失真，应 Reject；如果只是把范围写宽了，但核心仍可保留，应 Revise。",
+          "你在 {failed_item_id} 中遇到的问题是：{evidence_gap}"
+        ],
+        "learner_task_zh": "比较三条 scope case，并写一句规则：什么时候是 scope overreach 但仍可 Revise？",
+        "expected_signal": "能区分 scope leap 与 salvageable overreach",
+        "forced_choice_prompt": "如果原研究只支持特定样本，什么情况下仍然可以保留核心？",
+        "rule_template": "当研究只支持特定范围时，我先判断核心是否还能在收窄后保留，再决定 ____。",
+        "wrong_option_warning": "常见错误：只要看到 overgeneralization 就一律 Reject。",
+        "contrast_cards": [
+          {
+            "case_type": "unusable",
+            "mini_case_framework_zh": "把两个县的档案研究写成整个国家的普遍机制。",
+            "correct_decision": "拒绝",
+            "preferred_action": "标记为不可用",
+            "why_not_other_zh": "因为当前结论已与证据对象严重脱节。"
+          },
+          {
+            "case_type": "repairable",
+            "mini_case_framework_zh": "把特定样本中的倾向写成更广泛说法，但核心方向仍可在收窄范围后保留。",
+            "correct_decision": "修改",
+            "preferred_action": "弱化论述措辞",
+            "why_not_other_zh": "因为问题在适用范围，而非核心发现完全错误。"
+          },
+          {
+            "case_type": "boundary-acceptable",
+            "mini_case_framework_zh": "结论已经把样本、语境和限制说清楚，只需小幅整理。",
+            "correct_decision": "接受",
+            "preferred_action": "接受并做小幅修改",
+            "why_not_other_zh": "因为这时边界已经被明确保留。"
+          }
+        ]
+      }
+    ]
+  }
+}

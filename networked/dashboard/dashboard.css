@@ -319,6 +319,11 @@ body::after {
   border: 1px solid rgba(171, 179, 183, 0.22);
 }
 
+.empty-state[hidden] {
+  display: none;
+}
+
+
 .empty-state p {
   margin: 0;
 }

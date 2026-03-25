@@ -489,10 +489,27 @@ function createResponseForm(item, phase) {
     ? S.materials.response_schema.comparative_judgment
     : S.materials.response_schema.single_judgment;
 
-  form.append(createRadioGroup(T.label_judgment, "judgment", opts));
-  form.append(createTextArea(T.label_reason, "reason", T.reason_placeholder));
-  form.append(createSelect(T.label_next_action, "next_action", S.materials.response_schema.next_action));
-  form.append(createRadioGroup(T.label_confidence, "confidence", T.confidence_opts));
+  const judgmentField = createRadioGroup(T.label_judgment, "judgment", opts);
+  judgmentField.setAttribute("data-section", "judgment");
+  judgmentField.querySelector(".prompt-label").insertAdjacentHTML("afterbegin", '<span class="section-step">1</span>');
+  form.append(judgmentField);
+
+  const reasonField = createTextArea(T.label_reason, "reason", T.reason_placeholder);
+  reasonField.setAttribute("data-section", "reason");
+  reasonField.querySelector("label").classList.add("prompt-label");
+  reasonField.querySelector("label").insertAdjacentHTML("afterbegin", '<span class="section-step">2</span>');
+  form.append(reasonField);
+
+  const actionField = createActionButtonGroup(T.label_next_action, "next_action", S.materials.response_schema.next_action);
+  actionField.setAttribute("data-section", "action");
+  actionField.querySelector(".prompt-label").insertAdjacentHTML("afterbegin", '<span class="section-step">3</span>');
+  form.append(actionField);
+
+  const confidenceField = createSlider(T.label_confidence, "confidence", T.confidence_opts);
+  confidenceField.setAttribute("data-section", "confidence");
+  confidenceField.querySelector(".prompt-label").insertAdjacentHTML("afterbegin", '<span class="section-step">4</span>');
+  form.append(confidenceField);
+
 
   const errNode = el("div", "error-text");
   errNode.hidden = true;
@@ -906,14 +923,15 @@ function card(title, html, cls = "") {
 function contextCard(kind, title, html) { return card(title, html, `context-card context-${kind}`); }
 function createCallout(text, cls) { const c = el("div", "callout " + (cls || "")); c.innerHTML = text; return c; }
 
-function createRadioGroup(labelText, name, values) {
-  const w = el("div", "field-stack");
+function createRadioGroup(labelText, name, values, compact = false) {
+  const w = el("div", compact ? "field-stack compact" : "field-stack");
   const label = el("div", "prompt-label"); label.textContent = labelText; w.append(label);
-  const grid = el("div", "option-grid");
+  const grid = el("div", compact ? "option-grid compact" : "option-grid");
   values.forEach(v => {
     const frag = radioTpl.content.cloneNode(true);
-    frag.querySelector("input").name = name;
-    frag.querySelector("input").value = v;
+    const input = frag.querySelector("input");
+    input.name = name;
+    input.value = v;
     frag.querySelector("span").textContent = v;
     grid.append(frag);
   });
@@ -924,6 +942,84 @@ function createRadioGroup(labelText, name, values) {
 function createTextArea(labelText, name, placeholder) {
   const w = el("div", "field-stack");
   w.innerHTML = `<label for="${name}">${labelText}</label><textarea id="${name}" name="${name}" placeholder="${escAttr(placeholder)}"></textarea>`;
+  return w;
+}
+
+function createActionButtonGroup(labelText, name, values) {
+  const w = el("div", "field-stack action-field");
+  const label = el("div", "prompt-label"); label.textContent = labelText; w.append(label);
+  const group = el("div", "action-btn-group");
+  
+  // Hidden input to store the value
+  const input = el("input");
+  input.type = "hidden";
+  input.name = name;
+  input.id = name;
+  w.append(input);
+
+  values.forEach(v => {
+    const b = el("button", "action-btn");
+    b.type = "button";
+    b.textContent = v;
+    b.onclick = () => {
+      group.querySelectorAll(".action-btn").forEach(btn => btn.classList.remove("selected"));
+      b.classList.add("selected");
+      input.value = v;
+    };
+    group.append(b);
+  });
+  w.append(group);
+  return w;
+}
+
+function createSlider(labelText, name, values) {
+  const w = el("div", "field-stack slider-field");
+  const label = el("div", "prompt-label"); label.textContent = labelText; w.append(label);
+
+  // Current value badge
+  const badge = el("div", "slider-badge");
+  badge.setAttribute("data-value", "3");
+
+  // Slider track container
+  const sliderBox = el("div", "slider-box");
+  const input = el("input", "slider-input");
+  input.type = "range";
+  input.name = name;
+  input.id = name;
+  input.min = "1";
+  input.max = values.length.toString();
+  input.step = "1";
+  input.value = "3";
+
+  // Labeled ticks row
+  const tickRow = el("div", "slider-ticks");
+  const tickEls = [];
+  for (let i = 0; i < values.length; i++) {
+    const tick = el("div", "slider-tick");
+    const num = el("span", "slider-tick-num"); num.textContent = i + 1;
+    const txt = el("span", "slider-tick-label"); txt.textContent = values[i].replace(/^\d+\s*[-–—]\s*/, "");
+    tick.append(num, txt);
+    tick.onclick = () => { input.value = (i + 1).toString(); update(); };
+    tickRow.append(tick);
+    tickEls.push(tick);
+  }
+
+  const update = () => {
+    const val = parseInt(input.value);
+    badge.textContent = values[val - 1] || val;
+    badge.setAttribute("data-value", val);
+    tickEls.forEach((t, idx) => {
+      t.classList.toggle("active", idx === val - 1);
+    });
+    // Update track fill percentage
+    const pct = ((val - 1) / (values.length - 1)) * 100;
+    sliderBox.style.setProperty("--fill", pct + "%");
+  };
+  input.oninput = update;
+
+  sliderBox.append(input);
+  w.append(badge, sliderBox, tickRow);
+  update();
   return w;
 }
 

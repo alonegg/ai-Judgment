@@ -1,1 +1,0 @@
-record_type,study_id,version,participant_id,phase,item_id,scene_id,category,targeted_profile,targeted_flag,response_mode,judgment,reason,next_action,confidence,response_time_sec,posttest_item_order,source_failed_item,learner_response_text,completion_flag,selected_profiles,profile_override,operator_notes,interview_q1,interview_q2,interview_q3

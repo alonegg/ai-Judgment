@@ -3,7 +3,7 @@
 
   const T = LANG === "en" ? {
     doc_title: "AI Judgment Micro-Intervention",
-    header_eyebrow: "ICAIE 2026 Pilot Study",
+    header_eyebrow: "",
     header_title: "AI Judgment Micro-Intervention",
     conn_connecting: "Connecting...",
     conn_connected: "Connected",
@@ -166,7 +166,7 @@
     }
   } : {
     doc_title: "AI 判断力微干预实验",
-    header_eyebrow: "ICAIE 2026 试点实验",
+    header_eyebrow: "",
     header_title: "AI 判断力微干预",
     conn_connecting: "连接中...",
     conn_connected: "已连接",
@@ -264,7 +264,7 @@
     profile_wait_strong: "等待实验员确认干预方向...",
     profile_wait_body: "实验员正在审核你的前测结果，请稍候。",
     scene_title: "干预场景",
-    scene_script_title: "脚本内容",
+    scene_script_title: "教学引导",
     scene_recap_title: "场景回顾",
     scene_issue_title: "关键问题",
     scene_task_label: "学习任务：",

@@ -5,3 +5,6 @@ npm-debug.log*
 
 networked/data/*.json
 prototype/.git/
+
+# Internal / private documents (not for public repo)
+_internal/
